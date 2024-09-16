@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,7 +16,6 @@ import nz.ac.auckland.apiproxy.chat.openai.ChatMessage;
 import nz.ac.auckland.apiproxy.chat.openai.Choice;
 import nz.ac.auckland.apiproxy.config.ApiProxyConfig;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
-import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.prompts.PromptEngineering;
 import nz.ac.auckland.se206.speech.FreeTextToSpeech;
 
@@ -82,7 +82,35 @@ public class ChatController {
    * @param msg the chat message to append
    */
   private void appendChatMessage(ChatMessage msg) {
-    txtaChat.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+    String formattedMessage = formatMessage(msg); // Format the message
+
+    // Ensure the message is appended on the JavaFX Application Thread
+    if (Platform.isFxApplicationThread()) {
+      appendToChat(formattedMessage);
+    } else {
+      Platform.runLater(() -> appendToChat(formattedMessage));
+    }
+
+    System.out.println(txtaChat.getText()); // Print the current chat text to console
+  }
+
+  /**
+   * Formats the chat message for display.
+   *
+   * @param msg the chat message to format
+   * @return the formatted message string
+   */
+  private String formatMessage(ChatMessage msg) {
+    return msg.getRole() + ": " + msg.getContent() + "\n\n"; // Format: "role: content"
+  }
+
+  /**
+   * Appends formatted text to the chat text area.
+   *
+   * @param formattedMessage the message to append
+   */
+  private void appendToChat(String formattedMessage) {
+    txtaChat.appendText(formattedMessage); // Append text to chat area
   }
 
   /**
@@ -135,7 +163,8 @@ public class ChatController {
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    App.setRoot("room");
+    hideChatBox(); // Hide the chat box
+    txtaChat.clear(); // Clear the chat area
   }
 
   /** Hides the chat box and progress bar. */
@@ -145,6 +174,7 @@ public class ChatController {
 
   /** Shows the chat box and progress bar. */
   public void showChatBox() {
+    System.out.println("Showing chat box");
     chatBox.setVisible(true); // Make chat box visible
   }
 }

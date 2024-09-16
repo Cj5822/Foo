@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.BackstoryController">
+   <children>
+      <TextArea layoutX="-6.0" prefHeight="400.0" prefWidth="613.0" text="The victim of this crime prepared an engagement ring which was &#10;locked inside a safe. The day before the proposal the victim checked the safe, &#10;only to find that the password had been changed. It seems like someone &#10;has come inside the room and tampered with the safe. You have been &#10;called by the victim to solve who did it. The three likely suspects are: Electrician,&#10; a plumber, and the neighbour, who have all been in the house in the past few days.&#10;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextArea>
+      <Button fx:id="continueButton" layoutX="268.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleContinue" text="Continue" />
+   </children>
+</Pane>

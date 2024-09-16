@@ -80,14 +80,14 @@ public class App extends Application {
   }
 
   /**
-   * This method is invoked when the application starts. It loads and shows the "homepage" scene.
+   * This method is invoked when the application starts. It loads and shows the "backstory" scene.
    *
    * @param stage the primary stage of the application
    * @throws IOException if the "src/main/resources/fxml/homepage.fxml" file is not found
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    Parent root = loadFxml("homepage"); // Load the "homepage" FXML
+    Parent root = loadFxml("backstory"); // Load the "backstory" FXML
 
     scene = new Scene(root); // Create a new scene with the loaded root
     stage.setScene(scene); // Set the scene on the stage

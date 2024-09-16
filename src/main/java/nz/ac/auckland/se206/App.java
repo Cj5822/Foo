@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.controllers.ChatController;
-import nz.ac.auckland.se206.controllers.RoomController;
 
 /**
  * This is the entry point of the JavaFX application. This class initializes and runs the JavaFX
@@ -19,7 +18,6 @@ public class App extends Application {
 
   private static Scene scene;
   private static FXMLLoader loader;
-  private static RoomController roomController; // Controller for the room view
   private static ChatController chatController; // Controller for the chat view
 
   /**
@@ -49,7 +47,7 @@ public class App extends Application {
    * @return the root node of the FXML file
    * @throws IOException if the FXML file is not found
    */
-  private static Parent loadFxml(final String fxml) throws IOException {
+  public static Parent loadFxml(final String fxml) throws IOException {
     loader = new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
     return loader.load(); // Load and return the root node of the specified FXML file
   }
@@ -82,16 +80,14 @@ public class App extends Application {
   }
 
   /**
-   * This method is invoked when the application starts. It loads and shows the "room" scene.
+   * This method is invoked when the application starts. It loads and shows the "homepage" scene.
    *
    * @param stage the primary stage of the application
-   * @throws IOException if the "src/main/resources/fxml/room.fxml" file is not found
+   * @throws IOException if the "src/main/resources/fxml/homepage.fxml" file is not found
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    Parent root = loadFxml("room"); // Load the "room" FXML
-    roomController = loader.getController();
-    chatController = roomController.getChatController();
+    Parent root = loadFxml("homepage"); // Load the "homepage" FXML
 
     scene = new Scene(root); // Create a new scene with the loaded root
     stage.setScene(scene); // Set the scene on the stage

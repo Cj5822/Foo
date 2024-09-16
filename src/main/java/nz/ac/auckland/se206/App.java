@@ -85,7 +85,7 @@ public class App extends Application {
   }
 
   /**
-   * This method is invoked when the application starts. It loads and shows the "homepage" scene.
+   * This method is invoked when the application starts. It loads and shows the "backstory" scene.
    *
    * @param stage the primary stage of the application
    * @throws IOException if the "src/main/resources/fxml/homepage.fxml" file is not found

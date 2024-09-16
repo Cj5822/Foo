@@ -49,7 +49,7 @@ public class App extends Application {
    * @return the root node of the FXML file
    * @throws IOException if the FXML file is not found
    */
-  private static Parent loadFxml(final String fxml) throws IOException {
+  public static Parent loadFxml(final String fxml) throws IOException {
     loader = new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
     return loader.load(); // Load and return the root node of the specified FXML file
   }

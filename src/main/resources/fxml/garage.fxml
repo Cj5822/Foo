@@ -27,5 +27,6 @@
          </font>
       </Label>
       <Rectangle fx:id="rectPerson4" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="18.0" layoutX="60.0" layoutY="34.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="18.0" />
+      <fx:include source="chat.fxml" />
    </children>
 </Pane>

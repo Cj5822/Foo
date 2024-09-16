@@ -3,13 +3,16 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /**
  * Controller class for the room view. Handles user interactions within the room where the user can
@@ -17,29 +20,50 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
  */
 public class RoomController {
 
-  @FXML private Rectangle rectCashier;
+  @FXML private Rectangle rectPlumber;
   @FXML private Rectangle rectPerson1;
   @FXML private Rectangle rectPerson2;
   @FXML private Rectangle rectPerson3;
   @FXML private Rectangle rectWaitress;
   @FXML private Label lblProfession;
   @FXML private Button btnGuess;
+  @FXML private Pane room;
 
-  private static boolean isFirstTimeInit = true;
+  private ChatController chatController;
+  private FXMLLoader chatBoxLoader;
+
   private static GameStateContext context = new GameStateContext();
 
-  /**
-   * Initializes the room view. If it's the first time initialization, it will provide instructions
-   * via text-to-speech.
-   */
+  /** Initializes the room view. */
   @FXML
   public void initialize() {
-    if (isFirstTimeInit) {
-      TextToSpeech.speak(
-          "Chat with the three customers, and guess who is the " + context.getProfessionToGuess());
-      isFirstTimeInit = false;
+    initialiseChatBox(
+        room); // Call the method that handles chat box initialization with error handling
+  }
+
+  /**
+   * Tries to load and configure the chat box. If an exception occurs, it will be handled by the
+   * handleError method.
+   */
+  private void initialiseChatBox(Pane room) {
+    try {
+      configureChatBox(room); // Load and configure the chat box
+    } catch (IOException e) {
+      System.err.println("Error loading chat box: " + e.getMessage());
+      e.printStackTrace(); // Print the stack trace for debugging
     }
-    lblProfession.setText(context.getProfessionToGuess());
+  }
+
+  /**
+   * Configures the chat box by loading the corresponding FXML and adding it to the room view.
+   *
+   * @throws IOException if there is an issue loading the FXML file.
+   */
+  private void configureChatBox(Pane room) throws IOException {
+    chatBoxLoader = new FXMLLoader(App.class.getResource("/fxml/chat.fxml"));
+    AnchorPane node = chatBoxLoader.load();
+    chatController = chatBoxLoader.getController();
+    room.getChildren().add(node); // Add the chat box to the room view
   }
 
   /**
@@ -83,5 +107,14 @@ public class RoomController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     context.handleGuessClick();
+  }
+
+  /**
+   * Gets the chat controller.
+   *
+   * @return the chat controller associated with this view.
+   */
+  public ChatController getChatController() {
+    return chatController;
   }
 }

@@ -36,8 +36,8 @@ public class GameStarted implements GameState {
     // Transition to chat view or provide an introduction based on the clicked rectangle
     String roomName = "";
     switch (rectangleId) {
-      case "rectCashier":
-        System.out.println("Cashier clicked");
+      case "rectPlumber":
+        App.openChat(event);
         return;
       case "rectWaitress":
         System.out.println("Waitress clicked");

@@ -8,9 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import nz.ac.auckland.se206.controllers.ChatController;
-import nz.ac.auckland.se206.speech.FreeTextToSpeech;
+import nz.ac.auckland.se206.controllers.RoomController;
 
 /**
  * This is the entry point of the JavaFX application. This class initializes and runs the JavaFX
@@ -19,6 +18,9 @@ import nz.ac.auckland.se206.speech.FreeTextToSpeech;
 public class App extends Application {
 
   private static Scene scene;
+  private static FXMLLoader loader;
+  private static RoomController roomController; // Controller for the room view
+  private static ChatController chatController; // Controller for the chat view
 
   /**
    * The main method that launches the JavaFX application.
@@ -48,7 +50,8 @@ public class App extends Application {
    * @throws IOException if the FXML file is not found
    */
   private static Parent loadFxml(final String fxml) throws IOException {
-    return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
+    loader = new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
+    return loader.load(); // Load and return the root node of the specified FXML file
   }
 
   /**
@@ -58,17 +61,8 @@ public class App extends Application {
    * @param profession the profession to set in the chat controller
    * @throws IOException if the FXML file is not found
    */
-  public static void openChat(MouseEvent event, String profession) throws IOException {
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/chat.fxml"));
-    Parent root = loader.load();
-
-    ChatController chatController = loader.getController();
-    chatController.setProfession(profession);
-
-    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    scene = new Scene(root);
-    stage.setScene(scene);
-    stage.show();
+  public static void openChat(MouseEvent event) throws IOException {
+    chatController.showChatBox(); // Display the chat box
   }
 
   /**
@@ -95,15 +89,14 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    Parent root = loadFxml("room");
-    scene = new Scene(root);
-    stage.setScene(scene);
-    stage.show();
-    stage.setOnCloseRequest(event -> handleWindowClose(event));
-    root.requestFocus();
-  }
+    Parent root = loadFxml("room"); // Load the "room" FXML
+    roomController = loader.getController();
+    chatController = roomController.getChatController();
 
-  private void handleWindowClose(WindowEvent event) {
-    FreeTextToSpeech.deallocateSynthesizer();
+    scene = new Scene(root); // Create a new scene with the loaded root
+    stage.setScene(scene); // Set the scene on the stage
+    stage.show(); // Display the stage
+
+    root.requestFocus(); // Request focus for the root node
   }
 }

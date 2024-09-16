@@ -72,6 +72,22 @@ public class App extends Application {
   }
 
   /**
+   * Changes the room to the room selected.
+   *
+   * @param event the mouse event that triggered the method
+   * @param roomName the room of the FXML file to load
+   * @throws IOException if the FXML file is not found
+   */
+  public static void changeRoom(MouseEvent event, String roomName) throws IOException {
+    FXMLLoader loader = new FXMLLoader(App.class.getResource(roomName));
+    Parent root = loader.load();
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
+  }
+
+  /**
    * This method is invoked when the application starts. It loads and shows the "room" scene.
    *
    * @param stage the primary stage of the application

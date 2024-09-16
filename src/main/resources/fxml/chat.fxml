@@ -3,19 +3,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="789.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
   <children>
-      <ImageView fitHeight="599.0" fitWidth="789.0">
-         <image>
-            <Image url="@../images/living-room.png" />
-         </image>
-      </ImageView>
-    <TextArea fx:id="txtaChat" editable="false" layoutX="18.0" layoutY="398.0" prefHeight="145.0" prefWidth="754.0" wrapText="true" />
-    <TextField fx:id="txtInput" layoutX="18.0" layoutY="560.0" prefHeight="26.0" prefWidth="637.0" />
+    <TextArea fx:id="txtaChat" editable="false" layoutX="23.0" layoutY="398.0" prefHeight="145.0" prefWidth="754.0" wrapText="true" />
+    <TextField fx:id="txtInput" layoutX="23.0" layoutY="560.0" prefHeight="26.0" prefWidth="637.0" />
     <Button fx:id="btnSend" layoutX="671.0" layoutY="560.0" mnemonicParsing="false" onAction="#onSendMessage" text="Send" />
     <Button layoutX="717.0" layoutY="560.0" mnemonicParsing="false" onAction="#onGoBack" text="Go Back" />
   </children>

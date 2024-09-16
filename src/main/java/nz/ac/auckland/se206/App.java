@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.controllers.ChatController;
+import nz.ac.auckland.se206.controllers.RoomController;
 
 /**
  * This is the entry point of the JavaFX application. This class initializes and runs the JavaFX
@@ -19,6 +20,7 @@ public class App extends Application {
   private static Scene scene;
   private static FXMLLoader loader;
   private static ChatController chatController; // Controller for the chat view
+  private static RoomController roomController; // Controller for the room view
 
   /**
    * The main method that launches the JavaFX application.
@@ -59,7 +61,8 @@ public class App extends Application {
    * @param profession the profession to set in the chat controller
    * @throws IOException if the FXML file is not found
    */
-  public static void openChat(MouseEvent event) throws IOException {
+  public static void openChat(MouseEvent event, String profession) throws IOException {
+    chatController.setProfession(profession); // Set the profession in the chat controller
     chatController.showChatBox(); // Display the chat box
   }
 
@@ -71,12 +74,14 @@ public class App extends Application {
    * @throws IOException if the FXML file is not found
    */
   public static void changeRoom(MouseEvent event, String roomName) throws IOException {
-    FXMLLoader loader = new FXMLLoader(App.class.getResource(roomName));
-    Parent root = loader.load();
+    roomController = loader.getController(); // Retrieve the RoomController from the loader
+    chatController = roomController.getChatController(); // Get the ChatController
+    Parent root = loadFxml(roomName);
     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     scene = new Scene(root);
     stage.setScene(scene);
     stage.show();
+    root.requestFocus(); // Request focus for the root node
   }
 
   /**
@@ -88,11 +93,9 @@ public class App extends Application {
   @Override
   public void start(final Stage stage) throws IOException {
     Parent root = loadFxml("homepage"); // Load the "homepage" FXML
-
     scene = new Scene(root); // Create a new scene with the loaded root
     stage.setScene(scene); // Set the scene on the stage
     stage.show(); // Display the stage
-
     root.requestFocus(); // Request focus for the root node
   }
 }

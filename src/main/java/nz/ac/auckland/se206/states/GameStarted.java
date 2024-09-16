@@ -37,22 +37,28 @@ public class GameStarted implements GameState {
     String roomName = "";
     switch (rectangleId) {
       case "rectPlumber":
-        App.openChat(event);
+        roomName = "bathroom";
+        App.openChat(event, "Plumber");
         return;
-      case "rectWaitress":
-        System.out.println("Waitress clicked");
+      case "rectElectrician":
+        roomName = "bathroom";
+        App.openChat(event, "Electrician");
+        return;
+      case "rectNeighbour":
+        roomName = "bathroom";
+        App.openChat(event, "Electrician");
         return;
       case "rectPerson1":
-        roomName = "/fxml/living-room.fxml";
+        roomName = "living-room";
         App.changeRoom(event, roomName);
       case "rectPerson2":
-        roomName = "/fxml/garage.fxml";
+        roomName = "garage";
         App.changeRoom(event, roomName);
       case "rectPerson3":
-        roomName = "/fxml/bathroom.fxml";
+        roomName = "bathroom";
         App.changeRoom(event, roomName);
       case "rectPerson4":
-        roomName = "/fxml/room.fxml";
+        roomName = "room";
         App.changeRoom(event, roomName);
     }
     App.changeRoom(event, roomName);

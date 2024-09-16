@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import nz.ac.auckland.apiproxy.chat.openai.ChatCompletionRequest;
 import nz.ac.auckland.apiproxy.chat.openai.ChatCompletionResult;
 import nz.ac.auckland.apiproxy.chat.openai.ChatMessage;
@@ -27,6 +28,7 @@ public class ChatController {
   @FXML private TextArea txtaChat;
   @FXML private TextField txtInput;
   @FXML private Button btnSend;
+  @FXML private AnchorPane chatBox;
 
   private ChatCompletionRequest chatCompletionRequest;
   private String profession;
@@ -39,6 +41,7 @@ public class ChatController {
   @FXML
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
+    hideChatBox(); // Hide chat box initially
   }
 
   /**
@@ -133,5 +136,15 @@ public class ChatController {
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
     App.setRoot("room");
+  }
+
+  /** Hides the chat box and progress bar. */
+  public void hideChatBox() {
+    chatBox.setVisible(false); // Make chat box invisible
+  }
+
+  /** Shows the chat box and progress bar. */
+  public void showChatBox() {
+    chatBox.setVisible(true); // Make chat box visible
   }
 }

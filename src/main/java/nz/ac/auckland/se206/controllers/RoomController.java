@@ -21,8 +21,8 @@ import nz.ac.auckland.se206.GameStateContext;
 public class RoomController {
 
   @FXML private Rectangle rectPlumber;
-  @FXML private Rectangle rectPerson1;
-  @FXML private Rectangle rectPerson2;
+  @FXML private Rectangle rectElectrician;
+  @FXML private Rectangle rectNeighbour;
   @FXML private Rectangle rectPerson3;
   @FXML private Rectangle rectWaitress;
   @FXML private Label lblProfession;

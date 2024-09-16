@@ -5,10 +5,10 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.homepageController">
    <children>
-      <Button fx:id="startGameButton" alignment="CENTER" layoutX="259.0" layoutY="244.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="77.0" text="Start Game" />
-      <Button fx:id="exitButton" alignment="CENTER" layoutX="259.0" layoutY="297.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="77.0" text="Exit" />
+      <Button fx:id="startGameButton" alignment="CENTER" layoutX="259.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleStartGame" prefHeight="30.0" prefWidth="77.0" text="Start Game" />
+      <Button fx:id="exitButton" alignment="CENTER" layoutX="259.0" layoutY="297.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="30.0" prefWidth="77.0" text="Exit" />
       <Label alignment="TOP_CENTER" layoutX="17.0" layoutY="14.0" prefHeight="58.0" prefWidth="575.0" text="SOFTENG 206 - Guess Who ?" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="40.0" />

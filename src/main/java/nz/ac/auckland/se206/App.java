@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.controllers.ChatController;
-import nz.ac.auckland.se206.controllers.RoomController;
 
 /**
  * This is the entry point of the JavaFX application. This class initializes and runs the JavaFX
@@ -19,7 +18,6 @@ public class App extends Application {
 
   private static Scene scene;
   private static FXMLLoader loader;
-  private static RoomController roomController; // Controller for the room view
   private static ChatController chatController; // Controller for the chat view
 
   /**
@@ -89,9 +87,7 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    Parent root = loadFxml("homepage"); // Load the "room" FXML
-    roomController = loader.getController();
-    chatController = roomController.getChatController();
+    Parent root = loadFxml("homepage"); // Load the "homepage" FXML
 
     scene = new Scene(root); // Create a new scene with the loaded root
     stage.setScene(scene); // Set the scene on the stage

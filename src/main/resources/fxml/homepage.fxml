@@ -5,43 +5,43 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.homepageController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="789.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.homepageController">
    <children>
-      <Button fx:id="startGameButton" alignment="CENTER" layoutX="259.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleStartGame" prefHeight="30.0" prefWidth="77.0" text="Start Game" />
-      <Button fx:id="exitButton" alignment="CENTER" layoutX="259.0" layoutY="297.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="30.0" prefWidth="77.0" text="Exit" />
-      <Label alignment="TOP_CENTER" layoutX="17.0" layoutY="14.0" prefHeight="58.0" prefWidth="575.0" text="SOFTENG 206 - Guess Who ?" textAlignment="CENTER">
+      <Button fx:id="startGameButton" alignment="CENTER" layoutX="344.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleStartGame" prefHeight="41.0" prefWidth="97.0" text="Start Game" />
+      <Button fx:id="exitButton" alignment="CENTER" layoutX="344.0" layoutY="437.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="41.0" prefWidth="97.0" text="Exit" />
+      <Label alignment="TOP_CENTER" layoutX="17.0" layoutY="14.0" prefHeight="61.0" prefWidth="751.0" text="SOFTENG 206 - Guess Who ?" textAlignment="CENTER">
          <font>
-            <Font name="System Bold" size="40.0" />
+            <Font name="System Bold" size="50.0" />
          </font>
       </Label>
-      <Label alignment="TOP_CENTER" layoutX="180.0" layoutY="93.0" text="Instructions:">
+      <Label alignment="TOP_CENTER" layoutX="242.0" layoutY="135.0" text="Instructions:">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label alignment="TOP_CENTER" layoutX="180.0" layoutY="133.0" text="Left click on suspects to chat">
+      <Label alignment="TOP_CENTER" layoutX="242.0" layoutY="195.0" text="Left click on suspects to chat">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label alignment="TOP_CENTER" layoutX="180.0" layoutY="153.0" text="Navigate using top left map">
+      <Label alignment="TOP_CENTER" layoutX="242.0" layoutY="225.0" text="Navigate using top left map">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label alignment="TOP_CENTER" layoutX="180.0" layoutY="173.0" text="There is a 5 minute time limit">
+      <Label alignment="TOP_CENTER" layoutX="242.0" layoutY="255.0" text="There is a 5 minute time limit">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label alignment="TOP_CENTER" layoutX="180.0" layoutY="193.0" text="Guessing state has a 1 minute limit">
+      <Label alignment="TOP_CENTER" layoutX="242.0" layoutY="285.0" text="Guessing state has a 1 minute limit">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="180.0" layoutY="113.0" text="Left click on objects to reveal hint">
+      <Label layoutX="242.0" layoutY="165.0" text="Left click on objects to reveal hint">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
    </children>

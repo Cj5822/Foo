@@ -95,7 +95,7 @@ public class App extends Application {
   @Override
   public void start(final Stage stage) throws IOException {
     appStage = stage;
-    Parent root = loadFxml("backstory"); // Load the "backstory" FXML
+    Parent root = loadFxml("homepage"); // Load the "backstory" FXML
     scene = new Scene(root); // Create a new scene with the loaded root
     stage.setScene(scene); // Set the scene on the stage
     stage.show(); // Display the stage

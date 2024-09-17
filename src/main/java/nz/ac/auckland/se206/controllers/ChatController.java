@@ -174,7 +174,6 @@ public class ChatController {
 
   /** Shows the chat box and progress bar. */
   public void showChatBox() {
-    System.out.println("Showing chat box");
     chatBox.setVisible(true); // Make chat box visible
   }
 }

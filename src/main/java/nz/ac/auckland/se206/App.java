@@ -3,7 +3,6 @@ package nz.ac.auckland.se206;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -21,6 +20,7 @@ public class App extends Application {
   private static FXMLLoader loader;
   private static ChatController chatController; // Controller for the chat view
   private static RoomController roomController; // Controller for the room view
+  private static Stage appStage;
 
   /**
    * The main method that launches the JavaFX application.
@@ -74,25 +74,28 @@ public class App extends Application {
    * @throws IOException if the FXML file is not found
    */
   public static void changeRoom(MouseEvent event, String roomName) throws IOException {
-    roomController = loader.getController(); // Retrieve the RoomController from the loader
-    chatController = roomController.getChatController(); // Get the ChatController
-    Parent root = loadFxml(roomName);
-    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    scene = new Scene(root);
-    stage.setScene(scene);
-    stage.show();
-    root.requestFocus(); // Request focus for the root node
+    // Load the FXML for the new room
+    Parent root = loadFxml(roomName); // Load the "backstory" FXML
+
+    roomController = loader.getController();
+    chatController = roomController.getChatController();
+
+    scene = new Scene(root); // Create a new scene with the loaded root
+    appStage.setScene(scene); // Set the scene on the stage
+    appStage.show(); // Display the stage
+    root.requestFocus();
   }
 
   /**
    * This method is invoked when the application starts. It loads and shows the "backstory" scene.
    *
    * @param stage the primary stage of the application
-   * @throws IOException if the "src/main/resources/fxml/homepage.fxml" file is not found
+   * @throws IOException if the "src/main/resources/fxml/backstory.fxml" file is not found
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    Parent root = loadFxml("backstory"); // Load the "homepage" FXML
+    appStage = stage;
+    Parent root = loadFxml("backstory"); // Load the "backstory" FXML
     scene = new Scene(root); // Create a new scene with the loaded root
     stage.setScene(scene); // Set the scene on the stage
     stage.show(); // Display the stage

@@ -28,11 +28,13 @@ public class RoomController {
   @FXML private Label lblProfession;
   @FXML private Button btnGuess;
   @FXML private Pane room;
+  @FXML private Label lblRoomName;
 
   private ChatController chatController;
   private FXMLLoader chatBoxLoader;
 
   private static GameStateContext context = new GameStateContext();
+  private String originalRoomName = null;
 
   /** Initializes the room view. */
   @FXML
@@ -107,6 +109,54 @@ public class RoomController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     context.handleGuessClick();
+  }
+
+  /**
+   * Handles mouse hover exiting on rectangles representing button for map navigation.
+   *
+   * @param event the mouse event triggered by clicking a rectangle
+   * @throws IOException if there is an I/O error
+   */
+  @FXML
+  private void handleRectangleExit(MouseEvent event) throws IOException {
+    Rectangle hoveredRectangle = (Rectangle) event.getSource();
+    hoveredRectangle.setOpacity(0.0);
+
+    // Reset room label to the original room name
+    lblRoomName.setText(originalRoomName);
+  }
+
+  /**
+   * Handles mouse hovers on rectangles representing button for map navigation.
+   *
+   * @param event the mouse event triggered by clicking a rectangle
+   * @throws IOException if there is an I/O error
+   */
+  @FXML
+  private void handleRectangleEnter(MouseEvent event) throws IOException {
+    Rectangle hoveredRectangle = (Rectangle) event.getSource();
+    hoveredRectangle.setOpacity(1.0);
+
+    // Store the original room name if not already stored
+    if (originalRoomName == null) {
+      originalRoomName = lblRoomName.getText();
+    }
+
+    // Update room label depending on the hovered rectangle
+    switch (hoveredRectangle.getId()) {
+      case "rectPerson1":
+        lblRoomName.setText("Living Room");
+        return;
+      case "rectPerson2":
+        lblRoomName.setText("Garage");
+        return;
+      case "rectPerson3":
+        lblRoomName.setText("Bathroom");
+        return;
+      case "rectPerson4":
+        lblRoomName.setText("Bedroom");
+        return;
+    }
   }
 
   /**

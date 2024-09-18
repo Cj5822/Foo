@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.controllers.ChatController;
+import nz.ac.auckland.se206.controllers.FlippedWrenchController;
 import nz.ac.auckland.se206.controllers.RoomController;
 import nz.ac.auckland.se206.controllers.SafeController;
 import nz.ac.auckland.se206.controllers.WrenchController;
@@ -24,6 +25,8 @@ public class App extends Application {
   private static ChatController chatController; // Controller for the chat view
   private static RoomController roomController; // Controller for the room view
   private static WrenchController wrenchController; // Controller for the wrench view
+  private static FlippedWrenchController
+      flippedWrenchController; // Controller for the flipped wrench view
   private static Stage appStage;
 
   /**
@@ -81,7 +84,21 @@ public class App extends Application {
   }
 
   public static void flipWrench(MouseEvent event) {
-    wrenchController.flipWrench();
+    roomController = loader.getController();
+    wrenchController.hideWrenchPane();
+    flippedWrenchController = roomController.getFlippedWrenchController();
+    flippedWrenchController.showFlippedWrenchPane();
+  }
+
+  public static void flipWrenchAgain(MouseEvent event) {
+    roomController = loader.getController();
+    flippedWrenchController.hideFlippedWrenchPane();
+    wrenchController = roomController.getWrenchController();
+    wrenchController.showWrenchPane();
+  }
+
+  public static void closeFlippedWrench(MouseEvent event) throws IOException {
+    flippedWrenchController.hideFlippedWrenchPane();
   }
 
   /**

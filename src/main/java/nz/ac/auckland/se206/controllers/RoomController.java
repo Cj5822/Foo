@@ -33,13 +33,18 @@ public class RoomController {
   @FXML private Label lblRoomName;
   @FXML private Label lblTimer;
 
+  // Controllers
   private ChatController chatController;
   private SafeController safeController;
-  private FXMLLoader chatPaneLoader;
+  private OpenSafeController openSafeController;
   private WrenchController wrenchController;
-  private FXMLLoader safePaneLoader;
-  private FXMLLoader wrenchPaneLoader;
   private FlippedWrenchController flippedWrenchController;
+
+  // FXML Loaders
+  private FXMLLoader chatPaneLoader;
+  private FXMLLoader safePaneLoader;
+  private FXMLLoader openSafePaneLoader;
+  private FXMLLoader wrenchPaneLoader;
   private FXMLLoader flippedWrenchLoader;
 
   private static GameStateContext context = new GameStateContext();
@@ -54,13 +59,11 @@ public class RoomController {
     timerManager = TimerManager.getInstance(); // Initialize the TimerManager
 
     startTimer(); // Start the timer and update the label
-    initialiseSafePane(room);
-    initialiseChatPane(
-        room); // Call the method that handles chat box initialization with error handling
-
-    initialiseWrenchPane(room); // Call the method that handles wrench pane initialization
-    initialiseFlippedWrenchPane(
-        room); // Call the method that handles flipped wrench pane initialization
+    initialiseChatPane(room); // Initialise chat pane
+    initialiseSafePane(room); // Initialise safe pane
+    initialiseOpenSafePane(room); // Initialise open safe pane
+    initialiseWrenchPane(room); // Initialise wrench pane
+    initialiseFlippedWrenchPane(room); // Initialise flipped wrench pane
   }
 
   /** Starts the timer and continuously updates the timer label. */
@@ -92,6 +95,50 @@ public class RoomController {
     }
   }
 
+  /**
+   * Configures the chat box by loading the corresponding FXML and adding it to the room view.
+   *
+   * @throws IOException if there is an issue loading the FXML file.
+   */
+  private void configureChatPane(Pane room) throws IOException {
+    chatPaneLoader = new FXMLLoader(App.class.getResource("/fxml/chat.fxml"));
+    AnchorPane node = chatPaneLoader.load();
+    chatController = chatPaneLoader.getController();
+    room.getChildren().add(node); // Add the chat box to the room view
+  }
+
+  private void initialiseSafePane(Pane room) {
+    try {
+      configureSafePane(room); // Load and configure the safe box
+    } catch (IOException e) {
+      System.err.println("Error loading safe box: " + e.getMessage());
+      e.printStackTrace(); // Print the stack trace for debugging
+    }
+  }
+
+  private void configureSafePane(Pane room) throws IOException {
+    safePaneLoader = new FXMLLoader(App.class.getResource("/fxml/safe-password.fxml"));
+    AnchorPane node = safePaneLoader.load();
+    safeController = safePaneLoader.getController();
+    room.getChildren().add(node); // Add the safe box to the room view
+  }
+
+  private void initialiseOpenSafePane(Pane room) {
+    try {
+      configureOpenSafePane(room); // Load and configure the safe box
+    } catch (IOException e) {
+      System.err.println("Error loading safe box: " + e.getMessage());
+      e.printStackTrace(); // Print the stack trace for debugging
+    }
+  }
+
+  private void configureOpenSafePane(Pane room) throws IOException {
+    openSafePaneLoader = new FXMLLoader(App.class.getResource("/fxml/safe-opened.fxml"));
+    AnchorPane node = openSafePaneLoader.load();
+    openSafeController = openSafePaneLoader.getController();
+    room.getChildren().add(node); // Add the safe box to the room view
+  }
+
   private void initialiseWrenchPane(Pane room) {
     try {
       configureWrenchPane(room); // Load and configure the wrench pane
@@ -110,18 +157,6 @@ public class RoomController {
     }
   }
 
-  /**
-   * Configures the chat box by loading the corresponding FXML and adding it to the room view.
-   *
-   * @throws IOException if there is an issue loading the FXML file.
-   */
-  private void configureChatPane(Pane room) throws IOException {
-    chatPaneLoader = new FXMLLoader(App.class.getResource("/fxml/chat.fxml"));
-    AnchorPane node = chatPaneLoader.load();
-    chatController = chatPaneLoader.getController();
-    room.getChildren().add(node); // Add the chat box to the room view
-  }
-
   private void configureWrenchPane(Pane room) throws IOException {
     wrenchPaneLoader = new FXMLLoader(App.class.getResource("/fxml/wrench.fxml"));
     AnchorPane node = wrenchPaneLoader.load();
@@ -134,22 +169,6 @@ public class RoomController {
     AnchorPane node = flippedWrenchLoader.load();
     flippedWrenchController = flippedWrenchLoader.getController();
     room.getChildren().add(node); // Add the wrench pane to the room view
-  }
-
-  private void initialiseSafePane(Pane room) {
-    try {
-      configureSafePane(room); // Load and configure the safe box
-    } catch (IOException e) {
-      System.err.println("Error loading safe box: " + e.getMessage());
-      e.printStackTrace(); // Print the stack trace for debugging
-    }
-  }
-
-  private void configureSafePane(Pane room) throws IOException {
-    safePaneLoader = new FXMLLoader(App.class.getResource("/fxml/safe-password.fxml"));
-    AnchorPane node = safePaneLoader.load();
-    safeController = safePaneLoader.getController();
-    room.getChildren().add(node); // Add the safe box to the room view
   }
 
   /**
@@ -228,16 +247,16 @@ public class RoomController {
 
     // Update room label depending on the hovered rectangle
     switch (hoveredRectangle.getId()) {
-      case "rectPerson1":
+      case "rectLivingroom":
         lblRoomName.setText("Living Room");
         return;
-      case "rectPerson2":
+      case "rectGarage":
         lblRoomName.setText("Garage");
         return;
-      case "rectPerson3":
+      case "rectBathroom":
         lblRoomName.setText("Bathroom");
         return;
-      case "rectPerson4":
+      case "rectBedroom":
         lblRoomName.setText("Bedroom");
         return;
     }
@@ -252,12 +271,16 @@ public class RoomController {
     return chatController;
   }
 
-  public WrenchController getWrenchController() {
-    return wrenchController;
-  }
-
   public SafeController getSafeController() {
     return safeController;
+  }
+
+  public OpenSafeController getOpenSafeController() {
+    return openSafeController;
+  }
+
+  public WrenchController getWrenchController() {
+    return wrenchController;
   }
 
   public FlippedWrenchController getFlippedWrenchController() {

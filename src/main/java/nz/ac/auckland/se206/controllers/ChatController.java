@@ -52,7 +52,17 @@ public class ChatController {
   private String getSystemPrompt() {
     Map<String, String> map = new HashMap<>();
     map.put("profession", profession);
-    return PromptEngineering.getPrompt("chat.txt", map);
+    if (profession.equals("Electrician")) {
+      return PromptEngineering.getPrompt("electricianPrompt.txt", map);
+    }
+    if (profession.equals("Plumber")) {
+      return PromptEngineering.getPrompt("plumberPrompt.txt", map);
+    }
+    if (profession.equals("Neighbour")) {
+      return PromptEngineering.getPrompt("neighbourPrompt.txt", map);
+    } else {
+      return null;
+    }
   }
 
   /**
@@ -101,7 +111,7 @@ public class ChatController {
    * @return the formatted message string
    */
   private String formatMessage(ChatMessage msg) {
-    return msg.getRole() + ": " + msg.getContent() + "\n\n"; // Format: "role: content"
+    return profession + ": " + msg.getContent() + "\n\n"; // Format: "role: content"
   }
 
   /**

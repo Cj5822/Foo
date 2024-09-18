@@ -1,8 +1,10 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
@@ -13,6 +15,8 @@ public class FlippedWrenchController {
   private static GameStateContext context = new GameStateContext();
 
   @FXML private AnchorPane flippedWrenchPane;
+  @FXML private TextField hintText;
+  @FXML private Button analyseButton;
 
   @FXML
   public void initialize() throws ApiProxyException {
@@ -26,6 +30,11 @@ public class FlippedWrenchController {
     context.handleRectangleClick(event, clickedRectangle.getId());
   }
 
+  @FXML
+  public void handleAnalyse(ActionEvent event) throws IOException {
+    hintText.setVisible(true);
+  }
+
   public void showFlippedWrenchPane() {
     flippedWrenchPane.setVisible(true);
   }
@@ -34,4 +43,7 @@ public class FlippedWrenchController {
     flippedWrenchPane.setVisible(false);
   }
 
+  public void showHintText() {
+    hintText.setVisible(true);
+  }
 }

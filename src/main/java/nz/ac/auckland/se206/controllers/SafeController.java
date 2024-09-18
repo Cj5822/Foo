@@ -1,10 +1,14 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
+import nz.ac.auckland.se206.App;
 
 public class SafeController {
   @FXML private AnchorPane safeBox;
@@ -46,9 +50,12 @@ public class SafeController {
 
   // Handle opening the safe
   @FXML
-  public void handleOpenPress() {
+  public void handleOpenPress(ActionEvent event) throws IOException {
     if (enteredCode.toString().equals(correctCode)) {
       safeDisplay.setText("Safe Opened!");
+      Button button = (Button) event.getSource();
+      Scene gameScene = button.getScene();
+      gameScene.setRoot(App.loadFxml("safe-opened"));
     } else {
       safeDisplay.setText("Wrong Code!");
     }

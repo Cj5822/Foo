@@ -39,7 +39,8 @@ public class RoomController {
   private WrenchController wrenchController;
   private FXMLLoader wrenchLoader;
   private FXMLLoader safeBoxLoader;
-
+  private FlippedWrenchController flippedWrenchController;
+  private FXMLLoader flippedWrenchLoader;
 
   private static GameStateContext context = new GameStateContext();
   private String originalRoomName = null;
@@ -58,6 +59,8 @@ public class RoomController {
         room); // Call the method that handles chat box initialization with error handling
 
     initialiseWrenchPane(room); // Call the method that handles wrench pane initialization
+    initialiseFlippedWrenchPane(
+        room); // Call the method that handles flipped wrench pane initialization
   }
 
   /** Starts the timer and continuously updates the timer label. */
@@ -98,6 +101,15 @@ public class RoomController {
     }
   }
 
+  private void initialiseFlippedWrenchPane(Pane room) {
+    try {
+      configureFlippedWrenchPane(room); // Load and configure the flipped wrench pane
+    } catch (IOException e) {
+      System.err.println("Error loading flipped wrench pane: " + e.getMessage());
+      e.printStackTrace(); // Print the stack trace for debugging
+    }
+  }
+
   /**
    * Configures the chat box by loading the corresponding FXML and adding it to the room view.
    *
@@ -114,6 +126,13 @@ public class RoomController {
     wrenchLoader = new FXMLLoader(App.class.getResource("/fxml/wrench.fxml"));
     AnchorPane node = wrenchLoader.load();
     wrenchController = wrenchLoader.getController();
+    room.getChildren().add(node); // Add the wrench pane to the room view
+  }
+
+  private void configureFlippedWrenchPane(Pane room) throws IOException {
+    flippedWrenchLoader = new FXMLLoader(App.class.getResource("/fxml/flipped-wrench.fxml"));
+    AnchorPane node = flippedWrenchLoader.load();
+    flippedWrenchController = flippedWrenchLoader.getController();
     room.getChildren().add(node); // Add the wrench pane to the room view
   }
 
@@ -233,12 +252,15 @@ public class RoomController {
     return chatController;
   }
 
-
   public WrenchController getWrenchController() {
     return wrenchController;
   }
 
   public SafeController getSafeController() {
     return safeController;
+  }
+
+  public FlippedWrenchController getFlippedWrenchController() {
+    return flippedWrenchController;
   }
 }

@@ -26,10 +26,6 @@ public class WrenchController {
     context.handleRectangleClick(event, clickedRectangle.getId());
   }
 
-  public void flipWrench() {
-    System.out.println("Flipping wrench test");
-  }
-
   public void showWrenchPane() {
     wrenchPane.setVisible(true);
   }

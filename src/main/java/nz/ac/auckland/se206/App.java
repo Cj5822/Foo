@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.RoomController;
+import nz.ac.auckland.se206.controllers.WrenchController;
 
 /**
  * This is the entry point of the JavaFX application. This class initializes and runs the JavaFX
@@ -20,6 +21,7 @@ public class App extends Application {
   private static FXMLLoader loader;
   private static ChatController chatController; // Controller for the chat view
   private static RoomController roomController; // Controller for the room view
+  private static WrenchController wrenchController; // Controller for the wrench view
   private static Stage appStage;
 
   /**
@@ -64,6 +66,20 @@ public class App extends Application {
   public static void openChat(MouseEvent event, String profession) throws IOException {
     chatController.setProfession(profession); // Set the profession in the chat controller
     chatController.showChatBox(); // Display the chat box
+  }
+
+  public static void openWrench(MouseEvent event) throws IOException {
+    roomController = loader.getController();
+    wrenchController = roomController.getWrenchController();
+    wrenchController.showWrenchPane();
+  }
+
+  public static void closeWrench(MouseEvent event) throws IOException {
+    wrenchController.hideWrenchPane();
+  }
+
+  public static void flipWrench(MouseEvent event) {
+    wrenchController.flipWrench();
   }
 
   /**

@@ -57,7 +57,13 @@ public class GameStarted implements GameState {
         App.changeRoom(event, "room");
         return;
       case "rectWrench":
-        System.out.println("Wrench clicked");
+        App.openWrench(event);
+        return;
+      case "rectExitWrench":
+        App.closeWrench(event);
+        return;
+      case "rectFlipWrench":
+        App.flipWrench(event);
         return;
     }
   }

@@ -34,9 +34,12 @@ public class RoomController {
   @FXML private Label lblTimer;
 
   private ChatController chatController;
+  private SafeController safeController;
   private FXMLLoader chatBoxLoader;
   private WrenchController wrenchController;
   private FXMLLoader wrenchLoader;
+  private FXMLLoader safeBoxLoader;
+
 
   private static GameStateContext context = new GameStateContext();
   private String originalRoomName = null;
@@ -50,7 +53,7 @@ public class RoomController {
     timerManager = TimerManager.getInstance(); // Initialize the TimerManager
 
     startTimer(); // Start the timer and update the label
-
+    initialiseSafeBox(room);
     initialiseChatBox(
         room); // Call the method that handles chat box initialization with error handling
 
@@ -112,6 +115,22 @@ public class RoomController {
     AnchorPane node = wrenchLoader.load();
     wrenchController = wrenchLoader.getController();
     room.getChildren().add(node); // Add the wrench pane to the room view
+  }
+
+  private void initialiseSafeBox(Pane room) {
+    try {
+      configureSafeBox(room); // Load and configure the safe box
+    } catch (IOException e) {
+      System.err.println("Error loading safe box: " + e.getMessage());
+      e.printStackTrace(); // Print the stack trace for debugging
+    }
+  }
+
+  private void configureSafeBox(Pane room) throws IOException {
+    safeBoxLoader = new FXMLLoader(App.class.getResource("/fxml/safe-password.fxml"));
+    AnchorPane node = safeBoxLoader.load();
+    safeController = safeBoxLoader.getController();
+    room.getChildren().add(node); // Add the safe box to the room view
   }
 
   /**
@@ -214,7 +233,12 @@ public class RoomController {
     return chatController;
   }
 
+
   public WrenchController getWrenchController() {
     return wrenchController;
+  }
+
+  public SafeController getSafeController() {
+    return safeController;
   }
 }

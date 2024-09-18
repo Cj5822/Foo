@@ -9,7 +9,7 @@
    <children>
       <ImageView fitHeight="378.0" fitWidth="620.0" layoutX="77.0" layoutY="103.0">
          <image>
-            <Image url="@../../../../../../Downloads/wrench-fingerprints-.png" />
+            <Image url="@../images/wrench-fingerprints.png" />
          </image>
       </ImageView>
    </children>

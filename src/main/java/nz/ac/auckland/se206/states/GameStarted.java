@@ -64,6 +64,7 @@ public class GameStarted implements GameState {
         return;
       case "rectFlipWrench":
         App.flipWrench(event);
+        return;
       case "rectSafe":
         App.openSafe(event);
         return;

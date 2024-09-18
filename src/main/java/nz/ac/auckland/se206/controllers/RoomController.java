@@ -36,7 +36,10 @@ public class RoomController {
   private ChatController chatController;
   private SafeController safeController;
   private FXMLLoader chatBoxLoader;
+  private WrenchController wrenchController;
+  private FXMLLoader wrenchLoader;
   private FXMLLoader safeBoxLoader;
+
 
   private static GameStateContext context = new GameStateContext();
   private String originalRoomName = null;
@@ -53,6 +56,8 @@ public class RoomController {
     initialiseSafeBox(room);
     initialiseChatBox(
         room); // Call the method that handles chat box initialization with error handling
+
+    initialiseWrenchPane(room); // Call the method that handles wrench pane initialization
   }
 
   /** Starts the timer and continuously updates the timer label. */
@@ -84,6 +89,15 @@ public class RoomController {
     }
   }
 
+  private void initialiseWrenchPane(Pane room) {
+    try {
+      configureWrenchPane(room); // Load and configure the wrench pane
+    } catch (IOException e) {
+      System.err.println("Error loading wrench pane: " + e.getMessage());
+      e.printStackTrace(); // Print the stack trace for debugging
+    }
+  }
+
   /**
    * Configures the chat box by loading the corresponding FXML and adding it to the room view.
    *
@@ -94,6 +108,13 @@ public class RoomController {
     AnchorPane node = chatBoxLoader.load();
     chatController = chatBoxLoader.getController();
     room.getChildren().add(node); // Add the chat box to the room view
+  }
+
+  private void configureWrenchPane(Pane room) throws IOException {
+    wrenchLoader = new FXMLLoader(App.class.getResource("/fxml/wrench.fxml"));
+    AnchorPane node = wrenchLoader.load();
+    wrenchController = wrenchLoader.getController();
+    room.getChildren().add(node); // Add the wrench pane to the room view
   }
 
   private void initialiseSafeBox(Pane room) {
@@ -210,6 +231,11 @@ public class RoomController {
    */
   public ChatController getChatController() {
     return chatController;
+  }
+
+
+  public WrenchController getWrenchController() {
+    return wrenchController;
   }
 
   public SafeController getSafeController() {

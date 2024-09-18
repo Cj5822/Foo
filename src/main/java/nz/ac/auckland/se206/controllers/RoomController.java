@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.TimerManager;
 
 /**
  * Controller class for the room view. Handles user interactions within the room where the user can
@@ -29,6 +31,7 @@ public class RoomController {
   @FXML private Button btnGuess;
   @FXML private Pane room;
   @FXML private Label lblRoomName;
+  @FXML private Label lblTimer;
 
   private ChatController chatController;
   private FXMLLoader chatBoxLoader;
@@ -36,11 +39,34 @@ public class RoomController {
   private static GameStateContext context = new GameStateContext();
   private String originalRoomName = null;
 
+  private TimerManager timerManager;
+
   /** Initializes the room view. */
   @FXML
   public void initialize() {
+
+    timerManager = TimerManager.getInstance(); // Initialize the TimerManager
+
+    startTimer(); // Start the timer and update the label
+
     initialiseChatBox(
         room); // Call the method that handles chat box initialization with error handling
+  }
+
+  /** Starts the timer and continuously updates the timer label. */
+  private void startTimer() {
+    // Start the shared TimerManager
+    timerManager.start();
+
+    // Update the label every frame with the formatted time
+    AnimationTimer timerUpdater =
+        new AnimationTimer() {
+          @Override
+          public void handle(long now) {
+            lblTimer.setText(timerManager.getTimeFormatted());
+          }
+        };
+    timerUpdater.start();
   }
 
   /**

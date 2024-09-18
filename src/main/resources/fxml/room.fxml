@@ -4,21 +4,44 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane fx:id="room" focusTraversable="true" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="599.0" prefWidth="789.0" style="-fx-background-color: #A9A9A9;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomController">
    <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="795.0">
+         <children>
+            <Rectangle fx:id="rectExit" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="64.0" layoutX="14.0" layoutY="14.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="74.0" />
+            <Rectangle fx:id="rectFlip" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="64.0" layoutX="103.0" layoutY="14.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="74.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="608.0" opacity="0.85" stroke="BLACK" strokeType="INSIDE" width="795.0" />
+            <ImageView fitHeight="456.0" fitWidth="680.0" layoutX="53.0" layoutY="104.0">
+               <image>
+                  <Image url="@../images/wrench.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="64.0" fitWidth="74.0" layoutX="14.0" layoutY="14.0">
+               <image>
+                  <Image url="@../images/delete-156119_1280.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="74.0" fitWidth="77.0" layoutX="101.0" layoutY="9.0">
+               <image>
+                  <Image url="@../images/rotate-512.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
       <ImageView fitHeight="608.0" fitWidth="795.0" layoutY="-4.0" preserveRatio="true">
          <image>
             <Image url="@../images/crime-scene.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="rectCashier" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="73.0" layoutX="708.0" layoutY="314.0" onMouseClicked="#handleRectangleClick" stroke="BLACK" strokeType="INSIDE" width="38.0" />
+      <Rectangle fx:id="rectCashier" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="37.0" layoutX="468.0" layoutY="555.0" onMouseClicked="#handleRectangleClick" stroke="BLACK" strokeType="INSIDE" width="38.0" />
       <Rectangle fx:id="rectPerson1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="18.0" layoutX="37.0" layoutY="34.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="18.0" />
       <Rectangle fx:id="rectPerson3" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="18.0" layoutX="60.0" layoutY="56.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="18.0" />
-      <Rectangle fx:id="rectWaitress" arcHeight="5.0" arcWidth="5.0" fill="#0088ff" focusTraversable="true" height="251.0" layoutX="535.0" layoutY="195.0" onMouseClicked="#handleRectangleClick" stroke="BLACK" strokeType="INSIDE" width="52.0" />
+      <Rectangle fx:id="rectWaitress" arcHeight="5.0" arcWidth="5.0" fill="#0088ff" focusTraversable="true" height="115.0" layoutX="20.0" layoutY="178.0" onMouseClicked="#handleRectangleClick" stroke="BLACK" strokeType="INSIDE" width="38.0" />
       <Rectangle fx:id="rectPerson2" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="18.0" layoutX="37.0" layoutY="57.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="18.0" />
       <Button fx:id="btnGuess" layoutX="14.0" layoutY="125.0" mnemonicParsing="false" onAction="#handleGuessClick" text="Make a Guess" />
       <Label fx:id="lblProfession" layoutX="506.0" layoutY="-41.0" prefHeight="37.0" prefWidth="289.0" wrapText="true">
@@ -29,6 +52,7 @@
       <Rectangle fx:id="rectPerson4" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="17.0" layoutX="60.0" layoutY="34.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="WHITE" strokeType="INSIDE" width="17.0" />
       <Label fx:id="lblRoomName" alignment="CENTER" layoutX="18.0" layoutY="98.0" prefHeight="21.0" prefWidth="80.0" text="Bedroom" textFill="WHITE" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="44.0" layoutX="666.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="103.0" />
+      <Rectangle fx:id="rectWrench" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="85.0" layoutX="188.0" layoutY="419.0" rotate="50.0" stroke="BLACK" strokeType="INSIDE" width="26.0" />
       <Label fx:id="lblTimer" alignment="CENTER" layoutX="679.0" layoutY="19.0" text="00:00" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />

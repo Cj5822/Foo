@@ -11,7 +11,7 @@ import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
 
 public class SafeController {
-  @FXML private AnchorPane safeBox;
+  @FXML private AnchorPane safePane;
   @FXML private TextField safeDisplay;
   @FXML private Button button1;
   @FXML private Button button2;
@@ -33,12 +33,12 @@ public class SafeController {
   @FXML
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
-    hideSafeBox(); // Hide chat box initially
+    hideSafePane(); // Hide chat box initially
   }
 
   // Handle button presses
   @FXML
-  public void handleButtonPress(javafx.event.ActionEvent event) {
+  public void handleButtonPress(ActionEvent event) {
     // Get the button text (which will be the digit)
     Button pressedButton = (Button) event.getSource();
     String digit = pressedButton.getText();
@@ -64,11 +64,11 @@ public class SafeController {
     enteredCode.setLength(0);
   }
 
-  public void hideSafeBox() {
-    safeBox.setVisible(false);
+  public void hideSafePane() {
+    safePane.setVisible(false);
   }
 
-  public void showSafeBox() {
-    safeBox.setVisible(true);
+  public void showSafePane() {
+    safePane.setVisible(true);
   }
 }

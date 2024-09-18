@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.RoomController;
+import nz.ac.auckland.se206.controllers.SafeController;
 
 /**
  * This is the entry point of the JavaFX application. This class initializes and runs the JavaFX
@@ -18,6 +19,7 @@ public class App extends Application {
 
   private static Scene scene;
   private static FXMLLoader loader;
+  private static SafeController safeController; // Controller for the safe view
   private static ChatController chatController; // Controller for the chat view
   private static RoomController roomController; // Controller for the room view
   private static Stage appStage;
@@ -83,6 +85,20 @@ public class App extends Application {
     scene = new Scene(root); // Create a new scene with the loaded root
     appStage.setScene(scene); // Set the scene on the stage
     appStage.show(); // Display the stage
+    root.requestFocus();
+  }
+
+  public static void openSafe(MouseEvent event) throws IOException {
+    // Load the FXML for the safe
+    Parent root = loadFxml("safe-password");
+
+    safeController = loader.getController();
+
+    safeController.showSafeBox();
+
+    scene = new Scene(root);
+    appStage.setScene(scene);
+    appStage.show();
     root.requestFocus();
   }
 

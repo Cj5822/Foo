@@ -3,16 +3,21 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameStateContext;
 
 public class SafeController {
+  private static GameStateContext context = new GameStateContext();
+
   @FXML private AnchorPane safePane;
   @FXML private TextField safeDisplay;
+  @FXML private Rectangle rectExitSafe;
   @FXML private Button button1;
   @FXML private Button button2;
   @FXML private Button button3;
@@ -53,15 +58,19 @@ public class SafeController {
   public void handleOpenPress(ActionEvent event) throws IOException {
     if (enteredCode.toString().equals(correctCode)) {
       safeDisplay.setText("Safe Opened!");
-      Button button = (Button) event.getSource();
-      Scene gameScene = button.getScene();
-      gameScene.setRoot(App.loadFxml("safe-opened"));
+      App.openOpenedSafe(event);
+      return;
     } else {
       safeDisplay.setText("Wrong Code!");
     }
-
     // Clear entered code after checking
     enteredCode.setLength(0);
+  }
+
+  @FXML
+  private void handleRectangleClick(MouseEvent event) throws IOException {
+    Rectangle clickedRectangle = (Rectangle) event.getSource();
+    context.handleRectangleClick(event, clickedRectangle.getId());
   }
 
   public void hideSafePane() {

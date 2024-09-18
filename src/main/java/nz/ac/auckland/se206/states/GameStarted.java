@@ -42,7 +42,7 @@ public class GameStarted implements GameState {
         App.openChat(event, "Electrician");
         return;
       case "rectNeighbour":
-        App.openChat(event, "Electrician");
+        App.openChat(event, "Neighbour");
         return;
       case "rectPerson1":
         App.changeRoom(event, "living-room");

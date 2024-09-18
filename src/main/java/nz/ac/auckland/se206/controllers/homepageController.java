@@ -18,7 +18,7 @@ public class homepageController {
   public void handleStartGame(ActionEvent event) throws IOException {
     Button button = (Button) event.getSource();
     Scene gameScene = button.getScene();
-    gameScene.setRoot(App.loadFxml("room"));
+    gameScene.setRoot(App.loadFxml("backstory"));
   }
 
   @FXML

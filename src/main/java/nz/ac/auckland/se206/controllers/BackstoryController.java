@@ -15,6 +15,6 @@ public class BackstoryController {
   public void handleContinue(ActionEvent event) throws IOException {
     Button button = (Button) event.getSource();
     Scene gameScene = button.getScene();
-    gameScene.setRoot(App.loadFxml("homepage"));
+    gameScene.setRoot(App.loadFxml("room"));
   }
 }

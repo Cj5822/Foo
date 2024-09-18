@@ -70,7 +70,7 @@ public class App extends Application {
    */
   public static void openChat(MouseEvent event, String profession) throws IOException {
     chatController.setProfession(profession); // Set the profession in the chat controller
-    chatController.showChatBox(); // Display the chat box
+    chatController.showChatPane(); // Display the chat box
   }
 
   public static void openWrench(MouseEvent event) throws IOException {
@@ -127,7 +127,7 @@ public class App extends Application {
 
     safeController = loader.getController();
 
-    safeController.showSafeBox();
+    safeController.showSafePane();
 
     scene = new Scene(root);
     appStage.setScene(scene);

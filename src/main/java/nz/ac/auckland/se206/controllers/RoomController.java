@@ -35,10 +35,10 @@ public class RoomController {
 
   private ChatController chatController;
   private SafeController safeController;
-  private FXMLLoader chatBoxLoader;
+  private FXMLLoader chatPaneLoader;
   private WrenchController wrenchController;
-  private FXMLLoader wrenchLoader;
-  private FXMLLoader safeBoxLoader;
+  private FXMLLoader safePaneLoader;
+  private FXMLLoader wrenchPaneLoader;
   private FlippedWrenchController flippedWrenchController;
   private FXMLLoader flippedWrenchLoader;
 
@@ -54,8 +54,8 @@ public class RoomController {
     timerManager = TimerManager.getInstance(); // Initialize the TimerManager
 
     startTimer(); // Start the timer and update the label
-    initialiseSafeBox(room);
-    initialiseChatBox(
+    initialiseSafePane(room);
+    initialiseChatPane(
         room); // Call the method that handles chat box initialization with error handling
 
     initialiseWrenchPane(room); // Call the method that handles wrench pane initialization
@@ -83,9 +83,9 @@ public class RoomController {
    * Tries to load and configure the chat box. If an exception occurs, it will be handled by the
    * handleError method.
    */
-  private void initialiseChatBox(Pane room) {
+  private void initialiseChatPane(Pane room) {
     try {
-      configureChatBox(room); // Load and configure the chat box
+      configureChatPane(room); // Load and configure the chat box
     } catch (IOException e) {
       System.err.println("Error loading chat box: " + e.getMessage());
       e.printStackTrace(); // Print the stack trace for debugging
@@ -115,17 +115,17 @@ public class RoomController {
    *
    * @throws IOException if there is an issue loading the FXML file.
    */
-  private void configureChatBox(Pane room) throws IOException {
-    chatBoxLoader = new FXMLLoader(App.class.getResource("/fxml/chat.fxml"));
-    AnchorPane node = chatBoxLoader.load();
-    chatController = chatBoxLoader.getController();
+  private void configureChatPane(Pane room) throws IOException {
+    chatPaneLoader = new FXMLLoader(App.class.getResource("/fxml/chat.fxml"));
+    AnchorPane node = chatPaneLoader.load();
+    chatController = chatPaneLoader.getController();
     room.getChildren().add(node); // Add the chat box to the room view
   }
 
   private void configureWrenchPane(Pane room) throws IOException {
-    wrenchLoader = new FXMLLoader(App.class.getResource("/fxml/wrench.fxml"));
-    AnchorPane node = wrenchLoader.load();
-    wrenchController = wrenchLoader.getController();
+    wrenchPaneLoader = new FXMLLoader(App.class.getResource("/fxml/wrench.fxml"));
+    AnchorPane node = wrenchPaneLoader.load();
+    wrenchController = wrenchPaneLoader.getController();
     room.getChildren().add(node); // Add the wrench pane to the room view
   }
 
@@ -136,19 +136,19 @@ public class RoomController {
     room.getChildren().add(node); // Add the wrench pane to the room view
   }
 
-  private void initialiseSafeBox(Pane room) {
+  private void initialiseSafePane(Pane room) {
     try {
-      configureSafeBox(room); // Load and configure the safe box
+      configureSafePane(room); // Load and configure the safe box
     } catch (IOException e) {
       System.err.println("Error loading safe box: " + e.getMessage());
       e.printStackTrace(); // Print the stack trace for debugging
     }
   }
 
-  private void configureSafeBox(Pane room) throws IOException {
-    safeBoxLoader = new FXMLLoader(App.class.getResource("/fxml/safe-password.fxml"));
-    AnchorPane node = safeBoxLoader.load();
-    safeController = safeBoxLoader.getController();
+  private void configureSafePane(Pane room) throws IOException {
+    safePaneLoader = new FXMLLoader(App.class.getResource("/fxml/safe-password.fxml"));
+    AnchorPane node = safePaneLoader.load();
+    safeController = safePaneLoader.getController();
     room.getChildren().add(node); // Add the safe box to the room view
   }
 

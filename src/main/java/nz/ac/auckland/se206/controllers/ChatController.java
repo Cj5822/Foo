@@ -28,7 +28,7 @@ public class ChatController {
   @FXML private TextArea txtaChat;
   @FXML private TextField txtInput;
   @FXML private Button btnSend;
-  @FXML private AnchorPane chatBox;
+  @FXML private AnchorPane chatPane;
 
   private ChatCompletionRequest chatCompletionRequest;
   private String profession;
@@ -41,7 +41,7 @@ public class ChatController {
   @FXML
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
-    hideChatBox(); // Hide chat box initially
+    hideChatPane(); // Hide chat box initially
   }
 
   /**
@@ -173,17 +173,17 @@ public class ChatController {
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    hideChatBox(); // Hide the chat box
+    hideChatPane(); // Hide the chat box
     txtaChat.clear(); // Clear the chat area
   }
 
   /** Hides the chat box and progress bar. */
-  public void hideChatBox() {
-    chatBox.setVisible(false); // Make chat box invisible
+  public void hideChatPane() {
+    chatPane.setVisible(false); // Make chat box invisible
   }
 
   /** Shows the chat box and progress bar. */
-  public void showChatBox() {
-    chatBox.setVisible(true); // Make chat box visible
+  public void showChatPane() {
+    chatPane.setVisible(true); // Make chat box visible
   }
 }

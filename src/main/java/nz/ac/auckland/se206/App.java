@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.FlippedWrenchController;
+import nz.ac.auckland.se206.controllers.OpenSafeController;
 import nz.ac.auckland.se206.controllers.RoomController;
 import nz.ac.auckland.se206.controllers.SafeController;
 import nz.ac.auckland.se206.controllers.WrenchController;
@@ -20,13 +22,15 @@ import nz.ac.auckland.se206.controllers.WrenchController;
 public class App extends Application {
 
   private static Scene scene;
+
   private static FXMLLoader loader;
-  private static SafeController safeController; // Controller for the safe view
+
   private static ChatController chatController; // Controller for the chat view
   private static RoomController roomController; // Controller for the room view
+  private static SafeController safeController; // Controller for the safe view
+  private static OpenSafeController openSafeController; // Controller for the open safe view
   private static WrenchController wrenchController; // Controller for the wrench view
-  private static FlippedWrenchController
-      flippedWrenchController; // Controller for the flipped wrench view
+  private static FlippedWrenchController flippedWrenchController;
   private static Stage appStage;
 
   /**
@@ -71,6 +75,27 @@ public class App extends Application {
   public static void openChat(MouseEvent event, String profession) throws IOException {
     chatController.setProfession(profession); // Set the profession in the chat controller
     chatController.showChatPane(); // Display the chat box
+  }
+
+  public static void openSafe(MouseEvent event) throws IOException {
+    roomController = loader.getController();
+    safeController = roomController.getSafeController();
+    safeController.showSafePane();
+  }
+
+  public static void closeSafe(MouseEvent event) throws IOException {
+    safeController.hideSafePane();
+  }
+
+  public static void openOpenedSafe(ActionEvent event) throws IOException {
+    roomController = loader.getController();
+    safeController.hideSafePane();
+    openSafeController = roomController.getOpenSafeController();
+    openSafeController.showOpenSafePane();
+  }
+
+  public static void closeOpenedSafe(MouseEvent event) throws IOException {
+    openSafeController.hideOpenSafePane();
   }
 
   public static void openWrench(MouseEvent event) throws IOException {
@@ -118,20 +143,6 @@ public class App extends Application {
     scene = new Scene(root); // Create a new scene with the loaded root
     appStage.setScene(scene); // Set the scene on the stage
     appStage.show(); // Display the stage
-    root.requestFocus();
-  }
-
-  public static void openSafe(MouseEvent event) throws IOException {
-    // Load the FXML for the safe
-    Parent root = loadFxml("safe-password");
-
-    safeController = loader.getController();
-
-    safeController.showSafePane();
-
-    scene = new Scene(root);
-    appStage.setScene(scene);
-    appStage.show();
     root.requestFocus();
   }
 

@@ -15,17 +15,10 @@
             <Image url="@../images/crime-scene.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="rectCashier" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="73.0" layoutX="708.0" layoutY="314.0" onMouseClicked="#handleRectangleClick" stroke="BLACK" strokeType="INSIDE" width="38.0" />
       <Rectangle fx:id="rectPerson1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="18.0" layoutX="37.0" layoutY="34.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="18.0" />
       <Rectangle fx:id="rectPerson3" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="18.0" layoutX="60.0" layoutY="56.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="18.0" />
-      <Rectangle fx:id="rectWaitress" arcHeight="5.0" arcWidth="5.0" fill="#0088ff" focusTraversable="true" height="251.0" layoutX="535.0" layoutY="195.0" onMouseClicked="#handleRectangleClick" stroke="BLACK" strokeType="INSIDE" width="52.0" />
       <Rectangle fx:id="rectPerson2" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="18.0" layoutX="37.0" layoutY="57.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="18.0" />
       <Button fx:id="btnGuess" layoutX="14.0" layoutY="125.0" mnemonicParsing="false" onAction="#handleGuessClick" text="Make a Guess" />
-      <Label fx:id="lblProfession" layoutX="506.0" layoutY="-41.0" prefHeight="37.0" prefWidth="289.0" wrapText="true">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Label>
       <Rectangle fx:id="rectPerson4" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="17.0" layoutX="60.0" layoutY="34.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="WHITE" strokeType="INSIDE" width="17.0" />
       <Label fx:id="lblRoomName" alignment="CENTER" layoutX="18.0" layoutY="98.0" prefHeight="21.0" prefWidth="80.0" text="Bedroom" textFill="WHITE" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="44.0" layoutX="666.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="103.0" />
@@ -34,5 +27,6 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
+      <Rectangle fx:id="rectSafe" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="115.0" layoutX="19.0" layoutY="177.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
    </children>
 </Pane>

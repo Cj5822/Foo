@@ -56,6 +56,9 @@ public class GameStarted implements GameState {
       case "rectPerson4":
         App.changeRoom(event, "room");
         return;
+      case "rectSafe":
+        App.openSafe(event);
+        return;
     }
   }
 

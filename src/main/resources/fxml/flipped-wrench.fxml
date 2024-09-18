@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="flippedWrenchPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.FlippedWrenchController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="411.0" layoutY="81.0" opacity="0.85" stroke="BLACK" strokeType="INSIDE" width="795.0" />
       <ImageView fitHeight="378.0" fitWidth="620.0" layoutX="77.0" layoutY="103.0">
          <image>
             <Image url="@../images/wrench-fingerprints.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="56.0" fitWidth="59.0" layoutX="14.0" layoutY="87.0">
+         <image>
+            <Image url="@../images/exit-icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="64.0" fitWidth="65.0" layoutX="88.0" layoutY="83.0">
+         <image>
+            <Image url="@../images/rotate-icon.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="361.0" layoutY="392.0" mnemonicParsing="false" text="Analyse" />
+      <Rectangle fx:id="rectExitFlippedWrench" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="14.0" layoutY="87.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="59.0" />
+      <Rectangle fx:id="rectFlipWrench2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="91.0" layoutY="87.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="59.0" />
    </children>
 </AnchorPane>

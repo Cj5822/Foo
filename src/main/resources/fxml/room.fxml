@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -23,34 +22,14 @@
       <Rectangle fx:id="rectPerson4" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="17.0" layoutX="60.0" layoutY="34.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="WHITE" strokeType="INSIDE" width="17.0" />
       <Label fx:id="lblRoomName" alignment="CENTER" layoutX="18.0" layoutY="98.0" prefHeight="21.0" prefWidth="80.0" text="Bedroom" textFill="WHITE" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="44.0" layoutX="666.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="103.0" />
-      <Rectangle fx:id="rectWrench" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="85.0" layoutX="188.0" layoutY="419.0" onMouseClicked="#handleRectangleClick" rotate="50.0" stroke="BLACK" strokeType="INSIDE" width="26.0" />
+      <Rectangle fx:id="rectWrench" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="85.0" layoutX="188.0" layoutY="419.0" onMouseClicked="#handleRectangleClick" opacity="0.0" rotate="50.0" stroke="BLACK" strokeType="INSIDE" width="26.0" />
       <Label fx:id="lblTimer" alignment="CENTER" layoutX="679.0" layoutY="19.0" text="00:00" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
       <Rectangle fx:id="rectSafe" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="115.0" layoutX="19.0" layoutY="177.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <AnchorPane fx:id="wrenchPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="795.0" visible="false">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="411.0" layoutY="81.0" opacity="0.85" stroke="BLACK" strokeType="INSIDE" width="795.0" />
-            <ImageView fitHeight="378.0" fitWidth="620.0" layoutX="77.0" layoutY="103.0">
-               <image>
-                  <Image url="@../images/wrench.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="56.0" fitWidth="59.0" layoutX="14.0" layoutY="87.0">
-               <image>
-                  <Image url="@../images/exit-icon.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="64.0" fitWidth="65.0" layoutX="88.0" layoutY="83.0">
-               <image>
-                  <Image url="@../images/rotate-icon.png" />
-               </image>
-            </ImageView>
-            <Rectangle fx:id="rectExitWrench" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="14.0" layoutY="87.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="59.0" />
-            <Rectangle fx:id="rectFlipWrench" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="91.0" layoutY="87.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="59.0" />
-         </children>
-      </AnchorPane>
+      <fx:include source="wrench.fxml" />
+      <fx:include source="flipped-wrench.fxml" />
    </children>
 </Pane>

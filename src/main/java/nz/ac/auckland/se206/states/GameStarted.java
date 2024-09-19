@@ -91,6 +91,9 @@ public class GameStarted implements GameState {
       case "rectExitScrunchedPaper":
         App.closeScrunchedPaper(event);
         return;
+      case "rectExitPaper":
+        App.closePaper(event);
+        return;
     }
   }
 

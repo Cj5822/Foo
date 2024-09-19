@@ -4,7 +4,6 @@ import java.io.IOException;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.speech.FreeTextToSpeech;
 
 /**
  * The Guessing state of the game. Handles the logic for when the player is making a guess about the

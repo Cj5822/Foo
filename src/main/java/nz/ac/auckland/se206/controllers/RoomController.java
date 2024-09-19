@@ -65,7 +65,7 @@ public class RoomController {
   @FXML
   public void initialize() {
 
-    timerManager = TimerManager.getInstance(); // Initialize the TimerManager
+    timerManager = TimerManager.getInstance(context); // Initialize the TimerManager
 
     startTimer(); // Start the timer and update the label
     initialiseChatPane(room); // Initialise chat pane

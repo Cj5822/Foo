@@ -7,16 +7,16 @@ import javafx.util.Duration;
 
 public class TimerManager {
   private static TimerManager instance; // Singleton instance
-  private int secondsRemaining = 300; // Track the number of seconds remaining (5 minutes)
+  private int secondsRemaining = 300; // Track the number of seconds remaining
   private Timeline timeline;
   private boolean isTimeUp = false; // Flag to indicate if time has run out
   private boolean isInGuessingState =
       false; // Flag to indicate if the game is in the guessing state
-  private static GameStateContext context;
+  private final GameStateContext context;
 
   /** Private constructor to prevent instantiation. */
-  private TimerManager() {
-    context = new GameStateContext();
+  private TimerManager(GameStateContext context) {
+    this.context = context; // Shared context from the application
     timeline =
         new Timeline(
             new KeyFrame(
@@ -31,10 +31,10 @@ public class TimerManager {
     timeline.setCycleCount(Timeline.INDEFINITE); // Run indefinitely until stopped
   }
 
-  // Public method to get the singleton instance
-  public static synchronized TimerManager getInstance() {
+  // Public method to get the singleton instance with shared context
+  public static synchronized TimerManager getInstance(GameStateContext context) {
     if (instance == null) {
-      instance = new TimerManager();
+      instance = new TimerManager(context);
     }
     return instance;
   }
@@ -61,7 +61,7 @@ public class TimerManager {
   // Reset the timer to 5 minutes
   public void reset() {
     stop();
-    secondsRemaining = 300; // Reset the timer to 10 minutes
+    secondsRemaining = 300; // Reset the timer to 5 minutes (300 seconds)
     isTimeUp = false; // Reset the time-up flag
   }
 
@@ -76,6 +76,7 @@ public class TimerManager {
     }
   }
 
+  // Handle what happens when the timer ends
   private void handleTimerEnd() throws IOException {
     if (!isInGuessingState) {
       // Transition to guessing state and reset the timer
@@ -83,13 +84,12 @@ public class TimerManager {
       resetToOneMinute();
       start(); // Start the 1-minute timer for guessing state
       context.setState(context.getGuessingState());
-      App.changeRoom(null, "room-guessing");
+      App.changeRoom(null, "room-guessing"); // Switch to the guessing room
     } else {
       // Game over if the timer reaches 0 again in guessing state
       isTimeUp = true;
       context.setState(context.getGameOverState());
       System.out.println("Game over! You ran out of time in the guessing state.");
-      // You can add further actions for game over here (e.g., show a game over screen)
     }
   }
 

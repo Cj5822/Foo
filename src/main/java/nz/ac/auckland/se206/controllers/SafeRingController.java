@@ -1,7 +1,9 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
@@ -13,6 +15,7 @@ public class SafeRingController {
 
   @FXML private AnchorPane safeRingPane;
   @FXML private Rectangle rectExitRing;
+  @FXML private Label hintText;
 
   @FXML
   public void initialize() throws ApiProxyException {
@@ -32,5 +35,10 @@ public class SafeRingController {
 
   public void hideSafeRingPane() {
     safeRingPane.setVisible(false);
+  }
+
+  @FXML
+  public void handleRingAnalyse(ActionEvent event) throws IOException {
+    hintText.setVisible(true);
   }
 }

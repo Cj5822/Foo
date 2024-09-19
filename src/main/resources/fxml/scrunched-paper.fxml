@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane fx:id="scrunchedPaperPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ScrunchedPaperController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="411.0" layoutY="81.0" opacity="0.85" stroke="BLACK" strokeType="INSIDE" width="795.0" />
+      <ImageView fitHeight="326.0" fitWidth="359.0" layoutX="210.0" layoutY="81.0">
+         <image>
+            <Image url="@../images/scrunched-paper.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="56.0" fitWidth="59.0" layoutX="14.0" layoutY="87.0">
+         <image>
+            <Image url="@../images/exit-icon.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="rectExitScrunchedPaper" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="14.0" layoutY="87.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="59.0" />
+      <Button fx:id="analyseButton" layoutX="361.0" layoutY="392.0" mnemonicParsing="false" onAction="#handleAnalyse" text="Analyse" />
+   </children>
+</AnchorPane>

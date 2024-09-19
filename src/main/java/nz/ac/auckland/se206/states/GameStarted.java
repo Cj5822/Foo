@@ -85,6 +85,12 @@ public class GameStarted implements GameState {
       case "rectExitSafeRing":
         App.closeSafeRing(event);
         return;
+      case "rectScrunchedPaper":
+        App.openScrunchedPaper(event);
+        return;
+      case "rectExitScrunchedPaper":
+        App.closeScrunchedPaper(event);
+        return;
     }
   }
 

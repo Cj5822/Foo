@@ -14,6 +14,7 @@ import nz.ac.auckland.se206.controllers.OpenSafeController;
 import nz.ac.auckland.se206.controllers.RoomController;
 import nz.ac.auckland.se206.controllers.SafeController;
 import nz.ac.auckland.se206.controllers.SafeRingController;
+import nz.ac.auckland.se206.controllers.ScrunchedPaperController;
 import nz.ac.auckland.se206.controllers.WrenchController;
 
 /**
@@ -32,7 +33,10 @@ public class App extends Application {
   private static OpenSafeController openSafeController; // Controller for the open safe view
   private static SafeRingController safeRingController; // Controller for the safe ring view
   private static WrenchController wrenchController; // Controller for the wrench view
-  private static FlippedWrenchController flippedWrenchController;
+  private static FlippedWrenchController
+      flippedWrenchController; // Controller for the flipped wrench view
+  private static ScrunchedPaperController
+      scrunchedPaperController; // Controller for the scrunched paper view
   private static Stage appStage;
 
   /**
@@ -136,6 +140,20 @@ public class App extends Application {
 
   public static void closeFlippedWrench(MouseEvent event) throws IOException {
     flippedWrenchController.hideFlippedWrenchPane();
+  }
+
+  public static void openScrunchedPaper(MouseEvent event) throws IOException {
+    roomController = loader.getController();
+    scrunchedPaperController = roomController.getScrunchedPaperController();
+    scrunchedPaperController.showScrunchedPaperPane();
+  }
+
+  public static void closeScrunchedPaper(MouseEvent event) throws IOException {
+    scrunchedPaperController.hideScrunchedPaperPane();
+  }
+
+  public static void openPaperHint(ActionEvent event) throws IOException {
+    System.out.println("Paper hint opened");
   }
 
   /**

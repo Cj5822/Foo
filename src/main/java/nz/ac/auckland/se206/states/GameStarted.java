@@ -4,7 +4,7 @@ import java.io.IOException;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.speech.TextToSpeech;
+import nz.ac.auckland.se206.TimerManager;
 
 /**
  * The GameStarted state of the game. Handles the initial interactions when the game starts,
@@ -13,6 +13,7 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 public class GameStarted implements GameState {
 
   private final GameStateContext context;
+  private final TimerManager timerManager;
 
   /**
    * Constructs a new GameStarted state with the given game state context.
@@ -21,6 +22,7 @@ public class GameStarted implements GameState {
    */
   public GameStarted(GameStateContext context) {
     this.context = context;
+    this.timerManager = TimerManager.getInstance();
   }
 
   /**
@@ -91,7 +93,9 @@ public class GameStarted implements GameState {
    */
   @Override
   public void handleGuessClick() throws IOException {
-    TextToSpeech.speak("Make a guess, click on the " + context.getProfessionToGuess());
+    // TextToSpeech.speak("Make a guess, click on the " + context.getProfessionToGuess());
     context.setState(context.getGuessingState());
+    App.changeRoom(null, "room-guessing");
+    System.out.println("Guessing state");
   }
 }

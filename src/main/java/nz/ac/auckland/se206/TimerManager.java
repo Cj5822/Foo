@@ -6,7 +6,7 @@ import javafx.util.Duration;
 
 public class TimerManager {
   private static TimerManager instance; // Singleton instance
-  private int secondsRemaining = 600; // Track the number of seconds remaining (10 minutes)
+  private int secondsRemaining = 300; // Track the number of seconds remaining (5 minutes)
   private Timeline timeline;
   private boolean isTimeUp = false; // Flag to indicate if time has run out
 
@@ -24,6 +24,13 @@ public class TimerManager {
     return instance;
   }
 
+  // Reset the timer to 1 minute
+  public void resetToOneMinute() {
+    stop();
+    secondsRemaining = 60; // Set the timer to 1 minute (60 seconds)
+    isTimeUp = false; // Reset the time-up flag
+  }
+
   // Start the timer
   public void start() {
     if (!isTimeUp && timeline.getStatus() != Timeline.Status.RUNNING) {
@@ -36,10 +43,10 @@ public class TimerManager {
     timeline.stop();
   }
 
-  // Reset the timer to 10 minutes
+  // Reset the timer to 5 minutes
   public void reset() {
     stop();
-    secondsRemaining = 600; // Reset the timer to 10 minutes
+    secondsRemaining = 300; // Reset the timer to 10 minutes
     isTimeUp = false; // Reset the time-up flag
   }
 

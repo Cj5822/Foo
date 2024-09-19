@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.controllers.ChatController;
+import nz.ac.auckland.se206.controllers.ExplanationController;
 import nz.ac.auckland.se206.controllers.FlippedWrenchController;
 import nz.ac.auckland.se206.controllers.OpenSafeController;
 import nz.ac.auckland.se206.controllers.PaperController;
@@ -39,6 +40,7 @@ public class App extends Application {
   private static ScrunchedPaperController
       scrunchedPaperController; // Controller for the scrunched paper view
   private static PaperController paperController; // Controller for the paper view
+  private static ExplanationController explanationController; // Controller for the explanation view
   private static Stage appStage;
 
   /**
@@ -163,6 +165,12 @@ public class App extends Application {
 
   public static void closePaper(MouseEvent event) throws IOException {
     paperController.hidePaperPane();
+  }
+
+  public static void openExplanation(MouseEvent event) throws IOException {
+    roomController = loader.getController();
+    explanationController = roomController.getExplanationController();
+    explanationController.showExplanationPane();
   }
 
   /**

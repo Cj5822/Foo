@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.states;
 
 import java.io.IOException;
 import javafx.scene.input.MouseEvent;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.speech.FreeTextToSpeech;
 
@@ -32,16 +33,7 @@ public class Guessing implements GameState {
    */
   @Override
   public void handleRectangleClick(MouseEvent event, String rectangleId) throws IOException {
-    System.out.println("guessing state");
-    if (rectangleId.equals("rectPlumber")) {
-      FreeTextToSpeech.speak("Correct! You won! This is the ");
-      System.out.println("correct");
-    } else {
-      FreeTextToSpeech.speak("You lost! This is the ");
-      System.out.println("incorrect");
-    }
-    System.out.println("game over");
-    context.setState(context.getGameOverState());
+    App.openExplanation(event);
   }
 
   /**

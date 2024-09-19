@@ -13,6 +13,7 @@ import nz.ac.auckland.se206.controllers.FlippedWrenchController;
 import nz.ac.auckland.se206.controllers.OpenSafeController;
 import nz.ac.auckland.se206.controllers.RoomController;
 import nz.ac.auckland.se206.controllers.SafeController;
+import nz.ac.auckland.se206.controllers.SafeRingController;
 import nz.ac.auckland.se206.controllers.WrenchController;
 
 /**
@@ -29,6 +30,7 @@ public class App extends Application {
   private static RoomController roomController; // Controller for the room view
   private static SafeController safeController; // Controller for the safe view
   private static OpenSafeController openSafeController; // Controller for the open safe view
+  private static SafeRingController safeRingController; // Controller for the safe ring view
   private static WrenchController wrenchController; // Controller for the wrench view
   private static FlippedWrenchController flippedWrenchController;
   private static Stage appStage;
@@ -96,6 +98,16 @@ public class App extends Application {
 
   public static void closeOpenedSafe(MouseEvent event) throws IOException {
     openSafeController.hideOpenSafePane();
+  }
+
+  public static void openSafeRing(MouseEvent event) throws IOException {
+    roomController = loader.getController();
+    safeRingController = roomController.getSafeRingController();
+    safeRingController.showSafeRingPane();
+  }
+
+  public static void closeSafeRing(MouseEvent event) throws IOException {
+    safeRingController.hideSafeRingPane();
   }
 
   public static void openWrench(MouseEvent event) throws IOException {

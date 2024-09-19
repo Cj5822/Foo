@@ -37,6 +37,7 @@ public class RoomController {
   private ChatController chatController;
   private SafeController safeController;
   private OpenSafeController openSafeController;
+  private SafeRingController safeRingController;
   private WrenchController wrenchController;
   private FlippedWrenchController flippedWrenchController;
 
@@ -44,6 +45,7 @@ public class RoomController {
   private FXMLLoader chatPaneLoader;
   private FXMLLoader safePaneLoader;
   private FXMLLoader openSafePaneLoader;
+  private FXMLLoader safeRingPaneLoader;
   private FXMLLoader wrenchPaneLoader;
   private FXMLLoader flippedWrenchLoader;
 
@@ -62,6 +64,7 @@ public class RoomController {
     initialiseChatPane(room); // Initialise chat pane
     initialiseSafePane(room); // Initialise safe pane
     initialiseOpenSafePane(room); // Initialise open safe pane
+    initialiseSafeRingPane(room); // Initialise safe ring pane
     initialiseWrenchPane(room); // Initialise wrench pane
     initialiseFlippedWrenchPane(room); // Initialise flipped wrench pane
   }
@@ -90,7 +93,7 @@ public class RoomController {
     try {
       configureChatPane(room); // Load and configure the chat box
     } catch (IOException e) {
-      System.err.println("Error loading chat box: " + e.getMessage());
+      System.err.println("Error loading chat pane: " + e.getMessage());
       e.printStackTrace(); // Print the stack trace for debugging
     }
   }
@@ -111,7 +114,7 @@ public class RoomController {
     try {
       configureSafePane(room); // Load and configure the safe box
     } catch (IOException e) {
-      System.err.println("Error loading safe box: " + e.getMessage());
+      System.err.println("Error loading safe pane: " + e.getMessage());
       e.printStackTrace(); // Print the stack trace for debugging
     }
   }
@@ -127,7 +130,7 @@ public class RoomController {
     try {
       configureOpenSafePane(room); // Load and configure the safe box
     } catch (IOException e) {
-      System.err.println("Error loading safe box: " + e.getMessage());
+      System.err.println("Error loading opened safe pane: " + e.getMessage());
       e.printStackTrace(); // Print the stack trace for debugging
     }
   }
@@ -139,6 +142,22 @@ public class RoomController {
     room.getChildren().add(node); // Add the safe box to the room view
   }
 
+  private void initialiseSafeRingPane(Pane room) {
+    try {
+      configureSafeRingPane(room); // Load and configure the flipped wrench pane
+    } catch (IOException e) {
+      System.err.println("Error loading safe ring pane: " + e.getMessage());
+      e.printStackTrace(); // Print the stack trace for debugging
+    }
+  }
+
+  private void configureSafeRingPane(Pane room) throws IOException {
+    safeRingPaneLoader = new FXMLLoader(App.class.getResource("/fxml/safe-ring.fxml"));
+    AnchorPane node = safeRingPaneLoader.load();
+    safeRingController = safeRingPaneLoader.getController();
+    room.getChildren().add(node); // Add the wrench pane to the room view
+  }
+
   private void initialiseWrenchPane(Pane room) {
     try {
       configureWrenchPane(room); // Load and configure the wrench pane
@@ -148,6 +167,13 @@ public class RoomController {
     }
   }
 
+  private void configureWrenchPane(Pane room) throws IOException {
+    wrenchPaneLoader = new FXMLLoader(App.class.getResource("/fxml/wrench.fxml"));
+    AnchorPane node = wrenchPaneLoader.load();
+    wrenchController = wrenchPaneLoader.getController();
+    room.getChildren().add(node); // Add the wrench pane to the room view
+  }
+
   private void initialiseFlippedWrenchPane(Pane room) {
     try {
       configureFlippedWrenchPane(room); // Load and configure the flipped wrench pane
@@ -155,13 +181,6 @@ public class RoomController {
       System.err.println("Error loading flipped wrench pane: " + e.getMessage());
       e.printStackTrace(); // Print the stack trace for debugging
     }
-  }
-
-  private void configureWrenchPane(Pane room) throws IOException {
-    wrenchPaneLoader = new FXMLLoader(App.class.getResource("/fxml/wrench.fxml"));
-    AnchorPane node = wrenchPaneLoader.load();
-    wrenchController = wrenchPaneLoader.getController();
-    room.getChildren().add(node); // Add the wrench pane to the room view
   }
 
   private void configureFlippedWrenchPane(Pane room) throws IOException {
@@ -321,6 +340,10 @@ public class RoomController {
 
   public OpenSafeController getOpenSafeController() {
     return openSafeController;
+  }
+
+  public SafeRingController getSafeRingController() {
+    return safeRingController;
   }
 
   public WrenchController getWrenchController() {

@@ -71,4 +71,8 @@ public class TimerManager {
   public boolean isTimeUp() {
     return isTimeUp;
   }
+
+  public int getTimeInSeconds() {
+    return secondsRemaining;
+  }
 }

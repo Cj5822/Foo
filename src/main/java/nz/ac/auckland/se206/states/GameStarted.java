@@ -110,4 +110,27 @@ public class GameStarted implements GameState {
     App.changeRoom(null, "room-guessing");
     System.out.println("Guessing state");
   }
+
+  /**
+   * Handles the event when an image is clicked. Depending on the clicked image, it opens the hint
+   * controller of the corresponding hint.
+   *
+   * @param event the mouse event triggered by clicking an image
+   * @param imageId the ID of the clicked image
+   * @throws IOException if there is an I/O error
+   */
+  @Override
+  public void handleImageClick(MouseEvent event, String imageId) throws IOException {
+    switch (imageId) {
+      case "wrenchGlow":
+        App.openWrench(event);
+        return;
+      case "paperGlow":
+        App.openScrunchedPaper(event);
+        return;
+      case "safeGlow":
+        App.openSafe(event);
+        return;
+    }
+  }
 }

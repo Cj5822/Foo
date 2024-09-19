@@ -3,7 +3,6 @@ package nz.ac.auckland.se206.states;
 import java.io.IOException;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /**
  * The GameOver state of the game. Handles interactions after the game has ended, informing the
@@ -36,7 +35,7 @@ public class GameOver implements GameState {
       return;
     }
     String clickedProfession = context.getProfession(rectangleId);
-    TextToSpeech.speak("Game Over, you have already guessed! This is the " + clickedProfession);
+    System.out.println("Game Over, you have already guessed! This is the " + clickedProfession);
   }
 
   /**
@@ -47,6 +46,19 @@ public class GameOver implements GameState {
    */
   @Override
   public void handleGuessClick() throws IOException {
-    TextToSpeech.speak("You have already guessed!");
+    System.out.println("You have already guessed!");
+  }
+
+  /**
+   * Handles the event when an image is clicked. Informs the player that the game is over and no
+   * further actions can be taken.
+   *
+   * @param event the mouse event triggered by clicking an image
+   * @param imageId the ID of the clicked image
+   * @throws IOException if there is an I/O error
+   */
+  @Override
+  public void handleImageClick(MouseEvent event, String imageId) throws IOException {
+    System.out.println("Game Over, you have already guessed!");
   }
 }

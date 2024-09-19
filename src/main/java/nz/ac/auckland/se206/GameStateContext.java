@@ -186,4 +186,8 @@ public class GameStateContext {
   public void setNeighbourInteracted(boolean interacted) {
     this.isNeighbourInteracted = interacted;
   }
+
+  public void handleImageClick(MouseEvent event, String imageId) throws IOException {
+    gameState.handleImageClick(event, imageId);
+  }
 }

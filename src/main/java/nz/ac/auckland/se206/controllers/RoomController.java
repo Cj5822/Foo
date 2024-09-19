@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -282,6 +283,18 @@ public class RoomController {
   }
 
   /**
+   * Handles mouse clicks on images representing objects in the room.
+   *
+   * @param event the mouse event triggered by clicking an image
+   * @throws IOException if there is an I/O error
+   */
+  @FXML
+  private void handleImageClick(MouseEvent event) throws IOException {
+    ImageView clickedImage = (ImageView) event.getSource();
+    context.handleImageClick(event, clickedImage.getId());
+  }
+
+  /**
    * Handles the guess button click event.
    *
    * @param event the action event triggered by clicking the guess button
@@ -328,6 +341,30 @@ public class RoomController {
 
     // Reset room label to the original room name
     lblRoomName.setText(originalRoomName);
+  }
+
+  /**
+   * Handles mouse hover exiting on rectangles representing button for map navigation.
+   *
+   * @param event the mouse event triggered by clicking a rectangle
+   * @throws IOException if there is an I/O error
+   */
+  @FXML
+  private void handleImageEnter(MouseEvent event) throws IOException {
+    ImageView hoveredImage = (ImageView) event.getSource();
+    hoveredImage.setOpacity(1.0);
+  }
+
+  /**
+   * Handles mouse hover exiting on rectangles representing button for map navigation.
+   *
+   * @param event the mouse event triggered by clicking a rectangle
+   * @throws IOException if there is an I/O error
+   */
+  @FXML
+  private void handleImageExit(MouseEvent event) throws IOException {
+    ImageView hoveredImage = (ImageView) event.getSource();
+    hoveredImage.setOpacity(0.0);
   }
 
   /**

@@ -4,7 +4,7 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
@@ -16,7 +16,7 @@ public class SafeController {
   private static GameStateContext context = new GameStateContext();
 
   @FXML private AnchorPane safePane;
-  @FXML private TextField safeDisplay;
+  @FXML private Label safeDisplay;
   @FXML private Rectangle rectExitSafe;
   @FXML private Button button1;
   @FXML private Button button2;
@@ -65,6 +65,16 @@ public class SafeController {
     }
     // Clear entered code after checking
     enteredCode.setLength(0);
+  }
+
+  // Handle backspace button press
+  @FXML
+  public void handleBackspacePress(ActionEvent event) {
+    if (enteredCode.length() > 0) {
+      // Remove the last character
+      enteredCode.deleteCharAt(enteredCode.length() - 1);
+      safeDisplay.setText(enteredCode.toString());
+    }
   }
 
   @FXML

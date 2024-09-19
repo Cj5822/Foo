@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -17,7 +19,6 @@ import nz.ac.auckland.apiproxy.chat.openai.Choice;
 import nz.ac.auckland.apiproxy.config.ApiProxyConfig;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.prompts.PromptEngineering;
-import nz.ac.auckland.se206.speech.FreeTextToSpeech;
 
 /**
  * Controller class for the chat view. Handles user interactions and communication with the GPT
@@ -29,6 +30,7 @@ public class ChatController {
   @FXML private TextField txtInput;
   @FXML private Button btnSend;
   @FXML private AnchorPane chatPane;
+  @FXML private ProgressIndicator progressIndicator;
 
   private ChatCompletionRequest chatCompletionRequest;
   private String profession;
@@ -42,6 +44,7 @@ public class ChatController {
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
     hideChatPane(); // Hide chat box initially
+    progressIndicator.setVisible(false); // Hide progress indicator initially
   }
 
   /**
@@ -132,22 +135,42 @@ public class ChatController {
    * Runs the GPT model with a given chat message.
    *
    * @param msg the chat message to process
-   * @return the response chat message
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
-  private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
+  private void runGpt(ChatMessage msg) throws ApiProxyException {
+    // Add the message to the chat completion request
     chatCompletionRequest.addMessage(msg);
-    try {
-      ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
-      Choice result = chatCompletionResult.getChoices().iterator().next();
-      chatCompletionRequest.addMessage(result.getChatMessage());
-      appendChatMessage(result.getChatMessage());
-      FreeTextToSpeech.speak(result.getChatMessage().getContent());
-      return result.getChatMessage();
-    } catch (ApiProxyException e) {
-      e.printStackTrace();
-      return null;
-    }
+
+    // Show the progress indicator when starting task
+    progressIndicator.setVisible(true);
+
+    // Create a task to handle the chat completion asynchronously
+    Task<ChatMessage> chatCompletionTask =
+        new Task<>() {
+          @Override
+          protected ChatMessage call() throws ApiProxyException {
+            try {
+              // Execute the chat completion request and get the result
+              ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
+              Choice result = chatCompletionResult.getChoices().iterator().next();
+              // Add the result message to the chat request history
+              chatCompletionRequest.addMessage(result.getChatMessage());
+              // Append the result message to the chat area
+              appendChatMessage(result.getChatMessage());
+              // Synthesize the response using text-to-speech
+              progressIndicator.setVisible(false);
+              return result.getChatMessage();
+            } catch (ApiProxyException e) {
+              e.printStackTrace();
+              return null;
+            }
+          }
+        };
+
+    // Run the chat completion task in a background thread
+    Thread chatCompletionThread = new Thread(chatCompletionTask);
+    chatCompletionThread.setDaemon(true);
+    chatCompletionThread.start();
   }
 
   /**

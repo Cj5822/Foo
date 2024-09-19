@@ -211,6 +211,19 @@ public class RoomController {
    */
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
+    // Start the shared TimerManager
+    timerManager.resetToOneMinute();
+    timerManager.start();
+
+    // Update the label every frame with the formatted time
+    AnimationTimer timerUpdater =
+        new AnimationTimer() {
+          @Override
+          public void handle(long now) {
+            lblTimer.setText(timerManager.getTimeFormatted());
+          }
+        };
+    timerUpdater.start();
     context.handleGuessClick();
   }
 

@@ -21,6 +21,11 @@
       <Rectangle fx:id="rectGarage" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="16.0" layoutX="39.0" layoutY="57.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="WHITE" strokeType="INSIDE" width="16.0" />
       <Button fx:id="btnGuess" layoutX="14.0" layoutY="125.0" mnemonicParsing="false" onAction="#handleGuessClick" text="Make a Guess" />
       <Rectangle fx:id="rectRoom" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="18.0" layoutX="60.0" layoutY="34.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="18.0" />
+      <ImageView fx:id="electricianGlow" fitHeight="604.0" fitWidth="244.0" layoutX="261.0" layoutY="-2.0" onMouseClicked="#handleImageClick" onMouseEntered="#handleImageEnter" onMouseExited="#handleImageExit" opacity="0.0">
+         <image>
+            <Image url="@../images/electrician-glow.png" />
+         </image>
+      </ImageView>
       <fx:include source="chat.fxml" />
       <Label fx:id="lblRoomName" alignment="CENTER" layoutX="18.0" layoutY="100.0" prefHeight="17.0" prefWidth="80.0" text="Garage" textAlignment="CENTER" textFill="WHITE" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="44.0" layoutX="666.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="103.0" />

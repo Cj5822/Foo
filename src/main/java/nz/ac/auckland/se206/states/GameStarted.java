@@ -121,6 +121,15 @@ public class GameStarted implements GameState {
   @Override
   public void handleImageClick(MouseEvent event, String imageId) throws IOException {
     switch (imageId) {
+      case "electricianGlow":
+        App.openChat(event, "Electrician");
+        return;
+      case "neighbourGlow":
+        App.openChat(event, "Neighbour");
+        return;
+      case "plumberGlow":
+        App.openChat(event, "Plumber");
+        return;
       case "wrenchGlow":
         App.openWrench(event);
         System.out.println("Wrench opened");

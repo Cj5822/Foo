@@ -311,6 +311,17 @@ public class RoomController {
   private void handleImageClick(MouseEvent event) throws IOException {
     ImageView clickedImage = (ImageView) event.getSource();
     context.handleImageClick(event, clickedImage.getId());
+    // Check which rectangle was clicked and set the interaction flags in GameStateContext
+    if (clickedImage.getId().equals("plumberGlow")) {
+      context.setPlumberInteracted(true);
+      System.out.println("Plumber interacted");
+    } else if (clickedImage.getId().equals("electricianGlow")) {
+      context.setElectricianInteracted(true);
+      System.out.println("Electrician interacted");
+    } else if (clickedImage.getId().equals("neighbourGlow")) {
+      context.setNeighbourInteracted(true);
+      System.out.println("Neighbour interacted");
+    }
   }
 
   /**
@@ -326,12 +337,11 @@ public class RoomController {
     if (context.isPlumberInteracted()
         && context.isElectricianInteracted()
         && context.isNeighbourInteracted()) {
-        timerManager.stop();
-        timerManager.resetToOneMinute();
-        timerManager.start();
-        context.handleGuessClick();
-      }
-      else {
+      timerManager.stop();
+      timerManager.resetToOneMinute();
+      timerManager.start();
+      context.handleGuessClick();
+    } else {
       System.out.println("Not all rectangles have been interacted with");
     }
   }

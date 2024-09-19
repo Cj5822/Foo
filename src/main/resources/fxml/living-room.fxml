@@ -21,6 +21,11 @@
       <Rectangle fx:id="rectRoom" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="18.0" layoutX="60.0" layoutY="34.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="18.0" />
       <Rectangle fx:id="rectNeighbour" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="412.0" layoutX="340.0" layoutY="111.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
       <Button fx:id="btnGuess" layoutX="14.0" layoutY="125.0" mnemonicParsing="false" onAction="#handleGuessClick" text="Make a Guess" />
+      <ImageView fx:id="neighbourGlow" fitHeight="526.0" fitWidth="195.0" layoutX="291.0" layoutY="74.0" onMouseClicked="#handleImageClick" onMouseEntered="#handleImageEnter" onMouseExited="#handleImageExit" opacity="0.0">
+         <image>
+            <Image url="@../images/neighbour-glow.png" />
+         </image>
+      </ImageView>
       <fx:include source="chat.fxml" />
       <Label fx:id="lblRoomName" alignment="CENTER" layoutX="18.0" layoutY="98.0" prefHeight="20.0" prefWidth="80.0" text="Living Room" textFill="WHITE" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="44.0" layoutX="666.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="103.0" />

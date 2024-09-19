@@ -24,4 +24,13 @@ public interface GameState {
    * @throws IOException if there is an I/O error
    */
   void handleGuessClick() throws IOException;
+
+  /**
+   * Handles the event when an image is clicked.
+   *
+   * @param event the mouse event triggered by clicking a rectangle
+   * @param imageId the ID of the clicked rectangle
+   * @throws IOException if there is an I/O error
+   */
+  void handleImageClick(MouseEvent event, String imageId) throws IOException;
 }

@@ -44,6 +44,19 @@ public class Guessing implements GameState {
    */
   @Override
   public void handleGuessClick() throws IOException {
-    FreeTextToSpeech.speak("You have already guessed!");
+    System.out.println("You have already guessed!");
+  }
+
+  /**
+   * Handles the event when an image is clicked. Since the player has already guessed, it notifies
+   * the player.
+   *
+   * @param event the mouse event triggered by clicking an image
+   * @param imageId the ID of the clicked image
+   * @throws IOException if there is an I/O error
+   */
+  @Override
+  public void handleImageClick(MouseEvent event, String imageId) throws IOException {
+    System.out.println("You should press on a suspect!");
   }
 }

@@ -3,7 +3,7 @@ package nz.ac.auckland.se206.states;
 import java.io.IOException;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.speech.TextToSpeech;
+import nz.ac.auckland.se206.speech.FreeTextToSpeech;
 
 /**
  * The Guessing state of the game. Handles the logic for when the player is making a guess about the
@@ -34,10 +34,10 @@ public class Guessing implements GameState {
   public void handleRectangleClick(MouseEvent event, String rectangleId) throws IOException {
     System.out.println("guessing state");
     if (rectangleId.equals("rectPlumber")) {
-      TextToSpeech.speak("Correct! You won! This is the ");
+      FreeTextToSpeech.speak("Correct! You won! This is the ");
       System.out.println("correct");
     } else {
-      TextToSpeech.speak("You lost! This is the ");
+      FreeTextToSpeech.speak("You lost! This is the ");
       System.out.println("incorrect");
     }
     System.out.println("game over");
@@ -52,6 +52,6 @@ public class Guessing implements GameState {
    */
   @Override
   public void handleGuessClick() throws IOException {
-    TextToSpeech.speak("You have already guessed!");
+    FreeTextToSpeech.speak("You have already guessed!");
   }
 }

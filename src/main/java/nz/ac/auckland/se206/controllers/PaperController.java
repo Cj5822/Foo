@@ -1,24 +1,22 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
-import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 
-public class ScrunchedPaperController {
+public class PaperController {
   private static GameStateContext context = new GameStateContext();
 
-  @FXML private AnchorPane scrunchedPaperPane;
+  @FXML private AnchorPane paperPane;
 
   @FXML
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
-    hideScrunchedPaperPane(); // Hide wrench pane initially
+    hidePaperPane(); // Hide wrench pane initially
   }
 
   @FXML
@@ -27,17 +25,11 @@ public class ScrunchedPaperController {
     context.handleRectangleClick(event, clickedRectangle.getId());
   }
 
-  @FXML
-  public void handleAnalyseHint(ActionEvent event) throws IOException {
-    App.openPaperHint(event);
-    return;
+  public void showPaperPane() {
+    paperPane.setVisible(true);
   }
 
-  public void showScrunchedPaperPane() {
-    scrunchedPaperPane.setVisible(true);
-  }
-
-  public void hideScrunchedPaperPane() {
-    scrunchedPaperPane.setVisible(false);
+  public void hidePaperPane() {
+    paperPane.setVisible(false);
   }
 }

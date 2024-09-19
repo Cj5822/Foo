@@ -20,6 +20,6 @@
          </image>
       </ImageView>
       <Rectangle fx:id="rectExitScrunchedPaper" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="14.0" layoutY="87.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="59.0" />
-      <Button fx:id="analyseButton" layoutX="361.0" layoutY="392.0" mnemonicParsing="false" onAction="#handleAnalyse" text="Analyse" />
+      <Button fx:id="analyseButton" layoutX="361.0" layoutY="392.0" mnemonicParsing="false" onAction="#handleAnalyseHint" text="Analyse" />
    </children>
 </AnchorPane>

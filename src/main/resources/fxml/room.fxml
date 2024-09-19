@@ -21,17 +21,14 @@
       <Button fx:id="btnGuess" layoutX="14.0" layoutY="125.0" mnemonicParsing="false" onAction="#handleGuessClick" text="Make a Guess" />
       <Rectangle fx:id="rectRoom" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="17.0" layoutX="60.0" layoutY="34.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="WHITE" strokeType="INSIDE" width="17.0" />
       <Label fx:id="lblRoomName" alignment="CENTER" layoutX="18.0" layoutY="98.0" prefHeight="21.0" prefWidth="80.0" text="Bedroom" textFill="WHITE" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="44.0" layoutX="666.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="103.0" />
       <Rectangle fx:id="rectWrench" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="85.0" layoutX="188.0" layoutY="419.0" onMouseClicked="#handleRectangleClick" opacity="0.0" rotate="50.0" stroke="BLACK" strokeType="INSIDE" width="26.0" />
+      <Rectangle fx:id="rectSafe" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="115.0" layoutX="19.0" layoutY="177.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="rectScrunchedPaper" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="38.0" layoutX="458.0" layoutY="555.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="64.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="44.0" layoutX="666.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="103.0" />
       <Label fx:id="lblTimer" alignment="CENTER" layoutX="679.0" layoutY="19.0" text="00:00" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Rectangle fx:id="rectSafe" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="115.0" layoutX="19.0" layoutY="177.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <fx:include source="wrench.fxml" />
-      <fx:include source="flipped-wrench.fxml" />
-      <fx:include source="scrunched-paper.fxml" />
-      <Rectangle fx:id="rectScrunchedPaper" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="38.0" layoutX="458.0" layoutY="555.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="64.0" />
    </children>
 </Pane>

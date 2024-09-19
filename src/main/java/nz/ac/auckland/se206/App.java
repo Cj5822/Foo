@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.FlippedWrenchController;
 import nz.ac.auckland.se206.controllers.OpenSafeController;
+import nz.ac.auckland.se206.controllers.PaperController;
 import nz.ac.auckland.se206.controllers.RoomController;
 import nz.ac.auckland.se206.controllers.SafeController;
 import nz.ac.auckland.se206.controllers.SafeRingController;
@@ -37,6 +38,7 @@ public class App extends Application {
       flippedWrenchController; // Controller for the flipped wrench view
   private static ScrunchedPaperController
       scrunchedPaperController; // Controller for the scrunched paper view
+  private static PaperController paperController; // Controller for the paper view
   private static Stage appStage;
 
   /**
@@ -153,7 +155,14 @@ public class App extends Application {
   }
 
   public static void openPaperHint(ActionEvent event) throws IOException {
-    System.out.println("Paper hint opened");
+    scrunchedPaperController.hideScrunchedPaperPane();
+    roomController = loader.getController();
+    paperController = roomController.getPaperController();
+    paperController.showPaperPane();
+  }
+
+  public static void closePaper(MouseEvent event) throws IOException {
+    paperController.hidePaperPane();
   }
 
   /**

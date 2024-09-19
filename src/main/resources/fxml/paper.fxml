@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="paperPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.PaperController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="411.0" layoutY="81.0" opacity="0.85" stroke="BLACK" strokeType="INSIDE" width="795.0" />
+      <ImageView fitHeight="544.0" fitWidth="417.0" layoutX="190.0" layoutY="19.0" rotate="270.0">
+         <image>
+            <Image url="@../images/paper-folded.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="56.0" fitWidth="59.0" layoutX="14.0" layoutY="87.0">
+         <image>
+            <Image url="@../images/exit-icon.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="rectExitPaper" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="14.0" layoutY="87.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="59.0" />
+      <Label layoutX="240.0" layoutY="172.0" prefHeight="201.0" prefWidth="317.0" text="0011 0010 0111 1000">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="169.0" layoutY="181.0" prefHeight="21.0" prefWidth="111.0" text="Safe Password">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="208.0" layoutY="107.0" prefHeight="17.0" prefWidth="382.0" style="-fx-background-color: white;" text="&quot;Seems like the thief accidently dropped the hint to the safe password&quot;" />
+   </children>
+</AnchorPane>

@@ -40,7 +40,8 @@ public class RoomController {
   private SafeRingController safeRingController;
   private WrenchController wrenchController;
   private FlippedWrenchController flippedWrenchController;
-  private ScrunchedPaperController ScrunchedPaperController;
+  private ScrunchedPaperController scrunchedPaperController;
+  private PaperController paperController;
 
   // FXML Loaders
   private FXMLLoader chatPaneLoader;
@@ -50,6 +51,7 @@ public class RoomController {
   private FXMLLoader wrenchPaneLoader;
   private FXMLLoader flippedWrenchLoader;
   private FXMLLoader scrunchedPaperLoader;
+  private FXMLLoader paperLoader;
 
   private static GameStateContext context = new GameStateContext();
   private String originalRoomName = null;
@@ -70,6 +72,7 @@ public class RoomController {
     initialiseWrenchPane(room); // Initialise wrench pane
     initialiseFlippedWrenchPane(room); // Initialise flipped wrench pane
     initialiseScrunchedPaperPane(room); // Initialise scrunched paper pane
+    initialisePaperPane(room); // Initialise paper pane
   }
 
   /** Starts the timer and continuously updates the timer label. */
@@ -205,7 +208,23 @@ public class RoomController {
   private void configureScrunchedPaperPane(Pane room) throws IOException {
     scrunchedPaperLoader = new FXMLLoader(App.class.getResource("/fxml/scrunched-paper.fxml"));
     AnchorPane node = scrunchedPaperLoader.load();
-    ScrunchedPaperController = scrunchedPaperLoader.getController();
+    scrunchedPaperController = scrunchedPaperLoader.getController();
+    room.getChildren().add(node); // Add the wrench pane to the room view
+  }
+
+  private void initialisePaperPane(Pane room) {
+    try {
+      configurePaperPane(room); // Load and configure the flipped wrench pane
+    } catch (IOException e) {
+      System.err.println("Error loading paper pane: " + e.getMessage());
+      e.printStackTrace(); // Print the stack trace for debugging
+    }
+  }
+
+  private void configurePaperPane(Pane room) throws IOException {
+    paperLoader = new FXMLLoader(App.class.getResource("/fxml/paper.fxml"));
+    AnchorPane node = paperLoader.load();
+    paperController = paperLoader.getController();
     room.getChildren().add(node); // Add the wrench pane to the room view
   }
 
@@ -374,6 +393,10 @@ public class RoomController {
   }
 
   public ScrunchedPaperController getScrunchedPaperController() {
-    return ScrunchedPaperController;
+    return scrunchedPaperController;
+  }
+
+  public PaperController getPaperController() {
+    return paperController;
   }
 }

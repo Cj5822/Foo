@@ -17,7 +17,7 @@
       <Rectangle fx:id="rectNeighbour" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="503.0" layoutX="123.0" layoutY="103.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="138.0" />
       <fx:include source="chat.fxml" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="44.0" layoutX="666.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="103.0" />
-      <Label fx:id="lblTimer" alignment="CENTER" layoutX="679.0" layoutY="19.0" text="00:00" textFill="WHITE">
+      <Label fx:id="lblTimer" alignment="CENTER" layoutX="679.0" layoutY="19.0" text="00:00" textFill="RED">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>

@@ -8,7 +8,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="789.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.BackstoryController">
    <children>
       <Button fx:id="continueButton" layoutX="352.0" layoutY="407.0" mnemonicParsing="false" onAction="#handleContinue" prefHeight="38.0" prefWidth="86.0" text="Continue" />
-      <Text layoutX="26.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The victim of this crime prepared an engagement ring which was locked inside a safe. The day before the proposal the victim checked the safe, only to find that the password had been changed. It seems like someone has come inside the room and tampered with the safe. You have been called by the victim to solve who did it. The three likely suspects are: Electrician, a plumber, and the neighbour, who have all been in the house in the past few days." wrappingWidth="737.13671875">
+      <Text layoutX="26.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The victim of this crime prepared an engagement ring which was locked inside a safe. The day before the proposal the victim checked the safe, only to find that the password had been changed. It seems like someone has come inside the room and tampered with the safe. You have been called by the victim to solve who did it. The three likely suspects are: Electrician, plumber, and the neighbour, who have all been in the house in the past few days." wrappingWidth="737.13671875">
          <font>
             <Font size="25.0" />
          </font>

@@ -111,6 +111,11 @@ public class ChatController {
    * @return the formatted message string
    */
   private String formatMessage(ChatMessage msg) {
+    String role = msg.getRole();
+    String content = msg.getContent();
+    if (role.equals("user")) {
+      return "Me: " + content + "\n\n"; // User's message
+    }
     return profession + ": " + msg.getContent() + "\n\n"; // Format: "role: content"
   }
 

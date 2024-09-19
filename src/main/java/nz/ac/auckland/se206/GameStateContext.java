@@ -29,6 +29,10 @@ public class GameStateContext {
   private final GameOver gameOverState;
   private GameState gameState;
 
+  private boolean isPlumberInteracted = false;
+  private boolean isElectricianInteracted = false;
+  private boolean isNeighbourInteracted = false;
+
   /** Constructs a new GameStateContext and initializes the game states and professions. */
   public GameStateContext() {
     gameStartedState = new GameStarted(this);
@@ -152,5 +156,34 @@ public class GameStateContext {
    */
   public void handleGuessClick() throws IOException {
     gameState.handleGuessClick();
+  }
+
+  public GameState getGameState() {
+    return gameState;
+  }
+
+  // Getter and setter methods for interaction flags
+  public boolean isPlumberInteracted() {
+    return isPlumberInteracted;
+  }
+
+  public void setPlumberInteracted(boolean interacted) {
+    this.isPlumberInteracted = interacted;
+  }
+
+  public boolean isElectricianInteracted() {
+    return isElectricianInteracted;
+  }
+
+  public void setElectricianInteracted(boolean interacted) {
+    this.isElectricianInteracted = interacted;
+  }
+
+  public boolean isNeighbourInteracted() {
+    return isNeighbourInteracted;
+  }
+
+  public void setNeighbourInteracted(boolean interacted) {
+    this.isNeighbourInteracted = interacted;
   }
 }

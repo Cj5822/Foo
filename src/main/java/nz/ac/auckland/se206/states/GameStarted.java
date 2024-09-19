@@ -4,7 +4,6 @@ import java.io.IOException;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.TimerManager;
 
 /**
  * The GameStarted state of the game. Handles the initial interactions when the game starts,
@@ -13,7 +12,6 @@ import nz.ac.auckland.se206.TimerManager;
 public class GameStarted implements GameState {
 
   private final GameStateContext context;
-  private final TimerManager timerManager;
 
   /**
    * Constructs a new GameStarted state with the given game state context.
@@ -22,7 +20,6 @@ public class GameStarted implements GameState {
    */
   public GameStarted(GameStateContext context) {
     this.context = context;
-    this.timerManager = TimerManager.getInstance();
   }
 
   /**

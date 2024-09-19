@@ -313,23 +313,12 @@ public class RoomController {
     if (context.isPlumberInteracted()
         && context.isElectricianInteracted()
         && context.isNeighbourInteracted()) {
-      if (timerManager.getTimeInSeconds() > 60) {
         timerManager.stop();
         timerManager.resetToOneMinute();
+        timerManager.start();
+        context.handleGuessClick();
       }
-      timerManager.start();
-
-      // Update the label every frame with the formatted time
-      AnimationTimer timerUpdater =
-          new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-              lblTimer.setText(timerManager.getTimeFormatted());
-            }
-          };
-      timerUpdater.start();
-      context.handleGuessClick();
-    } else {
+      else {
       System.out.println("Not all rectangles have been interacted with");
     }
   }

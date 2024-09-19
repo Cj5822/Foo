@@ -199,7 +199,28 @@ public class RoomController {
    */
   @FXML
   private void handleRectangleClick(MouseEvent event) throws IOException {
+
     Rectangle clickedRectangle = (Rectangle) event.getSource();
+    if (context.getGameState() == context.getGameStartedState()) {
+      // Check which rectangle was clicked and set the interaction flags in GameStateContext
+      if (clickedRectangle.getId().equals("rectPlumber")) {
+        context.setPlumberInteracted(true);
+        System.out.println("Plumber interacted");
+      } else if (clickedRectangle.getId().equals("rectElectrician")) {
+        context.setElectricianInteracted(true);
+        System.out.println("Electrician interacted");
+      } else if (clickedRectangle.getId().equals("rectNeighbour")) {
+        context.setNeighbourInteracted(true);
+        System.out.println("Neighbour interacted");
+      }
+    }
+    System.out.println(
+        "plumber: "
+            + context.isPlumberInteracted()
+            + " electrician: "
+            + context.isElectricianInteracted()
+            + " neighbour: "
+            + context.isNeighbourInteracted());
     context.handleRectangleClick(event, clickedRectangle.getId());
   }
 
@@ -211,22 +232,30 @@ public class RoomController {
    */
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
-    if (timerManager.getTimeInSeconds() > 60) {
-      timerManager.stop();
-      timerManager.resetToOneMinute();
-    }
-    timerManager.start();
 
-    // Update the label every frame with the formatted time
-    AnimationTimer timerUpdater =
-        new AnimationTimer() {
-          @Override
-          public void handle(long now) {
-            lblTimer.setText(timerManager.getTimeFormatted());
-          }
-        };
-    timerUpdater.start();
-    context.handleGuessClick();
+    // check if all rectangles have been interacted with
+    if (context.isPlumberInteracted()
+        && context.isElectricianInteracted()
+        && context.isNeighbourInteracted()) {
+      if (timerManager.getTimeInSeconds() > 60) {
+        timerManager.stop();
+        timerManager.resetToOneMinute();
+      }
+      timerManager.start();
+
+      // Update the label every frame with the formatted time
+      AnimationTimer timerUpdater =
+          new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+              lblTimer.setText(timerManager.getTimeFormatted());
+            }
+          };
+      timerUpdater.start();
+      context.handleGuessClick();
+    } else {
+      System.out.println("Not all rectangles have been interacted with");
+    }
   }
 
   /**

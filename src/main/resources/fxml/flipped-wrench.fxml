@@ -28,6 +28,6 @@
       <Button fx:id="analyseButton" layoutX="361.0" layoutY="392.0" mnemonicParsing="false" onAction="#handleAnalyse" text="Analyse" />
       <Rectangle fx:id="rectExitFlippedWrench" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="14.0" layoutY="87.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="59.0" />
       <Rectangle fx:id="rectFlipWrench2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="91.0" layoutY="87.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="59.0" />
-      <TextField fx:id="hintText" layoutX="212.0" layoutY="166.0" prefHeight="25.0" prefWidth="338.0" text="The fingerprints match with Aiden and Brayden's fingerprint" visible="false" />
+      <TextField fx:id="hintText" layoutX="153.0" layoutY="166.0" prefHeight="25.0" prefWidth="470.0" text="&quot;Seems like multiple people have used this wrench, I should ask the suspects about it.&quot;" visible="false" />
    </children>
 </AnchorPane>

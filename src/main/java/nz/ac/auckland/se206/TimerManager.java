@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206;
 
+import java.io.IOException;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
@@ -9,10 +10,24 @@ public class TimerManager {
   private int secondsRemaining = 300; // Track the number of seconds remaining (5 minutes)
   private Timeline timeline;
   private boolean isTimeUp = false; // Flag to indicate if time has run out
+  private boolean isInGuessingState =
+      false; // Flag to indicate if the game is in the guessing state
+  private static GameStateContext context;
 
   /** Private constructor to prevent instantiation. */
   private TimerManager() {
-    timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> updateTimer()));
+    context = new GameStateContext();
+    timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(1),
+                event -> {
+                  try {
+                    updateTimer();
+                  } catch (IOException e) {
+                    e.printStackTrace();
+                  }
+                }));
     timeline.setCycleCount(Timeline.INDEFINITE); // Run indefinitely until stopped
   }
 
@@ -51,12 +66,30 @@ public class TimerManager {
   }
 
   // Update the seconds counter every second
-  private void updateTimer() {
+  private void updateTimer() throws IOException {
     if (secondsRemaining > 0) {
       secondsRemaining--;
     } else {
       stop(); // Stop the timer when it reaches 0
       isTimeUp = true;
+      handleTimerEnd();
+    }
+  }
+
+  private void handleTimerEnd() throws IOException {
+    if (!isInGuessingState) {
+      // Transition to guessing state and reset the timer
+      isInGuessingState = true;
+      resetToOneMinute();
+      start(); // Start the 1-minute timer for guessing state
+      context.setState(context.getGuessingState());
+      App.changeRoom(null, "room-guessing");
+    } else {
+      // Game over if the timer reaches 0 again in guessing state
+      isTimeUp = true;
+      context.setState(context.getGameOverState());
+      System.out.println("Game over! You ran out of time in the guessing state.");
+      // You can add further actions for game over here (e.g., show a game over screen)
     }
   }
 

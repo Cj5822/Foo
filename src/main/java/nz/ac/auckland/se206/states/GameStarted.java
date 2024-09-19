@@ -108,6 +108,5 @@ public class GameStarted implements GameState {
     // TextToSpeech.speak("Make a guess, click on the " + context.getProfessionToGuess());
     context.setState(context.getGuessingState());
     App.changeRoom(null, "room-guessing");
-    System.out.println("Guessing state");
   }
 }

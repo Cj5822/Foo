@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -28,6 +28,6 @@
       <Button fx:id="analyseButton" layoutX="361.0" layoutY="392.0" mnemonicParsing="false" onAction="#handleAnalyse" text="Analyse" />
       <Rectangle fx:id="rectExitFlippedWrench" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="14.0" layoutY="87.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="59.0" />
       <Rectangle fx:id="rectFlipWrench2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="91.0" layoutY="87.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="59.0" />
-      <TextField fx:id="hintText" layoutX="153.0" layoutY="166.0" prefHeight="25.0" prefWidth="470.0" text="&quot;Seems like multiple people have used this wrench, I should ask the suspects about it.&quot;" visible="false" />
+      <Label fx:id="hintText" layoutX="161.0" layoutY="188.0" prefHeight="25.0" prefWidth="457.0" style="-fx-background-color: white;" text="&quot;Seems like multiple people have used this wrench, I should ask the suspects about it.&quot;" visible="false" />
    </children>
 </AnchorPane>

@@ -39,6 +39,7 @@ public class RoomController {
   private OpenSafeController openSafeController;
   private WrenchController wrenchController;
   private FlippedWrenchController flippedWrenchController;
+  private ScrunchedPaperController ScrunchedPaperController;
 
   // FXML Loaders
   private FXMLLoader chatPaneLoader;
@@ -46,6 +47,7 @@ public class RoomController {
   private FXMLLoader openSafePaneLoader;
   private FXMLLoader wrenchPaneLoader;
   private FXMLLoader flippedWrenchLoader;
+  private FXMLLoader scrunchedPaperLoader;
 
   private static GameStateContext context = new GameStateContext();
   private String originalRoomName = null;
@@ -64,6 +66,7 @@ public class RoomController {
     initialiseOpenSafePane(room); // Initialise open safe pane
     initialiseWrenchPane(room); // Initialise wrench pane
     initialiseFlippedWrenchPane(room); // Initialise flipped wrench pane
+    initialiseScrunchedPaperPane(room); // Initialise scrunched paper pane
   }
 
   /** Starts the timer and continuously updates the timer label. */
@@ -148,6 +151,13 @@ public class RoomController {
     }
   }
 
+  private void configureWrenchPane(Pane room) throws IOException {
+    wrenchPaneLoader = new FXMLLoader(App.class.getResource("/fxml/wrench.fxml"));
+    AnchorPane node = wrenchPaneLoader.load();
+    wrenchController = wrenchPaneLoader.getController();
+    room.getChildren().add(node); // Add the wrench pane to the room view
+  }
+
   private void initialiseFlippedWrenchPane(Pane room) {
     try {
       configureFlippedWrenchPane(room); // Load and configure the flipped wrench pane
@@ -157,17 +167,26 @@ public class RoomController {
     }
   }
 
-  private void configureWrenchPane(Pane room) throws IOException {
-    wrenchPaneLoader = new FXMLLoader(App.class.getResource("/fxml/wrench.fxml"));
-    AnchorPane node = wrenchPaneLoader.load();
-    wrenchController = wrenchPaneLoader.getController();
-    room.getChildren().add(node); // Add the wrench pane to the room view
-  }
-
   private void configureFlippedWrenchPane(Pane room) throws IOException {
     flippedWrenchLoader = new FXMLLoader(App.class.getResource("/fxml/flipped-wrench.fxml"));
     AnchorPane node = flippedWrenchLoader.load();
     flippedWrenchController = flippedWrenchLoader.getController();
+    room.getChildren().add(node); // Add the wrench pane to the room view
+  }
+
+  private void initialiseScrunchedPaperPane(Pane room) {
+    try {
+      configureScrunchedPaperPane(room); // Load and configure the flipped wrench pane
+    } catch (IOException e) {
+      System.err.println("Error loading flipped scrunched paper pane: " + e.getMessage());
+      e.printStackTrace(); // Print the stack trace for debugging
+    }
+  }
+
+  private void configureScrunchedPaperPane(Pane room) throws IOException {
+    scrunchedPaperLoader = new FXMLLoader(App.class.getResource("/fxml/scrunched-paper.fxml"));
+    AnchorPane node = scrunchedPaperLoader.load();
+    ScrunchedPaperController = scrunchedPaperLoader.getController();
     room.getChildren().add(node); // Add the wrench pane to the room view
   }
 
@@ -329,5 +348,9 @@ public class RoomController {
 
   public FlippedWrenchController getFlippedWrenchController() {
     return flippedWrenchController;
+  }
+
+  public ScrunchedPaperController getScrunchedPaperController() {
+    return ScrunchedPaperController;
   }
 }

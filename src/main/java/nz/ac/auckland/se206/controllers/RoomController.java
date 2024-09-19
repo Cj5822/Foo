@@ -42,6 +42,7 @@ public class RoomController {
   private FlippedWrenchController flippedWrenchController;
   private ScrunchedPaperController scrunchedPaperController;
   private PaperController paperController;
+  private ExplanationController explanationController;
 
   // FXML Loaders
   private FXMLLoader chatPaneLoader;
@@ -52,6 +53,7 @@ public class RoomController {
   private FXMLLoader flippedWrenchLoader;
   private FXMLLoader scrunchedPaperLoader;
   private FXMLLoader paperLoader;
+  private FXMLLoader explanationLoader;
 
   private static GameStateContext context = new GameStateContext();
   private String originalRoomName = null;
@@ -73,6 +75,7 @@ public class RoomController {
     initialiseFlippedWrenchPane(room); // Initialise flipped wrench pane
     initialiseScrunchedPaperPane(room); // Initialise scrunched paper pane
     initialisePaperPane(room); // Initialise paper pane
+    initialiseExplanationPane(room); // Initialise explanation pane
   }
 
   /** Starts the timer and continuously updates the timer label. */
@@ -225,6 +228,22 @@ public class RoomController {
     paperLoader = new FXMLLoader(App.class.getResource("/fxml/paper.fxml"));
     AnchorPane node = paperLoader.load();
     paperController = paperLoader.getController();
+    room.getChildren().add(node); // Add the wrench pane to the room view
+  }
+
+  private void initialiseExplanationPane(Pane room) {
+    try {
+      configureExplanationPane(room); // Load and configure the flipped wrench pane
+    } catch (IOException e) {
+      System.err.println("Error loading paper pane: " + e.getMessage());
+      e.printStackTrace(); // Print the stack trace for debugging
+    }
+  }
+
+  private void configureExplanationPane(Pane room) throws IOException {
+    explanationLoader = new FXMLLoader(App.class.getResource("/fxml/explanation.fxml"));
+    AnchorPane node = explanationLoader.load();
+    explanationController = explanationLoader.getController();
     room.getChildren().add(node); // Add the wrench pane to the room view
   }
 
@@ -398,5 +417,9 @@ public class RoomController {
 
   public PaperController getPaperController() {
     return paperController;
+  }
+
+  public ExplanationController getExplanationController() {
+    return explanationController;
   }
 }

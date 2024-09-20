@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.states;
 
 import java.io.IOException;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.GameStateContext;
 
@@ -11,6 +12,8 @@ import nz.ac.auckland.se206.GameStateContext;
 public class GameOver implements GameState {
 
   private final GameStateContext context;
+
+  private TextArea textArea;
 
   /**
    * Constructs a new GameOver state with the given game state context.
@@ -23,7 +26,7 @@ public class GameOver implements GameState {
 
   public void setFeedback(String feedback) {
     // This would be where the feedback is set
-    System.out.println(feedback);
+    textArea.setText(feedback);
   }
 
   /**

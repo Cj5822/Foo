@@ -3,15 +3,16 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="789.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.homepageController">
    <children>
       <Button fx:id="startGameButton" alignment="CENTER" layoutX="344.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleStartGame" prefHeight="41.0" prefWidth="97.0" text="Start Game" />
       <Button fx:id="exitButton" alignment="CENTER" layoutX="344.0" layoutY="437.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="41.0" prefWidth="97.0" text="Exit" />
-      <Label alignment="TOP_CENTER" layoutX="17.0" layoutY="14.0" prefHeight="61.0" prefWidth="751.0" text="SOFTENG 206 - Guess Who ?" textAlignment="CENTER">
+      <Label alignment="TOP_CENTER" layoutX="14.0" layoutY="15.0" prefHeight="73.0" prefWidth="646.0" text="SOFTENG 206 - Guess Who ?" textAlignment="CENTER">
          <font>
-            <Font name="System Bold" size="50.0" />
+            <Font name="System Bold" size="48.0" />
          </font>
       </Label>
       <Label alignment="TOP_CENTER" layoutX="242.0" layoutY="135.0" text="Instructions:">
@@ -42,6 +43,12 @@
       <Label layoutX="242.0" layoutY="165.0" text="Left click on objects to reveal hint">
          <font>
             <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="44.0" layoutX="676.0" layoutY="29.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="103.0" />
+      <Label fx:id="lblTimer" alignment="CENTER" layoutX="689.0" layoutY="29.0" text="00:00" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="30.0" />
          </font>
       </Label>
    </children>

@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
@@ -53,6 +54,16 @@ public class SafeController {
     safeDisplay.setText(enteredCode.toString());
   }
 
+  @FXML
+  private void handleImageClick(MouseEvent event) {
+    ImageView clickedImage = (ImageView) event.getSource();
+    String imageId = clickedImage.getId();
+
+    // Append digit to enteredCode and update the display
+    enteredCode.append(imageId);
+    safeDisplay.setText(enteredCode.toString());
+  }
+
   // Handle opening the safe
   @FXML
   public void handleOpenPress(ActionEvent event) throws IOException {
@@ -89,5 +100,29 @@ public class SafeController {
 
   public void showSafePane() {
     safePane.setVisible(true);
+  }
+
+  /**
+   * Handles mouse hover exiting on rectangles representing button for map navigation.
+   *
+   * @param event the mouse event triggered by clicking a rectangle
+   * @throws IOException if there is an I/O error
+   */
+  @FXML
+  private void handleImageEnter(MouseEvent event) throws IOException {
+    ImageView hoveredImage = (ImageView) event.getSource();
+    hoveredImage.setOpacity(1.0);
+  }
+
+  /**
+   * Handles mouse hover exiting on rectangles representing button for map navigation.
+   *
+   * @param event the mouse event triggered by clicking a rectangle
+   * @throws IOException if there is an I/O error
+   */
+  @FXML
+  private void handleImageExit(MouseEvent event) throws IOException {
+    ImageView hoveredImage = (ImageView) event.getSource();
+    hoveredImage.setOpacity(0.0);
   }
 }

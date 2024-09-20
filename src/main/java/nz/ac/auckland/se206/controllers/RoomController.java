@@ -5,6 +5,7 @@ import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -429,6 +430,16 @@ public class RoomController {
         lblRoomName.setText("Bedroom");
         return;
     }
+  }
+
+  @FXML
+  public void handleReplay(ActionEvent event) throws IOException {
+    Button button = (Button) event.getSource();
+    Scene gameScene = button.getScene();
+    gameScene.setRoot(App.loadFxml("homepage"));
+    timerManager = TimerManager.getInstance(context);
+    timerManager.reset();
+    startTimer();
   }
 
   /**

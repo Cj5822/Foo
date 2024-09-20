@@ -469,6 +469,7 @@ public class RoomController {
   }
 
   public ExplanationController getExplanationController() {
+    explanationController.setContext(context);
     return explanationController;
   }
 }

@@ -8,6 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 
 public class ExplanationController {
@@ -46,6 +47,8 @@ public class ExplanationController {
     // Move to GameOver state and display the feedback
     context.setFeedback(feedback); // Store feedback in context for GameOver
     System.out.println("Open game over fxml"); // Open the game over window
+    context.setState(context.getGameOverState());
+    App.changeRoom(null, "gameover");
   }
 
   public void setGameStateContext(GameStateContext context) {

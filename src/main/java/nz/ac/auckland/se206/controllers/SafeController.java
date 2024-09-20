@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,6 +13,7 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.TimerManager;
 
 public class SafeController {
   private static GameStateContext context = new GameStateContext();
@@ -29,6 +31,7 @@ public class SafeController {
   @FXML private Button button8;
   @FXML private Button button9;
   @FXML private Button button0;
+  @FXML private Label lblTimer;
 
   // Correct combination to open the safe
   private final String correctCode = "1234";
@@ -36,10 +39,31 @@ public class SafeController {
   // StringBuilder to hold entered digits
   private StringBuilder enteredCode = new StringBuilder();
 
+  private TimerManager timerManager;
+
   @FXML
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
     hideSafePane(); // Hide chat box initially
+    // Get the instance of TimerManager
+    timerManager = TimerManager.getInstance(context);
+    startTimer();
+  }
+
+  /** Starts the timer and continuously updates the timer label. */
+  private void startTimer() {
+    // Start the shared TimerManager
+    timerManager.start();
+
+    // Update the label every frame with the formatted time
+    AnimationTimer timerUpdater =
+        new AnimationTimer() {
+          @Override
+          public void handle(long now) {
+            lblTimer.setText(timerManager.getTimeFormatted());
+          }
+        };
+    timerUpdater.start();
   }
 
   // Handle button presses

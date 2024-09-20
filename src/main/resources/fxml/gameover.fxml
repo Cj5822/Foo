@@ -16,21 +16,18 @@
             <Image url="@../images/room-guessing.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="rectNeighbour" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="503.0" layoutX="123.0" layoutY="103.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="138.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="44.0" layoutX="666.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="103.0" />
       <Label fx:id="lblTimer" alignment="CENTER" layoutX="679.0" layoutY="19.0" text="00:00" textFill="RED">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Rectangle fx:id="rectElectrician" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="503.0" layoutX="329.0" layoutY="97.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="138.0" />
-      <Rectangle fx:id="rectPlumber" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="503.0" layoutX="568.0" layoutY="96.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="138.0" />
       <Label layoutX="225.0" layoutY="20.0" text="GAME OVER!" textFill="RED">
          <font>
             <Font size="60.0" />
          </font>
       </Label>
-      <TextArea layoutX="172.0" layoutY="228.0" prefHeight="250.0" prefWidth="446.0" />
+      <TextArea editable="false" layoutX="172.0" layoutY="228.0" prefHeight="250.0" prefWidth="446.0" />
       <Button layoutX="360.0" layoutY="497.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="69.0" text="Replay" />
       <Button layoutX="549.0" layoutY="497.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="69.0" text="Exit" />
    </children>

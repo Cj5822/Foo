@@ -23,6 +23,7 @@ import nz.ac.auckland.se206.TimerManager;
  */
 public class RoomController {
 
+  // FXML-Injected Fields
   @FXML private Rectangle rectPlumber;
   @FXML private Rectangle rectElectrician;
   @FXML private Rectangle rectNeighbour;
@@ -56,9 +57,9 @@ public class RoomController {
   private FXMLLoader paperLoader;
   private FXMLLoader explanationLoader;
 
+  // Other Fields
   private static GameStateContext context = new GameStateContext();
   private String originalRoomName = null;
-
   private TimerManager timerManager;
 
   /** Initializes the room view. */

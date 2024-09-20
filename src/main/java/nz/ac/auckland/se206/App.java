@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.ExplanationController;
 import nz.ac.auckland.se206.controllers.FlippedWrenchController;
-import nz.ac.auckland.se206.controllers.HomepageController;
+import nz.ac.auckland.se206.controllers.HomeController;
 import nz.ac.auckland.se206.controllers.OpenSafeController;
 import nz.ac.auckland.se206.controllers.PaperController;
 import nz.ac.auckland.se206.controllers.RoomController;
@@ -230,7 +230,7 @@ public class App extends Application {
 
     FXMLLoader homepageLoader = new FXMLLoader(App.class.getResource("/fxml/homepage.fxml"));
     Parent root = homepageLoader.load();
-    HomepageController homepageController = homepageLoader.getController();
+    HomeController homepageController = homepageLoader.getController();
     homepageController.setContext(context);
 
     scene = new Scene(root); // Create a new scene with the loaded root

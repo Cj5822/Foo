@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 
-public class HomepageController {
+public class HomeController {
 
   @FXML private Button startGameButton;
   @FXML private Button exitButton;

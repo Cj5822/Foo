@@ -132,15 +132,12 @@ public class GameStarted implements GameState {
         return;
       case "wrenchGlow":
         App.openWrench(event);
-        System.out.println("Wrench opened");
         return;
       case "paperGlow":
         App.openScrunchedPaper(event);
-        System.out.println("Scrunched paper opened");
         return;
       case "safeGlow":
         App.openSafe(event);
-        System.out.println("Safe opened");
         return;
       case "imageRingGlow":
         App.openSafeRing(event);

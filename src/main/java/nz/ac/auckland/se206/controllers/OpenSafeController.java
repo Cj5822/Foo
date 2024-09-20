@@ -13,7 +13,7 @@ import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.TimerManager;
 
 public class OpenSafeController {
-  private static GameStateContext context = new GameStateContext();
+  private GameStateContext context;
 
   @FXML private AnchorPane openSafePane;
   @FXML private Rectangle rectExitOpenSafe;
@@ -28,6 +28,10 @@ public class OpenSafeController {
     // Get the instance of TimerManager
     timerManager = TimerManager.getInstance(context);
     startTimer();
+  }
+
+  public void setContext(GameStateContext context) {
+    this.context = context;
   }
 
   /** Starts the timer and continuously updates the timer label. */

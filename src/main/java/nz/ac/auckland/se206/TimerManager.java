@@ -7,7 +7,7 @@ import javafx.util.Duration;
 
 public class TimerManager {
   private static TimerManager instance; // Singleton instance
-  private int secondsRemaining = 300; // Track the number of seconds remaining
+  private int secondsRemaining = 1; // Track the number of seconds remaining
   private Timeline timeline;
   private boolean isTimeUp = false; // Flag to indicate if time has run out
   private boolean isInGuessingState =

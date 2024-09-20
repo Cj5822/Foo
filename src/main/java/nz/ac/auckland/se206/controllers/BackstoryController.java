@@ -17,12 +17,16 @@ public class BackstoryController {
   @FXML private Label lblTimer;
 
   private TimerManager timerManager;
-  private static GameStateContext context = new GameStateContext();
+  private GameStateContext context;
 
   public void initialize() {
     // Get the instance of TimerManager
     timerManager = TimerManager.getInstance(context);
     startTimer();
+  }
+
+  public void setContext(GameStateContext context) {
+    this.context = context;
   }
 
   /** Starts the timer and continuously updates the timer label. */

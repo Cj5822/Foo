@@ -58,7 +58,7 @@ public class RoomController {
   private FXMLLoader explanationLoader;
 
   // Other Fields
-  private static GameStateContext context = new GameStateContext();
+  private GameStateContext context;
   private String originalRoomName = null;
   private TimerManager timerManager;
 
@@ -78,6 +78,10 @@ public class RoomController {
     initialiseScrunchedPaperPane(room); // Initialise scrunched paper pane
     initialisePaperPane(room); // Initialise paper pane
     initialiseExplanationPane(room); // Initialise explanation pane
+  }
+
+  public void setContext(GameStateContext context) {
+    this.context = context;
   }
 
   /** Starts the timer and continuously updates the timer label. */
@@ -134,6 +138,7 @@ public class RoomController {
     safePaneLoader = new FXMLLoader(App.class.getResource("/fxml/safe-password.fxml"));
     AnchorPane node = safePaneLoader.load();
     safeController = safePaneLoader.getController();
+    safeController.setContext(context);
     room.getChildren().add(node); // Add the safe box to the room view
   }
 
@@ -150,6 +155,7 @@ public class RoomController {
     openSafePaneLoader = new FXMLLoader(App.class.getResource("/fxml/safe-opened.fxml"));
     AnchorPane node = openSafePaneLoader.load();
     openSafeController = openSafePaneLoader.getController();
+    openSafeController.setContext(context);
     room.getChildren().add(node); // Add the safe box to the room view
   }
 
@@ -166,6 +172,7 @@ public class RoomController {
     safeRingPaneLoader = new FXMLLoader(App.class.getResource("/fxml/safe-ring.fxml"));
     AnchorPane node = safeRingPaneLoader.load();
     safeRingController = safeRingPaneLoader.getController();
+    safeRingController.setContext(context);
     room.getChildren().add(node); // Add the wrench pane to the room view
   }
 
@@ -182,6 +189,7 @@ public class RoomController {
     wrenchPaneLoader = new FXMLLoader(App.class.getResource("/fxml/wrench.fxml"));
     AnchorPane node = wrenchPaneLoader.load();
     wrenchController = wrenchPaneLoader.getController();
+    wrenchController.setContext(context);
     room.getChildren().add(node); // Add the wrench pane to the room view
   }
 
@@ -198,6 +206,7 @@ public class RoomController {
     flippedWrenchLoader = new FXMLLoader(App.class.getResource("/fxml/flipped-wrench.fxml"));
     AnchorPane node = flippedWrenchLoader.load();
     flippedWrenchController = flippedWrenchLoader.getController();
+    flippedWrenchController.setContext(context);
     room.getChildren().add(node); // Add the wrench pane to the room view
   }
 
@@ -214,6 +223,7 @@ public class RoomController {
     scrunchedPaperLoader = new FXMLLoader(App.class.getResource("/fxml/scrunched-paper.fxml"));
     AnchorPane node = scrunchedPaperLoader.load();
     scrunchedPaperController = scrunchedPaperLoader.getController();
+    scrunchedPaperController.setContext(context);
     room.getChildren().add(node); // Add the wrench pane to the room view
   }
 
@@ -230,6 +240,7 @@ public class RoomController {
     paperLoader = new FXMLLoader(App.class.getResource("/fxml/paper.fxml"));
     AnchorPane node = paperLoader.load();
     paperController = paperLoader.getController();
+    paperController.setContext(context);
     room.getChildren().add(node); // Add the wrench pane to the room view
   }
 
@@ -246,6 +257,7 @@ public class RoomController {
     explanationLoader = new FXMLLoader(App.class.getResource("/fxml/explanation.fxml"));
     AnchorPane node = explanationLoader.load();
     explanationController = explanationLoader.getController();
+    explanationController.setContext(context);
     room.getChildren().add(node); // Add the wrench pane to the room view
   }
 
@@ -457,7 +469,6 @@ public class RoomController {
   }
 
   public ExplanationController getExplanationController() {
-    explanationController.setGameStateContext(context);
     return explanationController;
   }
 }

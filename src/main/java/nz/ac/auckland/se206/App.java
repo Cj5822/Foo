@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.ExplanationController;
 import nz.ac.auckland.se206.controllers.FlippedWrenchController;
+import nz.ac.auckland.se206.controllers.HomepageController;
 import nz.ac.auckland.se206.controllers.OpenSafeController;
 import nz.ac.auckland.se206.controllers.PaperController;
 import nz.ac.auckland.se206.controllers.RoomController;
@@ -43,6 +44,8 @@ public class App extends Application {
   private static PaperController paperController; // Controller for the paper view
   private static ExplanationController explanationController; // Controller for the explanation view
   private static Stage appStage;
+
+  private static GameStateContext context = new GameStateContext();
 
   /**
    * The main method that launches the JavaFX application.
@@ -195,6 +198,7 @@ public class App extends Application {
     Parent root = loadFxml(roomName); // Load the "backstory" FXML
 
     roomController = loader.getController();
+    roomController.setContext(context);
     chatController = roomController.getChatController();
 
     scene = new Scene(root); // Create a new scene with the loaded root
@@ -204,15 +208,22 @@ public class App extends Application {
   }
 
   /**
-   * This method is invoked when the application starts. It loads and shows the "backstory" scene.
+   * This method is invoked when the application starts. It loads and shows the "homepage" scene.
    *
    * @param stage the primary stage of the application
-   * @throws IOException if the "src/main/resources/fxml/backstory.fxml" file is not found
+   * @throws IOException if the "src/main/resources/fxml/homepage.fxml" file is not found
    */
   @Override
   public void start(final Stage stage) throws IOException {
     appStage = stage;
-    Parent root = loadFxml("homepage"); // Load the "backstory" FXML
+
+    TimerManager.getInstance(context);
+
+    FXMLLoader homepageLoader = new FXMLLoader(App.class.getResource("/fxml/homepage.fxml"));
+    Parent root = homepageLoader.load();
+    HomepageController homepageController = homepageLoader.getController();
+    homepageController.setContext(context);
+
     scene = new Scene(root); // Create a new scene with the loaded root
     stage.setScene(scene); // Set the scene on the stage
     stage.show(); // Display the stage

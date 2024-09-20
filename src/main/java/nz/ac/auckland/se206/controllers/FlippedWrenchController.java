@@ -12,7 +12,7 @@ import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.GameStateContext;
 
 public class FlippedWrenchController {
-  private static GameStateContext context = new GameStateContext();
+  private GameStateContext context;
 
   @FXML private AnchorPane flippedWrenchPane;
   @FXML private Label hintText;
@@ -22,6 +22,10 @@ public class FlippedWrenchController {
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
     hideFlippedWrenchPane(); // Hide wrench pane initially
+  }
+
+  public void setContext(GameStateContext context) {
+    this.context = context;
   }
 
   @FXML

@@ -9,7 +9,7 @@ import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.GameStateContext;
 
 public class PaperController {
-  private static GameStateContext context = new GameStateContext();
+  private GameStateContext context;
 
   @FXML private AnchorPane paperPane;
 
@@ -17,6 +17,10 @@ public class PaperController {
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
     hidePaperPane(); // Hide wrench pane initially
+  }
+
+  public void setContext(GameStateContext context) {
+    this.context = context;
   }
 
   @FXML

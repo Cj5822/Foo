@@ -11,7 +11,7 @@ import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.GameStateContext;
 
 public class SafeRingController {
-  private static GameStateContext context = new GameStateContext();
+  private GameStateContext context;
 
   @FXML private AnchorPane safeRingPane;
   @FXML private Rectangle rectExitRing;
@@ -21,6 +21,10 @@ public class SafeRingController {
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
     hideSafeRingPane();
+  }
+
+  public void setContext(GameStateContext context) {
+    this.context = context;
   }
 
   @FXML

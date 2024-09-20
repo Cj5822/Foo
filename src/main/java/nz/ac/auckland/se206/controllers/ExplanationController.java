@@ -30,6 +30,10 @@ public class ExplanationController {
     hideExplanationPane(); // Hide chat box initially
   }
 
+  public void setContext(GameStateContext context) {
+    this.context = context;
+  }
+
   @FXML
   public void onSend(ActionEvent event) throws IOException {
     // Get the explanation from the TextField
@@ -49,10 +53,6 @@ public class ExplanationController {
     System.out.println("Open game over fxml"); // Open the game over window
     context.setState(context.getGameOverState());
     App.changeRoom(null, "gameover");
-  }
-
-  public void setGameStateContext(GameStateContext context) {
-    this.context = context;
   }
 
   private String evaluateExplanation(boolean isCorrectGuess, String explanation) {

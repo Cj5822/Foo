@@ -11,7 +11,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 
 public class ScrunchedPaperController {
-  private static GameStateContext context = new GameStateContext();
+  private GameStateContext context;
 
   @FXML private AnchorPane scrunchedPaperPane;
 
@@ -19,6 +19,10 @@ public class ScrunchedPaperController {
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
     hideScrunchedPaperPane(); // Hide wrench pane initially
+  }
+
+  public void setContext(GameStateContext context) {
+    this.context = context;
   }
 
   @FXML

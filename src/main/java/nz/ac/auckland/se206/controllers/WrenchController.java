@@ -9,7 +9,7 @@ import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.GameStateContext;
 
 public class WrenchController {
-  private static GameStateContext context = new GameStateContext();
+  private GameStateContext context;
 
   @FXML private AnchorPane wrenchPane;
   @FXML private Rectangle rectExitWrench;
@@ -18,6 +18,10 @@ public class WrenchController {
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
     hideWrenchPane(); // Hide wrench pane initially
+  }
+
+  public void setContext(GameStateContext context) {
+    this.context = context;
   }
 
   @FXML

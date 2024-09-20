@@ -7,7 +7,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="paperPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.PaperController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="411.0" layoutY="81.0" opacity="0.85" stroke="BLACK" strokeType="INSIDE" width="795.0" />
@@ -22,7 +21,7 @@
          </image>
       </ImageView>
       <Rectangle fx:id="rectExitPaper" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="14.0" layoutY="87.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="59.0" />
-      <Label layoutX="240.0" layoutY="172.0" prefHeight="201.0" prefWidth="317.0" text="0011 0010 0111 1000">
+      <Label layoutX="240.0" layoutY="172.0" prefHeight="201.0" prefWidth="317.0" text="0001 1001 1001 0100">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>

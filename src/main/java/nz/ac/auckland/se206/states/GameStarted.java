@@ -142,6 +142,9 @@ public class GameStarted implements GameState {
         App.openSafe(event);
         System.out.println("Safe opened");
         return;
+      case "imageRingGlow":
+        App.openSafeRing(event);
+        return;
     }
   }
 }

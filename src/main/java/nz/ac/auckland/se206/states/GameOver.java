@@ -13,8 +13,6 @@ public class GameOver implements GameState {
 
   private final GameStateContext context;
 
-  private TextArea textArea;
-
   /**
    * Constructs a new GameOver state with the given game state context.
    *
@@ -26,7 +24,7 @@ public class GameOver implements GameState {
 
   public void setFeedback(String feedback) {
     // This would be where the feedback is set
-    textArea.setText(feedback);
+
   }
 
   /**

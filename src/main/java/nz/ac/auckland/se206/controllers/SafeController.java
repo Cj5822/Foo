@@ -35,7 +35,7 @@ public class SafeController {
   @FXML private Label lblTimer;
 
   // Correct combination to open the safe
-  private final String correctCode = "1234";
+  private final String correctCode = "1994";
 
   // StringBuilder to hold entered digits
   private StringBuilder enteredCode = new StringBuilder();

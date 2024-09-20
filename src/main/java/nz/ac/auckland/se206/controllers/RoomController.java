@@ -311,7 +311,6 @@ public class RoomController {
   @FXML
   private void handleImageClick(MouseEvent event) throws IOException {
     ImageView clickedImage = (ImageView) event.getSource();
-    context.handleImageClick(event, clickedImage.getId());
     // Check which rectangle was clicked and set the interaction flags in GameStateContext
     if (clickedImage.getId().equals("plumberGlow")) {
       context.setPlumberInteracted(true);
@@ -323,6 +322,7 @@ public class RoomController {
       context.setNeighbourInteracted(true);
       System.out.println("Neighbour interacted");
     }
+    context.handleImageClick(event, clickedImage.getId());
   }
 
   /**

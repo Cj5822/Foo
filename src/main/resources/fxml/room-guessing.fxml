@@ -14,14 +14,26 @@
             <Image url="@../images/room-guessing.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="rectNeighbour" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="503.0" layoutX="123.0" layoutY="103.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="138.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="44.0" layoutX="666.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="103.0" />
       <Label fx:id="lblTimer" alignment="CENTER" layoutX="679.0" layoutY="19.0" text="00:00" textFill="RED">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Rectangle fx:id="rectElectrician" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="503.0" layoutX="329.0" layoutY="97.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="138.0" />
-      <Rectangle fx:id="rectPlumber" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="503.0" layoutX="568.0" layoutY="96.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="138.0" />
+      <ImageView fx:id="imagePlumber" fitHeight="637.0" fitWidth="263.0" layoutX="500.0" layoutY="59.0" onMouseClicked="#handleImageClick" onMouseEntered="#handleImageEnter" onMouseExited="#handleImageExit" opacity="0.0">
+         <image>
+            <Image url="@../images/plumber-glow.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageElectrician" fitHeight="599.0" fitWidth="239.0" layoutX="264.0" layoutY="69.0" onMouseClicked="#handleImageClick" onMouseEntered="#handleImageEnter" onMouseExited="#handleImageExit" opacity="0.0">
+         <image>
+            <Image url="@../images/electrician-glow.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageNeighbour" fitHeight="521.0" fitWidth="193.0" layoutX="96.0" layoutY="79.0" onMouseClicked="#handleImageClick" onMouseEntered="#handleImageEnter" onMouseExited="#handleImageExit" opacity="0.0">
+         <image>
+            <Image url="@../images/neighbour-glow.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

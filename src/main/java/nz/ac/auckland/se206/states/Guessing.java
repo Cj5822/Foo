@@ -57,6 +57,7 @@ public class Guessing implements GameState {
    */
   @Override
   public void handleImageClick(MouseEvent event, String imageId) throws IOException {
-    System.out.println("You should press on a suspect!");
+    context.setSelectedSuspect(imageId);
+    App.openExplanation(event);
   }
 }

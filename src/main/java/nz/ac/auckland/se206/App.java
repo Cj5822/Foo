@@ -3,6 +3,7 @@ package nz.ac.auckland.se206;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -97,11 +98,20 @@ public class App extends Application {
     safeController.hideSafePane();
   }
 
-  public static void openOpenedSafe(ActionEvent event) throws IOException {
-    roomController = loader.getController();
-    safeController.hideSafePane();
-    openSafeController = roomController.getOpenSafeController();
-    openSafeController.showOpenSafePane();
+  public static void openOpenedSafe(Event event) throws IOException {
+    // Check if the event is either ActionEvent or MouseEvent
+    if (event instanceof ActionEvent || event instanceof MouseEvent) {
+
+      // Get the controller (roomController) of the current scene
+      roomController = loader.getController();
+
+      // Hide the safe pane using safeController
+      safeController.hideSafePane();
+
+      // Get the openSafeController from roomController and show the open safe pane
+      openSafeController = roomController.getOpenSafeController();
+      openSafeController.showOpenSafePane();
+    }
   }
 
   public static void closeOpenedSafe(MouseEvent event) throws IOException {

@@ -8,8 +8,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
+import nz.ac.auckland.se206.GameStateContext;
 
 public class ExplanationController {
+  private GameStateContext context;
+
   @FXML private TextArea txtaChat;
   @FXML private TextField txtInput;
   @FXML private Button btnSend;
@@ -24,6 +27,47 @@ public class ExplanationController {
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
     hideExplanationPane(); // Hide chat box initially
+  }
+
+  @FXML
+  public void onSend(ActionEvent event) throws IOException {
+    // Get the explanation from the TextField
+    String explanation = txtInput.getText();
+
+    // Get the selected suspect from the context (from Guessing state)
+    String selectedSuspect = context.getSelectedSuspect();
+    System.out.println("Selected suspect: " + selectedSuspect);
+
+    // Evaluate the guess (pseudo code for GPT integration)
+    boolean isCorrectGuess = "rectElectrician".equals(selectedSuspect);
+    String feedback =
+        evaluateExplanation(isCorrectGuess, explanation); // Evaluate explanation and get feedback
+
+    // Move to GameOver state and display the feedback
+    context.setFeedback(feedback); // Store feedback in context for GameOver
+    System.out.println("Open game over fxml"); // Open the game over window
+  }
+
+  public void setGameStateContext(GameStateContext context) {
+    this.context = context;
+  }
+
+  private String evaluateExplanation(boolean isCorrectGuess, String explanation) {
+    // This would be where GPT feedback integration happens
+    if (isCorrectGuess) {
+      if (isExplanationCorrect(explanation)) {
+        return "You guessed correctly, and your explanation is correct!";
+      } else {
+        return "You guessed correctly, but your explanation is incorrect.";
+      }
+    } else {
+      return "You guessed incorrectly. The correct thief was the electrician.";
+    }
+  }
+
+  private boolean isExplanationCorrect(String explanation) {
+    // Placeholder for GPT evaluation logic
+    return true;
   }
 
   /**

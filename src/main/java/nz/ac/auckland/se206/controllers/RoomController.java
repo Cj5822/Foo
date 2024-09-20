@@ -456,6 +456,7 @@ public class RoomController {
   }
 
   public ExplanationController getExplanationController() {
+    explanationController.setGameStateContext(context);
     return explanationController;
   }
 }

@@ -21,6 +21,11 @@ public class GameOver implements GameState {
     this.context = context;
   }
 
+  public void setFeedback(String feedback) {
+    // This would be where the feedback is set
+    System.out.println(feedback);
+  }
+
   /**
    * Handles the event when a rectangle is clicked. Informs the player that the game is over and
    * provides the profession of the clicked character if applicable.

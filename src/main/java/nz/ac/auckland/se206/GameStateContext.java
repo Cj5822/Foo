@@ -29,6 +29,8 @@ public class GameStateContext {
   private final GameOver gameOverState;
   private GameState gameState;
 
+  private String selectedSuspect;
+
   private boolean isPlumberInteracted = false;
   private boolean isElectricianInteracted = false;
   private boolean isNeighbourInteracted = false;
@@ -72,6 +74,19 @@ public class GameStateContext {
     rectIdToGuess =
         randomNumber == 0 ? "rectPerson1" : ((randomNumber == 1) ? "rectPerson2" : "rectPerson3");
     professionToGuess = rectanglesToProfession.get(rectIdToGuess);
+  }
+
+  public void setSelectedSuspect(String rectangleId) {
+    selectedSuspect = rectangleId;
+  }
+
+  public String getSelectedSuspect() {
+    System.out.println(selectedSuspect);
+    return selectedSuspect;
+  }
+
+  public void setFeedback(String feedback) {
+    gameOverState.setFeedback(feedback);
   }
 
   /**

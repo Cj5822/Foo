@@ -58,7 +58,7 @@ public class RoomController {
   private FXMLLoader explanationLoader;
 
   // Other Fields
-  private GameStateContext context;
+  private GameStateContext context = new GameStateContext();
   private String originalRoomName = null;
   private TimerManager timerManager;
 
@@ -441,30 +441,37 @@ public class RoomController {
   }
 
   public SafeController getSafeController() {
+    safeController.setContext(context);
     return safeController;
   }
 
   public OpenSafeController getOpenSafeController() {
+    openSafeController.setContext(context);
     return openSafeController;
   }
 
   public SafeRingController getSafeRingController() {
+    safeRingController.setContext(context);
     return safeRingController;
   }
 
   public WrenchController getWrenchController() {
+    wrenchController.setContext(context);
     return wrenchController;
   }
 
   public FlippedWrenchController getFlippedWrenchController() {
+    flippedWrenchController.setContext(context);
     return flippedWrenchController;
   }
 
   public ScrunchedPaperController getScrunchedPaperController() {
+    scrunchedPaperController.setContext(context);
     return scrunchedPaperController;
   }
 
   public PaperController getPaperController() {
+    paperController.setContext(context);
     return paperController;
   }
 

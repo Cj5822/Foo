@@ -93,6 +93,7 @@ public class App extends Application {
 
   public static void openSafe(MouseEvent event) throws IOException {
     roomController = loader.getController();
+    roomController.setContext(context);
     safeController = roomController.getSafeController();
     safeController.showSafePane();
   }
@@ -107,6 +108,7 @@ public class App extends Application {
 
       // Get the controller (roomController) of the current scene
       roomController = loader.getController();
+      roomController.setContext(context);
 
       // Hide the safe pane using safeController
       safeController.hideSafePane();
@@ -123,6 +125,7 @@ public class App extends Application {
 
   public static void openSafeRing(MouseEvent event) throws IOException {
     roomController = loader.getController();
+    roomController.setContext(context);
     safeRingController = roomController.getSafeRingController();
     safeRingController.showSafeRingPane();
   }
@@ -133,6 +136,7 @@ public class App extends Application {
 
   public static void openWrench(MouseEvent event) throws IOException {
     roomController = loader.getController();
+    roomController.setContext(context);
     wrenchController = roomController.getWrenchController();
     wrenchController.showWrenchPane();
   }
@@ -143,6 +147,7 @@ public class App extends Application {
 
   public static void flipWrench(MouseEvent event) {
     roomController = loader.getController();
+    roomController.setContext(context);
     wrenchController.hideWrenchPane();
     flippedWrenchController = roomController.getFlippedWrenchController();
     flippedWrenchController.showFlippedWrenchPane();
@@ -150,6 +155,7 @@ public class App extends Application {
 
   public static void flipWrenchAgain(MouseEvent event) {
     roomController = loader.getController();
+    roomController.setContext(context);
     flippedWrenchController.hideFlippedWrenchPane();
     wrenchController = roomController.getWrenchController();
     wrenchController.showWrenchPane();
@@ -161,6 +167,7 @@ public class App extends Application {
 
   public static void openScrunchedPaper(MouseEvent event) throws IOException {
     roomController = loader.getController();
+    roomController.setContext(context);
     scrunchedPaperController = roomController.getScrunchedPaperController();
     scrunchedPaperController.showScrunchedPaperPane();
   }
@@ -172,6 +179,7 @@ public class App extends Application {
   public static void openPaperHint(ActionEvent event) throws IOException {
     scrunchedPaperController.hideScrunchedPaperPane();
     roomController = loader.getController();
+    roomController.setContext(context);
     paperController = roomController.getPaperController();
     paperController.showPaperPane();
   }
@@ -182,6 +190,7 @@ public class App extends Application {
 
   public static void openExplanation(MouseEvent event) throws IOException {
     roomController = loader.getController();
+    roomController.setContext(context);
     explanationController = roomController.getExplanationController();
     explanationController.showExplanationPane();
   }

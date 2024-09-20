@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -90,7 +91,7 @@ public class SafeController {
 
   // Handle opening the safe
   @FXML
-  public void handleOpenPress(ActionEvent event) throws IOException {
+  public void handleOpenPress(Event event) throws IOException {
     if (enteredCode.toString().equals(correctCode)) {
       safeDisplay.setText("Safe Opened!");
       App.openOpenedSafe(event);
@@ -104,7 +105,7 @@ public class SafeController {
 
   // Handle backspace button press
   @FXML
-  public void handleBackspacePress(ActionEvent event) {
+  public void handleBackspacePress(Event event) {
     if (enteredCode.length() > 0) {
       // Remove the last character
       enteredCode.deleteCharAt(enteredCode.length() - 1);

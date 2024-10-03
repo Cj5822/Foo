@@ -465,6 +465,11 @@ public class RoomController {
     startTimer();
   }
 
+  @FXML
+  public void handleExit(ActionEvent event) {
+    System.exit(0);
+  }
+
   /**
    * Gets the chat controller.
    *

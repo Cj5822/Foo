@@ -25,7 +25,7 @@
             <Image url="@../images/plumber-glow.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imageElectrician" fitHeight="599.0" fitWidth="239.0" layoutX="264.0" layoutY="69.0" onMouseClicked="#handleImageClick" onMouseEntered="#handleImageEnter" onMouseExited="#handleImageExit" opacity="0.0">
+      <ImageView fx:id="imageElectrician" fitHeight="604.0" fitWidth="244.0" layoutX="262.0" layoutY="74.0" onMouseClicked="#handleImageClick" onMouseEntered="#handleImageEnter" onMouseExited="#handleImageExit" opacity="0.0">
          <image>
             <Image url="@../images/electrician-glow.png" />
          </image>
@@ -33,6 +33,21 @@
       <ImageView fx:id="imageNeighbour" fitHeight="521.0" fitWidth="193.0" layoutX="96.0" layoutY="79.0" onMouseClicked="#handleImageClick" onMouseEntered="#handleImageEnter" onMouseExited="#handleImageExit" opacity="0.0">
          <image>
             <Image url="@../images/neighbour-glow.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="plumberNametag" fitHeight="45.0" fitWidth="137.0" layoutX="563.0" layoutY="20.0" opacity="0.0">
+         <image>
+            <Image url="@../images/brayden-mitchell-nametag.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="neighbourNametag" fitHeight="45.0" fitWidth="137.0" layoutX="124.0" layoutY="19.0" opacity="0.0">
+         <image>
+            <Image url="@../images/ava-collins-nametag.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="electricianNametag" fitHeight="44.0" fitWidth="137.0" layoutX="326.0" layoutY="20.0" opacity="0.0">
+         <image>
+            <Image url="@../images/aiden-carter-nametag.png" />
          </image>
       </ImageView>
    </children>

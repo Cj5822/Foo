@@ -35,6 +35,9 @@ public class RoomController {
   @FXML private Pane room;
   @FXML private Label lblRoomName;
   @FXML private Label lblTimer;
+  @FXML private ImageView plumberNametag;
+  @FXML private ImageView electricianNametag;
+  @FXML private ImageView neighbourNametag;
 
   // Controllers
   private ChatController chatController;
@@ -385,6 +388,16 @@ public class RoomController {
   private void handleImageEnter(MouseEvent event) throws IOException {
     ImageView hoveredImage = (ImageView) event.getSource();
     hoveredImage.setOpacity(1.0);
+
+    // Guessing state set opacity for nametag
+    if (hoveredImage.getId().equals("imagePlumber")) {
+      // set specific image that isn't the hovered image to be opaque
+      plumberNametag.setOpacity(1.0);
+    } else if (hoveredImage.getId().equals("imageElectrician")) {
+      electricianNametag.setOpacity(1.0);
+    } else if (hoveredImage.getId().equals("imageNeighbour")) {
+      neighbourNametag.setOpacity(1.0);
+    }
   }
 
   /**
@@ -397,6 +410,16 @@ public class RoomController {
   private void handleImageExit(MouseEvent event) throws IOException {
     ImageView hoveredImage = (ImageView) event.getSource();
     hoveredImage.setOpacity(0.0);
+
+    // Guessing state set opacity for nametag
+    if (hoveredImage.getId().equals("imagePlumber")) {
+      // set specific image that isn't the hovered image to be opaque
+      plumberNametag.setOpacity(0);
+    } else if (hoveredImage.getId().equals("imageElectrician")) {
+      electricianNametag.setOpacity(0);
+    } else if (hoveredImage.getId().equals("imageNeighbour")) {
+      neighbourNametag.setOpacity(0);
+    }
   }
 
   /**

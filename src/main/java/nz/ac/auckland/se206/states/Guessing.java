@@ -33,7 +33,7 @@ public class Guessing implements GameState {
   @Override
   public void handleRectangleClick(MouseEvent event, String rectangleId) throws IOException {
     context.setSelectedSuspect(rectangleId);
-    App.openExplanation(event);
+    App.openExplanation();
   }
 
   /**
@@ -58,6 +58,6 @@ public class Guessing implements GameState {
   @Override
   public void handleImageClick(MouseEvent event, String imageId) throws IOException {
     context.setSelectedSuspect(imageId);
-    App.openExplanation(event);
+    App.openExplanation();
   }
 }

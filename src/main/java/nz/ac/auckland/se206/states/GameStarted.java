@@ -44,14 +44,17 @@ public class GameStarted implements GameState {
       //   App.openChat(event, "Neighbour");
       //   return;
       case "rectLivingroom":
+        context.setNeighbourInteracted(true);
         App.changeRoom(event, "living-room");
         App.openChat(event, "Neighbour");
         return;
       case "rectGarage":
+        context.setElectricianInteracted(true);
         App.changeRoom(event, "garage");
         App.openChat(event, "Electrician");
         return;
       case "rectBathroom":
+        context.setPlumberInteracted(true);
         App.changeRoom(event, "bathroom");
         App.openChat(event, "Plumber");
         return;

@@ -34,23 +34,26 @@ public class GameStarted implements GameState {
   public void handleRectangleClick(MouseEvent event, String rectangleId) throws IOException {
     // Transition to chat view or provide an introduction based on the clicked rectangle
     switch (rectangleId) {
-      case "rectPlumber":
-        App.openChat(event, "Plumber");
-        return;
-      case "rectElectrician":
-        App.openChat(event, "Electrician");
-        return;
-      case "rectNeighbour":
-        App.openChat(event, "Neighbour");
-        return;
+      // case "rectPlumber":
+      //   App.openChat(event, "Plumber");
+      //   return;
+      // case "rectElectrician":
+      //   App.openChat(event, "Electrician");
+      //   return;
+      // case "rectNeighbour":
+      //   App.openChat(event, "Neighbour");
+      //   return;
       case "rectLivingroom":
         App.changeRoom(event, "living-room");
+        App.openChat(event, "Neighbour");
         return;
       case "rectGarage":
         App.changeRoom(event, "garage");
+        App.openChat(event, "Electrician");
         return;
       case "rectBathroom":
         App.changeRoom(event, "bathroom");
+        App.openChat(event, "Plumber");
         return;
       case "rectRoom":
         App.changeRoom(event, "room");

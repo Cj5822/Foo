@@ -36,31 +36,14 @@ public class ExplanationController {
 
   @FXML
   public void onSend(ActionEvent event) throws IOException {
+    
     // Get the explanation from the TextField
     String explanation = txtInput.getText();
-    System.out.println(explanation);
-
-    // Get the selected suspect from the context (from Guessing state)
-    String selectedSuspect = context.getSelectedSuspect();
-    System.out.println("Selected suspect: " + selectedSuspect);
-
-    // Evaluate the guess (pseudo code for GPT integration)
-    boolean isCorrectGuess = "imageElectrician".equals(selectedSuspect);
-    boolean isCorrectExplanation = explanation.contains("wrench");
-    if (isCorrectGuess) {
-      if (isCorrectExplanation) {
-        System.out.println("WIN, explanation is correct");
-        App.openGameOver();
-      } else {
-        System.out.println("WIN, explanation is incorrect");
-        App.openGameOver();
-      } 
-    } else {
-      System.out.println("LOSE + give answer / explanation");
-      App.openGameOver();
-    } 
+    if (context != null) {
+      context.setExplanation(explanation);
+    }
+    App.openGameOver();
   }
-
 
   /**
    * Navigates back to the previous view.

@@ -520,7 +520,7 @@ public class RoomController {
   public void hideGuessButton() {
     btnGuess.setVisible(false);
   }
-  
+
   public GameOverController getGameOverController() {
     gameOverController.setContext(context);
     return gameOverController;

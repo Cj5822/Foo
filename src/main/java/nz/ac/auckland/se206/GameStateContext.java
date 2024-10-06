@@ -28,12 +28,11 @@ public class GameStateContext {
   private final Guessing guessingState;
   private final GameOver gameOverState;
   private GameState gameState;
-
   private String selectedSuspect;
-
   private boolean isPlumberInteracted = false;
   private boolean isElectricianInteracted = false;
   private boolean isNeighbourInteracted = false;
+  private String explanation;
 
   /** Constructs a new GameStateContext and initializes the game states and professions. */
   public GameStateContext() {
@@ -81,12 +80,15 @@ public class GameStateContext {
   }
 
   public String getSelectedSuspect() {
-    System.out.println(selectedSuspect);
     return selectedSuspect;
   }
 
-  public void setFeedback(String feedback) {
-    gameOverState.setFeedback(feedback);
+  public void setExplanation(String explanation) {
+    this.explanation = explanation;
+  }
+
+  public String getExplanation() {
+    return explanation;
   }
 
   /**

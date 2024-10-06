@@ -62,17 +62,13 @@ public class RoomController {
   private FXMLLoader explanationLoader;
 
   // Other Fields
-  private GameStateContext context = new GameStateContext();
+  private GameStateContext context;
   private String originalRoomName = null;
   private TimerManager timerManager;
 
   /** Initializes the room view. */
   @FXML
   public void initialize() {
-
-    timerManager = TimerManager.getInstance(context); // Initialize the TimerManager
-
-    startTimer(); // Start the timer and update the label
     initialiseChatPane(room); // Initialise chat pane
     initialiseSafePane(room); // Initialise safe pane
     initialiseOpenSafePane(room); // Initialise open safe pane
@@ -86,6 +82,8 @@ public class RoomController {
 
   public void setContext(GameStateContext context) {
     this.context = context;
+    timerManager = TimerManager.getInstance(context); // Initialize the TimerManager
+    startTimer(); // Start the timer and update the label
   }
 
   /** Starts the timer and continuously updates the timer label. */

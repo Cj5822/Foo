@@ -77,7 +77,6 @@ public class RoomController {
     initialiseScrunchedPaperPane(room); // Initialise scrunched paper pane
     initialisePaperPane(room); // Initialise paper pane
     initialiseExplanationPane(room); // Initialise explanation pane
-    hideGuessButton(); // Hide the guess button by default
   }
 
   public void setContext(GameStateContext context) {
@@ -292,6 +291,11 @@ public class RoomController {
   @FXML
   private void handleRectangleClick(MouseEvent event) throws IOException {
     Rectangle clickedRectangle = (Rectangle) event.getSource();
+
+    if (context.getGameState() == context.getGameStartedState()) {
+      showGuessButton();
+    }
+
     context.handleRectangleClick(event, clickedRectangle.getId());
   }
 
@@ -307,18 +311,13 @@ public class RoomController {
     // Check which rectangle was clicked and set the interaction flags in GameStateContext
     if (clickedImage.getId().equals("plumberGlow")) {
       context.setPlumberInteracted(true);
-      System.out.println("Plumber interacted");
     } else if (clickedImage.getId().equals("electricianGlow")) {
       context.setElectricianInteracted(true);
-      System.out.println("Electrician interacted");
     } else if (clickedImage.getId().equals("neighbourGlow")) {
       context.setNeighbourInteracted(true);
-      System.out.println("Neighbour interacted");
     }
 
-    if (context.isElectricianInteracted()
-        && context.isPlumberInteracted()
-        && context.isNeighbourInteracted()) {
+    if (context.getGameState() == context.getGameStartedState()) {
       showGuessButton();
     }
 
@@ -499,7 +498,13 @@ public class RoomController {
   }
 
   public void showGuessButton() {
-    btnGuess.setVisible(true);
+    if (context.isElectricianInteracted()
+        && context.isPlumberInteracted()
+        && context.isNeighbourInteracted()) {
+      if (btnGuess != null) {
+        btnGuess.setVisible(true);
+      }
+    }
   }
 
   public void hideGuessButton() {

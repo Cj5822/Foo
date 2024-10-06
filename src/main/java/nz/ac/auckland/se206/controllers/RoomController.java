@@ -77,6 +77,7 @@ public class RoomController {
     initialiseScrunchedPaperPane(room); // Initialise scrunched paper pane
     initialisePaperPane(room); // Initialise paper pane
     initialiseExplanationPane(room); // Initialise explanation pane
+    hideGuessButton(); // Hide the guess button by default
   }
 
   public void setContext(GameStateContext context) {
@@ -290,28 +291,7 @@ public class RoomController {
    */
   @FXML
   private void handleRectangleClick(MouseEvent event) throws IOException {
-
     Rectangle clickedRectangle = (Rectangle) event.getSource();
-    if (context.getGameState() == context.getGameStartedState()) {
-      // Check which rectangle was clicked and set the interaction flags in GameStateContext
-      if (clickedRectangle.getId().equals("rectPlumber")) {
-        context.setPlumberInteracted(true);
-        System.out.println("Plumber interacted");
-      } else if (clickedRectangle.getId().equals("rectElectrician")) {
-        context.setElectricianInteracted(true);
-        System.out.println("Electrician interacted");
-      } else if (clickedRectangle.getId().equals("rectNeighbour")) {
-        context.setNeighbourInteracted(true);
-        System.out.println("Neighbour interacted");
-      }
-    }
-    System.out.println(
-        "plumber: "
-            + context.isPlumberInteracted()
-            + " electrician: "
-            + context.isElectricianInteracted()
-            + " neighbour: "
-            + context.isNeighbourInteracted());
     context.handleRectangleClick(event, clickedRectangle.getId());
   }
 
@@ -335,6 +315,13 @@ public class RoomController {
       context.setNeighbourInteracted(true);
       System.out.println("Neighbour interacted");
     }
+
+    if (context.isElectricianInteracted()
+        && context.isPlumberInteracted()
+        && context.isNeighbourInteracted()) {
+      showGuessButton();
+    }
+
     context.handleImageClick(event, clickedImage.getId());
   }
 
@@ -509,5 +496,13 @@ public class RoomController {
   public ExplanationController getExplanationController() {
     explanationController.setContext(context);
     return explanationController;
+  }
+
+  public void showGuessButton() {
+    btnGuess.setVisible(true);
+  }
+
+  public void hideGuessButton() {
+    btnGuess.setVisible(false);
   }
 }

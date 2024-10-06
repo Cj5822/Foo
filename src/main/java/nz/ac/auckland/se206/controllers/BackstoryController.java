@@ -4,7 +4,6 @@ import java.io.IOException;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import nz.ac.auckland.se206.App;
@@ -47,9 +46,6 @@ public class BackstoryController {
 
   @FXML
   public void handleContinue(ActionEvent event) throws IOException {
-    Button button = (Button) event.getSource();
-    Scene gameScene = button.getScene();
     App.changeRoom(null, "room");
-    gameScene.setRoot(App.loadFxml("room"));
   }
 }

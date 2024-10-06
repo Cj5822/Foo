@@ -49,6 +49,7 @@ public class BackstoryController {
   public void handleContinue(ActionEvent event) throws IOException {
     Button button = (Button) event.getSource();
     Scene gameScene = button.getScene();
+    App.changeRoom(null, "room");
     gameScene.setRoot(App.loadFxml("room"));
   }
 }

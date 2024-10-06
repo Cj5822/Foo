@@ -45,7 +45,7 @@ public class App extends Application {
   private static ExplanationController explanationController; // Controller for the explanation view
   private static Stage appStage;
 
-  private static GameStateContext context = new GameStateContext();
+  private static GameStateContext context;
 
   /**
    * The main method that launches the JavaFX application.
@@ -226,6 +226,7 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
     appStage = stage;
 
+    context = new GameStateContext();
     TimerManager.getInstance(context);
 
     FXMLLoader homepageLoader = new FXMLLoader(App.class.getResource("/fxml/homepage.fxml"));

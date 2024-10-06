@@ -188,7 +188,7 @@ public class App extends Application {
     paperController.hidePaperPane();
   }
 
-  public static void openExplanation(MouseEvent event) throws IOException {
+  public static void openExplanation() throws IOException {
     roomController = loader.getController();
     roomController.setContext(context);
     explanationController = roomController.getExplanationController();
@@ -216,6 +216,26 @@ public class App extends Application {
     root.requestFocus();
   }
 
+  public static void openHomepage() throws IOException {
+    FXMLLoader homepageLoader = new FXMLLoader(App.class.getResource("/fxml/homepage.fxml"));
+    Parent root = homepageLoader.load();
+    HomeController homepageController = homepageLoader.getController();
+    homepageController.setContext(context);
+
+    scene = new Scene(root); // Create a new scene with the loaded root
+    appStage.setScene(scene); // Set the scene on the stage
+    appStage.show(); // Display the stage
+    root.requestFocus(); // Request focus for the root node
+  }
+
+  public static void resetGame() throws IOException {
+    context = new GameStateContext();
+    context.setState(context.getGameStartedState());
+    openHomepage();
+    TimerManager timerManager = TimerManager.getInstance(context);
+    timerManager.reset();
+  }
+
   /**
    * This method is invoked when the application starts. It loads and shows the "homepage" scene.
    *
@@ -225,18 +245,8 @@ public class App extends Application {
   @Override
   public void start(final Stage stage) throws IOException {
     appStage = stage;
-
     context = new GameStateContext();
     TimerManager.getInstance(context);
-
-    FXMLLoader homepageLoader = new FXMLLoader(App.class.getResource("/fxml/homepage.fxml"));
-    Parent root = homepageLoader.load();
-    HomeController homepageController = homepageLoader.getController();
-    homepageController.setContext(context);
-
-    scene = new Scene(root); // Create a new scene with the loaded root
-    stage.setScene(scene); // Set the scene on the stage
-    stage.show(); // Display the stage
-    root.requestFocus(); // Request focus for the root node
+    openHomepage();
   }
 }

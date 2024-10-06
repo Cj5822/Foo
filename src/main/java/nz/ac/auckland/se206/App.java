@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.ExplanationController;
 import nz.ac.auckland.se206.controllers.FlippedWrenchController;
+import nz.ac.auckland.se206.controllers.GameOverController;
 import nz.ac.auckland.se206.controllers.HomeController;
 import nz.ac.auckland.se206.controllers.OpenSafeController;
 import nz.ac.auckland.se206.controllers.PaperController;
@@ -43,6 +44,7 @@ public class App extends Application {
       scrunchedPaperController; // Controller for the scrunched paper view
   private static PaperController paperController; // Controller for the paper view
   private static ExplanationController explanationController; // Controller for the explanation view
+  private static GameOverController gameOverController; // Controller for the game over view
   private static Stage appStage;
 
   private static GameStateContext context;
@@ -193,6 +195,13 @@ public class App extends Application {
     roomController.setContext(context);
     explanationController = roomController.getExplanationController();
     explanationController.showExplanationPane();
+  }
+
+  public static void openGameOver() throws IOException {
+    roomController = loader.getController();
+    roomController.setContext(context);
+    gameOverController = roomController.getGameOverController();
+    gameOverController.showGameOverPane();
   }
 
   /**

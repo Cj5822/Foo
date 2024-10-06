@@ -38,40 +38,29 @@ public class ExplanationController {
   public void onSend(ActionEvent event) throws IOException {
     // Get the explanation from the TextField
     String explanation = txtInput.getText();
+    System.out.println(explanation);
 
     // Get the selected suspect from the context (from Guessing state)
     String selectedSuspect = context.getSelectedSuspect();
     System.out.println("Selected suspect: " + selectedSuspect);
 
     // Evaluate the guess (pseudo code for GPT integration)
-    boolean isCorrectGuess = "rectElectrician".equals(selectedSuspect);
-    String feedback =
-        evaluateExplanation(isCorrectGuess, explanation); // Evaluate explanation and get feedback
-
-    // Move to GameOver state and display the feedback
-    context.setFeedback(feedback); // Store feedback in context for GameOver
-    System.out.println("Open game over fxml"); // Open the game over window
-    context.setState(context.getGameOverState());
-    App.changeRoom(null, "gameover");
-  }
-
-  private String evaluateExplanation(boolean isCorrectGuess, String explanation) {
-    // This would be where GPT feedback integration happens
+    boolean isCorrectGuess = "imageElectrician".equals(selectedSuspect);
+    boolean isCorrectExplanation = explanation.contains("wrench");
     if (isCorrectGuess) {
-      if (isExplanationCorrect(explanation)) {
-        return "You guessed correctly, and your explanation is correct!";
+      if (isCorrectExplanation) {
+        System.out.println("WIN, explanation is correct");
+        App.openGameOver();
       } else {
-        return "You guessed correctly, but your explanation is incorrect.";
-      }
+        System.out.println("WIN, explanation is incorrect");
+        App.openGameOver();
+      } 
     } else {
-      return "You guessed incorrectly. The correct thief was the electrician.";
-    }
+      System.out.println("LOSE + give answer / explanation");
+      App.openGameOver();
+    } 
   }
 
-  private boolean isExplanationCorrect(String explanation) {
-    // Placeholder for GPT evaluation logic
-    return true;
-  }
 
   /**
    * Navigates back to the previous view.

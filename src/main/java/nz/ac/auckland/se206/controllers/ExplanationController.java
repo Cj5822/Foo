@@ -36,41 +36,13 @@ public class ExplanationController {
 
   @FXML
   public void onSend(ActionEvent event) throws IOException {
+    
     // Get the explanation from the TextField
     String explanation = txtInput.getText();
-
-    // Get the selected suspect from the context (from Guessing state)
-    String selectedSuspect = context.getSelectedSuspect();
-    System.out.println("Selected suspect: " + selectedSuspect);
-
-    // Evaluate the guess (pseudo code for GPT integration)
-    boolean isCorrectGuess = "rectElectrician".equals(selectedSuspect);
-    String feedback =
-        evaluateExplanation(isCorrectGuess, explanation); // Evaluate explanation and get feedback
-
-    // Move to GameOver state and display the feedback
-    context.setFeedback(feedback); // Store feedback in context for GameOver
-    System.out.println("Open game over fxml"); // Open the game over window
-    context.setState(context.getGameOverState());
-    App.changeRoom(null, "gameover");
-  }
-
-  private String evaluateExplanation(boolean isCorrectGuess, String explanation) {
-    // This would be where GPT feedback integration happens
-    if (isCorrectGuess) {
-      if (isExplanationCorrect(explanation)) {
-        return "You guessed correctly, and your explanation is correct!";
-      } else {
-        return "You guessed correctly, but your explanation is incorrect.";
-      }
-    } else {
-      return "You guessed incorrectly. The correct thief was the electrician.";
+    if (context != null) {
+      context.setExplanation(explanation);
     }
-  }
-
-  private boolean isExplanationCorrect(String explanation) {
-    // Placeholder for GPT evaluation logic
-    return true;
+    App.openGameOver();
   }
 
   /**

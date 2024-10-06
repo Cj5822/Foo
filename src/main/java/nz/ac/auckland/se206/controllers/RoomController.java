@@ -48,6 +48,7 @@ public class RoomController {
   private ScrunchedPaperController scrunchedPaperController;
   private PaperController paperController;
   private ExplanationController explanationController;
+  private GameOverController gameOverController;
 
   // FXML Loaders
   private FXMLLoader chatPaneLoader;
@@ -59,6 +60,7 @@ public class RoomController {
   private FXMLLoader scrunchedPaperLoader;
   private FXMLLoader paperLoader;
   private FXMLLoader explanationLoader;
+  private FXMLLoader gameOverLoader;
 
   // Other Fields
   private GameStateContext context;
@@ -77,6 +79,7 @@ public class RoomController {
     initialiseScrunchedPaperPane(room); // Initialise scrunched paper pane
     initialisePaperPane(room); // Initialise paper pane
     initialiseExplanationPane(room); // Initialise explanation pane
+    initialiseGameOverPane(room); // Initialise game over pane
   }
 
   public void setContext(GameStateContext context) {
@@ -262,6 +265,23 @@ public class RoomController {
     room.getChildren().add(node); // Add the wrench pane to the room view
   }
 
+  private void initialiseGameOverPane(Pane room) {
+    try {
+      configureGameOverPane(room); // Load and configure the flipped wrench pane
+    } catch (IOException e) {
+      System.err.println("Error loading paper pane: " + e.getMessage());
+      e.printStackTrace(); // Print the stack trace for debugging
+    }
+  }
+
+  private void configureGameOverPane(Pane room) throws IOException {
+    gameOverLoader = new FXMLLoader(App.class.getResource("/fxml/gameover.fxml"));
+    Pane node = gameOverLoader.load();
+    gameOverController = gameOverLoader.getController();
+    gameOverController.setContext(context);
+    room.getChildren().add(node); // Add the wrench pane to the room view
+  }
+
   /**
    * Handles the key pressed event.
    *
@@ -438,16 +458,6 @@ public class RoomController {
     }
   }
 
-  @FXML
-  public void handleReplay(ActionEvent event) throws IOException {
-    App.resetGame();
-  }
-
-  @FXML
-  public void handleExit(ActionEvent event) {
-    System.exit(0);
-  }
-
   /**
    * Gets the chat controller.
    *
@@ -509,5 +519,10 @@ public class RoomController {
 
   public void hideGuessButton() {
     btnGuess.setVisible(false);
+  }
+
+  public GameOverController getGameOverController() {
+    gameOverController.setContext(context);
+    return gameOverController;
   }
 }

@@ -214,6 +214,8 @@ public class App extends Application {
     appStage.setScene(scene); // Set the scene on the stage
     appStage.show(); // Display the stage
     root.requestFocus();
+
+    roomController.showGuessButton();
   }
 
   public static void openHomepage() throws IOException {

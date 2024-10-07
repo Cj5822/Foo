@@ -7,7 +7,7 @@ import javafx.util.Duration;
 
 public class TimerManager {
   private static TimerManager instance; // Singleton instance
-  private int secondsRemaining = 300; // Track the number of seconds remaining
+  private int secondsRemaining = 3; // Track the number of seconds remaining
   private Timeline timeline;
   private boolean isTimeUp = false; // Flag to indicate if time has run out
   private boolean isInGuessingState =
@@ -44,6 +44,7 @@ public class TimerManager {
     stop();
     secondsRemaining = 60; // Set the timer to 1 minute (60 seconds)
     isTimeUp = false; // Reset the time-up flag
+    isInGuessingState = true;
   }
 
   // Start the timer
@@ -91,9 +92,11 @@ public class TimerManager {
       App.changeRoom(null, "room-guessing"); // Switch to the guessing room
     } else {
       // Game over if the timer reaches 0 again in guessing state
+      // Change room to gameover room
       isTimeUp = true;
       context.setState(context.getGameOverState());
       System.out.println("Game over! You ran out of time in the guessing state.");
+      App.changeRoom(null, "gameover-requirements-not-met");
     }
     // Check if timer runs out in backstory???
   }

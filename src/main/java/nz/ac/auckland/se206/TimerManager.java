@@ -78,7 +78,11 @@ public class TimerManager {
 
   // Handle what happens when the timer ends
   private void handleTimerEnd() throws IOException {
-    if (!isInGuessingState) {
+    // Check if the game is not in the guessing state
+    if (!isInGuessingState
+        && context.isPlumberInteracted()
+        && context.isElectricianInteracted()
+        && context.isNeighbourInteracted()) {
       // Transition to guessing state and reset the timer
       isInGuessingState = true;
       resetToOneMinute();
@@ -91,6 +95,7 @@ public class TimerManager {
       context.setState(context.getGameOverState());
       System.out.println("Game over! You ran out of time in the guessing state.");
     }
+    // Check if timer runs out in backstory???
   }
 
   // Get the current time in seconds formatted as MM:SS

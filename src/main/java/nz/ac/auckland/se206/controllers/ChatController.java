@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import nz.ac.auckland.apiproxy.chat.openai.ChatCompletionRequest;
 import nz.ac.auckland.apiproxy.chat.openai.ChatCompletionResult;
@@ -182,6 +183,11 @@ public class ChatController {
    */
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
+    sendMessage();
+  }
+
+  // Helper method to handle message sending logic
+  private void sendMessage() throws ApiProxyException, IOException {
     String message = txtInput.getText().trim();
     if (message.isEmpty()) {
       return;
@@ -190,6 +196,31 @@ public class ChatController {
     ChatMessage msg = new ChatMessage("user", message);
     appendChatMessage(msg);
     runGpt(msg);
+  }
+
+  /**
+   * Method to handle key presses made by the user.
+   *
+   * @param event the action event triggered by the send button
+   * @throws ApiProxyException if there is an error communicating with the API proxy
+   * @throws IOException if there is an I/O error
+   */
+  @FXML
+  public void handleKeyPress(KeyEvent event) throws ApiProxyException, IOException {
+    switch (event.getCode()) {
+      case UP:
+        System.out.println("Up arrow key pressed!");
+        break;
+      case DOWN:
+        System.out.println("Down arrow key pressed!");
+        break;
+      case ENTER:
+        sendMessage(); // Call the helper method to send the message on Enter key press
+        break;
+      default:
+        System.out.println("Other key pressed: " + event.getCode());
+        break;
+    }
   }
 
   /**

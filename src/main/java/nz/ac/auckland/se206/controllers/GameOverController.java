@@ -46,23 +46,23 @@ public class GameOverController {
   private void runGptCheck(String explanation, boolean isCorrectGuess) throws ApiProxyException {
     ApiProxyConfig config = ApiProxyConfig.readConfig();
     chatCompletionRequest =
-        new ChatCompletionRequest(config).setN(1).setTemperature(0.2).setMaxTokens(400);
+        new ChatCompletionRequest(config).setN(1).setTemperature(0.1).setMaxTokens(400);
 
     String prompt =
         "This is a game involving player guessing the thief out of 3 suspects. The suspects are an"
             + " electrician called Aiden Carter, a plumber called Brayden Mitchell, and a neighbour"
-            + " called Ava Collins. The electrician is the thief because he has used a wrench in"
-            + " the crime scene, has a date of birth 1994 which is written in the paper hint and"
-            + " the initials is AC which match the initials of the ring in the crime scene. The"
-            + " neighbour has not interacted with the wrench but her initials are AC and has a date"
-            + " of birth of 1994 so she is the not thief. The plumber has interacted with the"
-            + " wrench but is not born in 1994 and his initials is not AC so he is not the thief."
-            + " The player explanation was: "
+            + " called Ava Collins. The electrician is the thief because he has used a wrench, has"
+            + " a date of birth 1994 and the initials is AC. The neighbour has not interacted with"
+            + " the wrench but her initials are AC and has a date of birth of 1994 so she is the"
+            + " not thief. The plumber has interacted with the wrench but is not born in 1994 and"
+            + " his initials is not AC so he is not the thief. 'The player explanation is: "
             + explanation
-            + "If the explanation contains most of the important details such as the intials, date"
-            + " of birth and wrench, it should tell the player that the explanation is correct."
-            + " Give a feedback on the explanation regardless of outcome. Keep it not too short and"
-            + " not too long";
+            + "' and the player guess is"
+            + isCorrectGuess
+            + " If the player explanation contains the three important details: initials, date of"
+            + " birth and wrench, it should tell the player that the explanation is correct. Give a"
+            + " feedback to the player based on the explanation and the guess. Keep it not too"
+            + " short and not too long.";
 
     ChatMessage message = new ChatMessage("user", prompt);
     chatCompletionRequest.addMessage(message);

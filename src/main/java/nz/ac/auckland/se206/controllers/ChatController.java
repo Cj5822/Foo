@@ -208,12 +208,6 @@ public class ChatController {
   @FXML
   public void handleKeyPress(KeyEvent event) throws ApiProxyException, IOException {
     switch (event.getCode()) {
-      case UP:
-        System.out.println("Up arrow key pressed!");
-        break;
-      case DOWN:
-        System.out.println("Down arrow key pressed!");
-        break;
       case ENTER:
         sendMessage(); // Call the helper method to send the message on Enter key press
         break;

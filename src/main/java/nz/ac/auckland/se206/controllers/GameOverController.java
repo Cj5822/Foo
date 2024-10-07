@@ -38,31 +38,31 @@ public class GameOverController {
       String yourExplanation = context.getExplanation();
 
       boolean isCorrectGuess = "imageElectrician".equals(selectedSuspect);
-      runGptCheck(yourExplanation, isCorrectGuess);
+      runGptCheck(yourExplanation, isCorrectGuess, selectedSuspect);
     }
   }
 
   // Async call to GPT to check the explanation
-  private void runGptCheck(String explanation, boolean isCorrectGuess) throws ApiProxyException {
+  private void runGptCheck(String explanation, boolean isCorrectGuess, String selectedSuspect)
+      throws ApiProxyException {
     ApiProxyConfig config = ApiProxyConfig.readConfig();
     chatCompletionRequest =
-        new ChatCompletionRequest(config).setN(1).setTemperature(0.1).setMaxTokens(400);
+        new ChatCompletionRequest(config).setN(1).setTemperature(0.3).setMaxTokens(400);
 
+    System.out.println(selectedSuspect.replace("image", ""));
     String prompt =
-        "This is a game involving player guessing the thief out of 3 suspects. The suspects are an"
-            + " electrician called Aiden Carter, a plumber called Brayden Mitchell, and a neighbour"
-            + " called Ava Collins. The electrician is the thief because he has used a wrench, has"
-            + " a date of birth 1994 and the initials is AC. The neighbour has not interacted with"
-            + " the wrench but her initials are AC and has a date of birth of 1994 so she is the"
-            + " not thief. The plumber has interacted with the wrench but is not born in 1994 and"
-            + " his initials is not AC so he is not the thief. 'The player explanation is: "
+        "This is the player explanation: '"
             + explanation
-            + "' and the player guess is"
-            + isCorrectGuess
-            + " If the player explanation contains the three important details: initials, date of"
-            + " birth and wrench, it should tell the player that the explanation is correct. Give a"
-            + " feedback to the player based on the explanation and the guess. Keep it not too"
-            + " short and not too long.";
+            + "'. This is the suspect the player guessed: '"
+            + selectedSuspect.replace("image", "")
+            + "' This is the context: 'There are 3 suspects for stealing. The suspects are:"
+            + " Electrician called Aiden Carter, Plumber called Brayden Mitchell, and a Neighbour"
+            + " called Ava Collins. The Electrician is the thief because he has used a wrench in"
+            + " the crime scene, has a date of birth 1994 and his initials is AC. The Neighbour"
+            + " initials is AC and has a date of birth of 1994 but did not interact with the wrench"
+            + " so she is the not thief. The Plumber has interacted with the wrench but is not born"
+            + " in 1994 and his initials is not AC so he is not the thief'. Give a feedback of the"
+            + " player explanation. Use the context to check if player explanation is accurate to";
 
     ChatMessage message = new ChatMessage("user", prompt);
     chatCompletionRequest.addMessage(message);
@@ -94,9 +94,19 @@ public class GameOverController {
   private void processGptResponse(
       String gptResponse, String yourExplanation, boolean isCorrectGuess) {
     if (isCorrectGuess) {
-      explanationText.setText("You: " + yourExplanation + "\nExplanation: " + gptResponse);
+      explanationText.setText(
+          "Guess: Correct "
+              + "\nYour explanation: "
+              + yourExplanation
+              + "\nFeedback: "
+              + gptResponse);
     } else {
-      explanationText.setText("You: " + yourExplanation + "\nExplanation: " + gptResponse);
+      explanationText.setText(
+          "Guess: Incorrect "
+              + "\nYour explanation: "
+              + yourExplanation
+              + "\nFeedback: "
+              + gptResponse);
     }
   }
 

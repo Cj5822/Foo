@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.TimerManager;
@@ -275,11 +276,16 @@ public class RoomController {
   }
 
   private void configureGameOverPane(Pane room) throws IOException {
-    gameOverLoader = new FXMLLoader(App.class.getResource("/fxml/gameover.fxml"));
+    try {
+      gameOverLoader = new FXMLLoader(App.class.getResource("/fxml/gameover.fxml"));
     Pane node = gameOverLoader.load();
     gameOverController = gameOverLoader.getController();
     gameOverController.setContext(context);
     room.getChildren().add(node); // Add the wrench pane to the room view
+    } catch (ApiProxyException e) {
+      System.err.println("Error loading game over pane: " + e.getMessage());
+      e.printStackTrace(); // Print the stack trace for debugging
+    }
   }
 
   /**
@@ -521,7 +527,7 @@ public class RoomController {
     btnGuess.setVisible(false);
   }
 
-  public GameOverController getGameOverController() {
+  public GameOverController getGameOverController() throws ApiProxyException {
     gameOverController.setContext(context);
     return gameOverController;
   }

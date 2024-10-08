@@ -278,10 +278,10 @@ public class RoomController {
   private void configureGameOverPane(Pane room) throws IOException {
     try {
       gameOverLoader = new FXMLLoader(App.class.getResource("/fxml/gameover.fxml"));
-    Pane node = gameOverLoader.load();
-    gameOverController = gameOverLoader.getController();
-    gameOverController.setContext(context);
-    room.getChildren().add(node); // Add the wrench pane to the room view
+      Pane node = gameOverLoader.load();
+      gameOverController = gameOverLoader.getController();
+      gameOverController.setContext(context);
+      room.getChildren().add(node); // Add the wrench pane to the room view
     } catch (ApiProxyException e) {
       System.err.println("Error loading game over pane: " + e.getMessage());
       e.printStackTrace(); // Print the stack trace for debugging
@@ -348,6 +348,16 @@ public class RoomController {
     }
 
     context.handleImageClick(event, clickedImage.getId());
+  }
+
+  @FXML
+  public void handleReplay(ActionEvent event) throws IOException {
+    App.resetGame();
+  }
+
+  @FXML
+  public void handleExit(ActionEvent event) {
+    System.exit(0);
   }
 
   /**

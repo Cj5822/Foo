@@ -200,12 +200,11 @@ public class App extends Application {
   public static void openGameOver() throws IOException {
     try {
       roomController = loader.getController();
-    roomController.setContext(context);
-    gameOverController = roomController.getGameOverController();
-    gameOverController.showGameOverPane();
+      roomController.setContext(context);
+      gameOverController = roomController.getGameOverController();
+      gameOverController.showGameOverPane();
     } catch (Exception e) {
       System.out.println("Error: " + e);
-
     }
   }
 

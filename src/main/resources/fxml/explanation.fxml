@@ -28,7 +28,17 @@
             <Image url="@../images/styled-buttons/exit-chat.png" />
          </image>
       </ImageView>
-    <Button fx:id="sendButton" layoutX="613.0" layoutY="558.0" mnemonicParsing="false" onAction="#onSendMessage" onKeyPressed="#handleKeyPress" opacity="0.0" prefHeight="26.0" prefWidth="61.0" text="Send" />
-    <Button layoutX="684.0" layoutY="558.0" mnemonicParsing="false" onAction="#onGoBack" opacity="0.0" prefHeight="28.0" prefWidth="60.0" text="Go Back" />
+      <ImageView fx:id="btnSubmitImage" fitHeight="40.0" fitWidth="60.0" layoutX="613.0" layoutY="558.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/styled-buttons/submit-guess-hovered.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnExitChatImage" fitHeight="29.0" fitWidth="60.0" layoutX="684.0" layoutY="557.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/styled-buttons/exit-chat-hovered.png" />
+         </image>
+      </ImageView>
+    <Button fx:id="sendButton" layoutX="613.0" layoutY="558.0" mnemonicParsing="false" onAction="#onSendMessage" onKeyPressed="#handleKeyPress" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="26.0" prefWidth="61.0" text="Send" />
+    <Button fx:id="exitChatButton" layoutX="684.0" layoutY="558.0" mnemonicParsing="false" onAction="#onGoBack" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="28.0" prefWidth="60.0" text="Go Back" />
   </children>
 </AnchorPane>

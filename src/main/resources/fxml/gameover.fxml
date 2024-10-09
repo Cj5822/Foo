@@ -23,31 +23,28 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <TextArea fx:id="explanationText" editable="false" layoutX="141.0" layoutY="200.0" prefHeight="294.0" prefWidth="539.0" wrapText="true" />
-      <ImageView fitHeight="65.0" fitWidth="151.0" layoutX="328.0" layoutY="509.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="53.0" fitWidth="115.0" layoutX="328.0" layoutY="509.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/styled-buttons/replay-game.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="51.0" fitWidth="140.0" layoutX="526.0" layoutY="516.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="53.0" fitWidth="109.0" layoutX="555.0" layoutY="508.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/styled-buttons/exit-game.png" />
          </image>
       </ImageView>
-      <Button layoutX="328.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleReplay" opacity="0.0" prefHeight="65.0" prefWidth="134.0" text="Replay" />
-      <Button layoutX="526.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleExit" opacity="0.0" prefHeight="51.0" prefWidth="103.0" text="Exit" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000e5" height="88.0" layoutX="203.0" layoutY="63.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="415.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="213.0" layoutY="63.0" prefHeight="88.0" prefWidth="396.0" text="GAME OVER!" textAlignment="CENTER" textFill="RED">
+      <Button layoutX="330.0" layoutY="510.0" mnemonicParsing="false" onAction="#handleReplay" opacity="0.0" prefHeight="53.0" prefWidth="109.0" text="Replay" />
+      <Button layoutX="558.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleExit" opacity="0.0" prefHeight="51.0" prefWidth="103.0" text="Exit" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000e5" height="88.0" layoutX="204.0" layoutY="32.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="415.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="213.0" layoutY="26.0" prefHeight="88.0" prefWidth="396.0" text="GAME OVER!" textAlignment="CENTER" textFill="RED">
          <font>
             <Font name="System Bold" size="60.0" />
          </font>
       </Label>
-      <TextArea fx:id="explanationText" editable="false" layoutX="45.0" layoutY="114.0" prefHeight="393.0" prefWidth="723.0" stylesheets="@../css/explanationPane.css" wrapText="true">
+      <TextArea fx:id="explanationText" editable="false" layoutX="36.0" layoutY="138.0" prefHeight="345.0" prefWidth="722.0" stylesheets="@../css/explanationPane.css" wrapText="true">
          <font>
             <Font size="20.0" />
          </font></TextArea>
-      <Button layoutX="360.0" layoutY="527.0" mnemonicParsing="false" onAction="#handleReplay" prefHeight="38.0" prefWidth="69.0" text="Replay" />
-      <Button layoutX="544.0" layoutY="527.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="38.0" prefWidth="69.0" text="Exit" />
       <ProgressIndicator fx:id="progressIndicator" layoutX="369.0" layoutY="273.0" prefHeight="178.0" prefWidth="93.0" />
    </children>
 </Pane>

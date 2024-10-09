@@ -49,7 +49,7 @@
             <Image url="@../images/background-homepage.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="startGameButtonImage" fitHeight="63.0" fitWidth="130.0" layoutX="336.0" layoutY="508.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="startGameButtonImage" fitHeight="49.0" fitWidth="101.0" layoutX="350.0" layoutY="515.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/styled-buttons/start-game.png" />
          </image>
@@ -59,7 +59,7 @@
             <Image url="@../images/styled-buttons/exit-game.png" />
          </image>
       </ImageView>
-      <Button fx:id="startGameButton" alignment="CENTER" layoutX="336.0" layoutY="508.0" mnemonicParsing="false" onAction="#handleStartGame" opacity="0.0" prefHeight="63.0" prefWidth="130.0" text="Start Game" />
+      <Button fx:id="startGameButton" alignment="CENTER" layoutX="350.0" layoutY="515.0" mnemonicParsing="false" onAction="#handleStartGame" opacity="0.0" prefHeight="49.0" prefWidth="101.0" text="Start Game" />
       <Button fx:id="exitButton" alignment="CENTER" layoutX="614.0" layoutY="515.0" mnemonicParsing="false" onAction="#handleExit" opacity="0.0" prefHeight="49.0" prefWidth="101.0" text="Exit" />
    </children>
 </Pane>

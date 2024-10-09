@@ -18,8 +18,8 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="65.0" layoutX="214.0" layoutY="32.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="396.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="44.0" layoutX="666.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="103.0" />
-      <Label fx:id="lblTimer" alignment="CENTER" layoutX="679.0" layoutY="19.0" text="00:00" textFill="RED">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="44.0" layoutX="666.0" layoutY="19.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="103.0" />
+      <Label fx:id="lblTimer" alignment="CENTER" layoutX="679.0" layoutY="19.0" opacity="0.0" text="00:00" textFill="RED">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>

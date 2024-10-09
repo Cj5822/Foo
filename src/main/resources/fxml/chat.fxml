@@ -4,18 +4,27 @@
 <?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="chatPane" layoutX="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="789.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
   <children>
-    <TextArea fx:id="txtaChat" editable="false" layoutY="258.0" prefHeight="285.0" prefWidth="598.0" stylesheets="@../css/chatPane.css" wrapText="true">
-         <font>
-            <Font size="20.0" />
-         </font></TextArea>
-    <TextField fx:id="txtInput" layoutY="555.0" onKeyPressed="#handleKeyPress" prefHeight="26.0" prefWidth="498.0" />
-    <Button fx:id="btnSend" layoutX="498.0" layoutY="555.0" mnemonicParsing="false" onAction="#onSendMessage" onKeyPressed="#handleKeyPress" text="Send" />
-    <Button layoutX="540.0" layoutY="555.0" mnemonicParsing="false" onAction="#onGoBack" prefHeight="25.0" prefWidth="60.0" text="Go Back" />
-      <ProgressIndicator fx:id="progressIndicator" layoutX="570.0" layoutY="258.0" prefHeight="40.0" prefWidth="27.0" />
+    <TextArea fx:id="txtaChat" editable="false" layoutX="23.0" layoutY="398.0" prefHeight="145.0" prefWidth="754.0" wrapText="true" />
+    <TextField fx:id="txtInput" layoutX="23.0" layoutY="560.0" onKeyPressed="#handleKeyPress" prefHeight="26.0" prefWidth="602.0" />
+    <Button fx:id="btnSend" layoutX="641.0" layoutY="632.0" mnemonicParsing="false" onAction="#onSendMessage" onKeyPressed="#handleKeyPress" text="Send" />
+    <Button layoutX="714.0" layoutY="632.0" mnemonicParsing="false" onAction="#onGoBack" text="Go Back" />
+      <ProgressIndicator fx:id="progressIndicator" layoutX="747.0" layoutY="398.0" prefHeight="40.0" prefWidth="27.0" />
+      <ImageView fx:id="sendButtonImage" fitHeight="40.0" fitWidth="60.0" layoutX="641.0" layoutY="558.0" onMouseClicked="#onSendMessage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/styled-buttons/send.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="exitChatImage" fitHeight="29.0" fitWidth="60.0" layoutX="714.0" layoutY="558.0" onMouseClicked="#onGoBack" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/styled-buttons/exit-chat.png" />
+         </image>
+      </ImageView>
   </children>
 </AnchorPane>

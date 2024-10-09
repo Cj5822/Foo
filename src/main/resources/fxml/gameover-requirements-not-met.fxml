@@ -21,8 +21,6 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Button layoutX="360.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleReplay" prefHeight="38.0" prefWidth="69.0" text="Replay" />
-      <Button layoutX="544.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="38.0" prefWidth="69.0" text="Exit" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000e5" height="88.0" layoutX="190.0" layoutY="212.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="415.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="212.0" prefHeight="88.0" prefWidth="396.0" text="GAME OVER!" textAlignment="CENTER" textFill="RED">
          <font>
@@ -35,5 +33,17 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
+      <ImageView fitHeight="64.0" fitWidth="131.0" layoutX="329.0" layoutY="484.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/styled-buttons/replay-game.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="329.0" layoutY="484.0" mnemonicParsing="false" onAction="#handleReplay" opacity="0.0" prefHeight="64.0" prefWidth="131.0" text="Replay" />
+      <ImageView fitHeight="45.0" fitWidth="131.0" layoutX="544.0" layoutY="503.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/styled-buttons/exit-game.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="544.0" layoutY="503.0" mnemonicParsing="false" onAction="#handleExit" opacity="0.0" prefHeight="43.0" prefWidth="92.0" text="Exit" />
    </children>
 </Pane>

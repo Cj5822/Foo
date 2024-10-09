@@ -17,7 +17,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-    <TextField fx:id="txtInput" layoutX="39.0" layoutY="558.0" onKeyPressed="#handleEnterPress" prefHeight="26.0" prefWidth="563.0" />
+    <TextField fx:id="txtInput" layoutX="39.0" layoutY="558.0" onKeyPressed="#handleKeyPress" prefHeight="26.0" prefWidth="563.0" />
       <ImageView fitHeight="40.0" fitWidth="60.0" layoutX="613.0" layoutY="558.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/styled-buttons/submit-guess.png" />
@@ -28,7 +28,7 @@
             <Image url="@../images/styled-buttons/exit-chat.png" />
          </image>
       </ImageView>
-    <Button fx:id="sendButton" layoutX="613.0" layoutY="558.0" mnemonicParsing="false" onAction="#onSendMessage" onKeyPressed="#handleEnterPress" opacity="0.0" prefHeight="26.0" prefWidth="61.0" text="Send" />
+    <Button fx:id="sendButton" layoutX="613.0" layoutY="558.0" mnemonicParsing="false" onAction="#onSendMessage" onKeyPressed="#handleKeyPress" opacity="0.0" prefHeight="26.0" prefWidth="61.0" text="Send" />
     <Button layoutX="684.0" layoutY="558.0" mnemonicParsing="false" onAction="#onGoBack" opacity="0.0" prefHeight="28.0" prefWidth="60.0" text="Go Back" />
   </children>
 </AnchorPane>

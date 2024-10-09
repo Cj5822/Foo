@@ -15,8 +15,8 @@
             <Image url="@../images/room-guessing.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="44.0" layoutX="666.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="103.0" />
-      <Label fx:id="lblTimer" alignment="CENTER" layoutX="679.0" layoutY="19.0" text="00:00" textFill="RED">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="44.0" layoutX="666.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="103.0" />
+      <Label fx:id="lblTimer" alignment="CENTER" layoutX="679.0" layoutY="19.0" text="00:00" textFill="RED" visible="false">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
@@ -38,12 +38,22 @@
             <Image url="@../images/styled-buttons/replay-game.png" />
          </image>
       </ImageView>
-      <Button layoutX="329.0" layoutY="484.0" mnemonicParsing="false" onAction="#handleReplay" opacity="0.0" prefHeight="64.0" prefWidth="131.0" text="Replay" />
       <ImageView fitHeight="45.0" fitWidth="131.0" layoutX="544.0" layoutY="503.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/styled-buttons/exit-game.png" />
          </image>
       </ImageView>
-      <Button layoutX="544.0" layoutY="503.0" mnemonicParsing="false" onAction="#handleExit" opacity="0.0" prefHeight="43.0" prefWidth="92.0" text="Exit" />
+      <ImageView fx:id="btnReplayGameImage" fitHeight="64.0" fitWidth="131.0" layoutX="329.0" layoutY="484.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/styled-buttons/replay-game-hovered.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnExitGameImage" fitHeight="45.0" fitWidth="131.0" layoutX="544.0" layoutY="503.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/styled-buttons/exit-game-hovered.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="replayGameButton" layoutX="329.0" layoutY="484.0" mnemonicParsing="false" onAction="#handleReplay" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="64.0" prefWidth="131.0" text="Replay" />
+      <Button fx:id="exitGameButton" layoutX="544.0" layoutY="503.0" mnemonicParsing="false" onAction="#handleExit" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="43.0" prefWidth="92.0" text="Exit" />
    </children>
 </Pane>

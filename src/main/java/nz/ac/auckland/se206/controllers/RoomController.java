@@ -40,6 +40,8 @@ public class RoomController {
   @FXML private ImageView neighbourNametag;
   @FXML private ImageView btnGuessImage;
   @FXML private ImageView btnMakeAGuess;
+  @FXML private ImageView btnReplayGameImage;
+  @FXML private ImageView btnExitGameImage;
 
   // Controllers
   private ChatController chatController;
@@ -487,6 +489,12 @@ public class RoomController {
         case "btnGuess":
           btnMakeAGuess.setVisible(true);
           break;
+        case "replayGameButton":
+          btnReplayGameImage.setVisible(true);
+          break;
+        case "exitGameButton":
+          btnExitGameImage.setVisible(true);
+          break;
         default:
           System.out.println("Unknown button hovered");
           break;
@@ -504,6 +512,12 @@ public class RoomController {
       switch (hoveredButton.getId()) {
         case "btnGuess":
           btnMakeAGuess.setVisible(false);
+          break;
+        case "replayGameButton":
+          btnReplayGameImage.setVisible(false);
+          break;
+        case "exitGameButton":
+          btnExitGameImage.setVisible(false);
           break;
         default:
           System.out.println("Unknown button hovered");

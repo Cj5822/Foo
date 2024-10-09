@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import nz.ac.auckland.apiproxy.chat.openai.ChatCompletionRequest;
@@ -19,6 +20,7 @@ import nz.ac.auckland.se206.GameStateContext;
 public class GameOverController {
   @FXML private TextArea explanationText;
   @FXML private Pane gameOverPane;
+  @FXML private ProgressIndicator progressIndicator;
 
   @SuppressWarnings("unused")
   private GameStateContext context;
@@ -28,6 +30,7 @@ public class GameOverController {
   @FXML
   public void initialize() throws ApiProxyException {
     gameOverPane.setVisible(false);
+    progressIndicator.setVisible(true);
   }
 
   // Set the context and process the explanation with GPT
@@ -74,6 +77,7 @@ public class GameOverController {
             ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
             Choice result = chatCompletionResult.getChoices().iterator().next();
             chatCompletionRequest.addMessage(result.getChatMessage());
+            progressIndicator.setVisible(false);
             return result.getChatMessage();
           }
         };

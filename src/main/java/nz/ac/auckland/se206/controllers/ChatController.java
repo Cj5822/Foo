@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressIndicator;
@@ -182,7 +182,7 @@ public class ChatController {
    * @throws IOException if there is an I/O error
    */
   @FXML
-  private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
+  private void onSendMessage(Event event) throws ApiProxyException, IOException {
     sendMessage();
   }
 
@@ -225,7 +225,7 @@ public class ChatController {
    * @throws IOException if there is an I/O error
    */
   @FXML
-  private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
+  private void onGoBack(Event event) throws ApiProxyException, IOException {
     hideChatPane(); // Hide the chat box
     txtaChat.clear(); // Clear the chat area
   }

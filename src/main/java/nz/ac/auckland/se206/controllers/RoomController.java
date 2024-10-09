@@ -38,6 +38,7 @@ public class RoomController {
   @FXML private ImageView plumberNametag;
   @FXML private ImageView electricianNametag;
   @FXML private ImageView neighbourNametag;
+  @FXML private ImageView btnGuessImage;
 
   // Controllers
   private ChatController chatController;
@@ -529,12 +530,14 @@ public class RoomController {
         && context.isNeighbourInteracted()) {
       if (btnGuess != null) {
         btnGuess.setVisible(true);
+        btnGuessImage.setVisible(true);
       }
     }
   }
 
   public void hideGuessButton() {
     btnGuess.setVisible(false);
+    btnGuessImage.setVisible(false);
   }
 
   public GameOverController getGameOverController() throws ApiProxyException {

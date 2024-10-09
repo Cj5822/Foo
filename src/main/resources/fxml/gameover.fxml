@@ -17,6 +17,7 @@
             <Image url="@../images/room-guessing.png" />
          </image>
       </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="65.0" layoutX="214.0" layoutY="32.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="396.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="44.0" layoutX="666.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="103.0" />
       <Label fx:id="lblTimer" alignment="CENTER" layoutX="679.0" layoutY="19.0" text="00:00" textFill="RED">
          <font>
@@ -35,8 +36,7 @@
       </ImageView>
       <Button layoutX="330.0" layoutY="510.0" mnemonicParsing="false" onAction="#handleReplay" opacity="0.0" prefHeight="53.0" prefWidth="109.0" text="Replay" />
       <Button layoutX="558.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleExit" opacity="0.0" prefHeight="51.0" prefWidth="103.0" text="Exit" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000e5" height="88.0" layoutX="204.0" layoutY="32.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="415.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="213.0" layoutY="26.0" prefHeight="88.0" prefWidth="396.0" text="GAME OVER!" textAlignment="CENTER" textFill="RED">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="214.0" layoutY="20.0" prefHeight="88.0" prefWidth="396.0" text="GAME OVER!" textAlignment="CENTER" textFill="RED">
          <font>
             <Font name="System Bold" size="60.0" />
          </font>

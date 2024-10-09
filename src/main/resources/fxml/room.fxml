@@ -19,7 +19,7 @@
       <Rectangle fx:id="rectLivingroom" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="18.0" layoutX="37.0" layoutY="34.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="18.0" />
       <Rectangle fx:id="rectBathroom" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="18.0" layoutX="60.0" layoutY="56.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="18.0" />
       <Rectangle fx:id="rectGarage" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="18.0" layoutX="37.0" layoutY="57.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="18.0" />
-      <ImageView fx:id="btnGuessImage" fitHeight="44.0" fitWidth="89.0" layoutX="13.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="btnGuessImage" fitHeight="40.0" fitWidth="95.0" layoutX="7.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/styled-buttons/make-a-guess-enabled.png" />
          </image>

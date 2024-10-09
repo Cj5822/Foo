@@ -31,6 +31,7 @@ public class ExplanationController {
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
     hideExplanationPane(); // Hide chat box initially
+    accumulatedInput.setLength(0); // Clear the current content
   }
 
   public void setContext(GameStateContext context) {
@@ -70,26 +71,29 @@ public class ExplanationController {
    */
   @FXML
   public void handleKeyPress(KeyEvent event) throws ApiProxyException, IOException {
-    accumulatedInput.setLength(0); // Clear the current content
-    accumulatedInput.append(txtInput.getText());
-    String explanation = accumulatedInput.toString();
-    context.setExplanation(explanation);
+    int length = accumulatedInput.length();
+
+    // Handle key events based on the key code
     switch (event.getCode()) {
       case ENTER:
-        sendMessage(); // Call the helper method to send the message on Enter key press
+        sendMessage(); // Send the message when the Enter key is pressed
         break;
       case BACK_SPACE:
         // Handle Backspace: Remove the last character from accumulated input if it exists
-        int length = accumulatedInput.length();
         if (length > 0) {
           accumulatedInput.deleteCharAt(length - 1); // Remove the last character
         }
         break;
-
       default:
+        // For other keys, add the pressed key to accumulatedInput
         accumulatedInput.append(event.getText());
         break;
     }
+
+    // Update the context with the current accumulated input
+    String explanation = accumulatedInput.toString();
+    context.setExplanation(explanation);
+    System.out.println(explanation);
   }
 
   /**

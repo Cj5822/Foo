@@ -98,5 +98,6 @@ public class ExplanationController {
   /** Shows the chat box and progress bar. */
   public void showExplanationPane() {
     explanationPane.setVisible(true); // Make chat box visible
+    txtInput.requestFocus();
   }
 }

@@ -97,6 +97,15 @@ public class TimerManager {
       context.setState(context.getGameOverState());
       System.out.println("Game over! You ran out of time in the guessing state.");
       App.changeRoom(null, "gameover-requirements-not-met");
+    } else if (isInGuessingState) {
+      if (context != null) {
+        if (context.getSelectedSuspect() == null) {
+          App.changeRoom(null, "gameover-requirements-not-met");
+        } else if (context.getExplanation() == null) {
+          context.setExplanation("");
+          App.openGameOver();
+        }
+      }
     }
     // Check if timer runs out in backstory???
   }

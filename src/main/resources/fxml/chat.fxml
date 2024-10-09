@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="chatPane" layoutX="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="789.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
   <children>
-    <TextArea fx:id="txtaChat" editable="false" layoutX="23.0" layoutY="249.0" prefHeight="294.0" prefWidth="638.0" stylesheets="@../css/chatPane.css" wrapText="true">
+    <TextArea fx:id="txtaChat" editable="false" layoutY="249.0" prefHeight="294.0" prefWidth="607.0" stylesheets="@../css/chatPane.css" wrapText="true">
          <font>
             <Font size="20.0" />
          </font></TextArea>

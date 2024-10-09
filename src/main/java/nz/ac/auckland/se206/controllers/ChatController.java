@@ -146,6 +146,10 @@ public class ChatController {
     // Add the message to the chat completion request
     chatCompletionRequest.addMessage(msg);
 
+    // Disable input and send button when starting the task
+    txtInput.setDisable(true); // Disable the input field
+    btnSend.setDisable(true); // Disable the send button
+
     // Show the progress indicator when starting task
     progressIndicator.setVisible(true);
 
@@ -162,12 +166,19 @@ public class ChatController {
               chatCompletionRequest.addMessage(result.getChatMessage());
               // Append the result message to the chat area
               appendChatMessage(result.getChatMessage());
-              // Synthesize the response using text-to-speech
-              progressIndicator.setVisible(false);
               return result.getChatMessage();
             } catch (ApiProxyException e) {
               e.printStackTrace();
               return null;
+            } finally {
+              // Ensure this runs in all cases to hide the progress indicator
+              Platform.runLater(
+                  () -> {
+                    progressIndicator.setVisible(false);
+                    txtInput.setDisable(false); // Re-enable the input field
+                    btnSend.setDisable(false); // Re-enable the send button
+                    txtInput.requestFocus(); // Set focus back to the input field
+                  });
             }
           }
         };

@@ -15,6 +15,8 @@ import nz.ac.auckland.se206.GameStateContext;
 public class ExplanationController {
   private GameStateContext context;
 
+  private StringBuilder accumulatedInput = new StringBuilder();
+
   @FXML private TextArea txtaChat;
   @FXML private TextField txtInput;
   @FXML private Button sendButton;
@@ -51,7 +53,7 @@ public class ExplanationController {
   public void sendMessage() throws ApiProxyException, IOException {
 
     // Get the explanation from the TextField
-    String explanation = txtInput.getText();
+    String explanation = accumulatedInput.toString();
     if (context != null) {
       context.setExplanation(explanation);
       App.openGameOver();
@@ -67,13 +69,25 @@ public class ExplanationController {
    * @throws IOException if there is an I/O error
    */
   @FXML
-  public void handleEnterPress(KeyEvent event) throws ApiProxyException, IOException {
+  public void handleKeyPress(KeyEvent event) throws ApiProxyException, IOException {
+    accumulatedInput.setLength(0); // Clear the current content
+    accumulatedInput.append(txtInput.getText());
+    String explanation = accumulatedInput.toString();
+    context.setExplanation(explanation);
     switch (event.getCode()) {
       case ENTER:
         sendMessage(); // Call the helper method to send the message on Enter key press
         break;
+      case BACK_SPACE:
+        // Handle Backspace: Remove the last character from accumulated input if it exists
+        int length = accumulatedInput.length();
+        if (length > 0) {
+          accumulatedInput.deleteCharAt(length - 1); // Remove the last character
+        }
+        break;
+
       default:
-        System.out.println("Other key pressed: " + event.getCode());
+        accumulatedInput.append(event.getText());
         break;
     }
   }
@@ -98,5 +112,6 @@ public class ExplanationController {
   /** Shows the chat box and progress bar. */
   public void showExplanationPane() {
     explanationPane.setVisible(true); // Make chat box visible
+    txtInput.requestFocus();
   }
 }

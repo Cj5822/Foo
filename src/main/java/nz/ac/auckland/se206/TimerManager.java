@@ -42,7 +42,7 @@ public class TimerManager {
   // Reset the timer to 1 minute
   public void resetToOneMinute() {
     stop();
-    secondsRemaining = 60; // Set the timer to 1 minute (60 seconds)
+    secondsRemaining = 10; // Set the timer to 1 minute (60 seconds)
     isTimeUp = false; // Reset the time-up flag
     isInGuessingState = true;
   }
@@ -95,8 +95,20 @@ public class TimerManager {
       // Change room to gameover room
       isTimeUp = true;
       context.setState(context.getGameOverState());
-      System.out.println("Game over! You ran out of time in the guessing state.");
       App.changeRoom(null, "gameover-requirements-not-met");
+    } else if (isInGuessingState) {
+      if (context != null) {
+        if (context.getSelectedSuspect() == null) {
+          App.changeRoom(null, "gameover-requirements-not-met");
+        } else if (context.getExplanation() == null) {
+          context.setExplanation("");
+          App.openGameOver();
+        } else {
+          context.setExplanation(context.getExplanation());
+          context.setSelectedSuspect(context.getSelectedSuspect());
+          App.openGameOver();
+        }
+      }
     }
     // Check if timer runs out in backstory???
   }

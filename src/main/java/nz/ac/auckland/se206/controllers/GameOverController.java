@@ -65,7 +65,8 @@ public class GameOverController {
             + " initials is AC and has a date of birth of 1994 but did not interact with the wrench"
             + " so she is the not thief. The Plumber has interacted with the wrench but is not born"
             + " in 1994 and his initials is not AC so he is not the thief'. Give a feedback of the"
-            + " player explanation. Use the context to check if player explanation is accurate to";
+            + " player explanation. Use the context to check if player explanation is accurate too."
+            + " If explanation is empty then give feedback on that.";
 
     ChatMessage message = new ChatMessage("user", prompt);
     chatCompletionRequest.addMessage(message);

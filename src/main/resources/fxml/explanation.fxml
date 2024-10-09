@@ -6,27 +6,29 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="explanationPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="789.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ExplanationController">
   <children>
-      <Label layoutX="86.0" layoutY="502.0" style="-fx-background-color: white;" text="Write a brief explanation why you think the chosen suspect is the thief">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="44.0" layoutX="39.0" layoutY="495.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="705.0" />
+      <Label layoutX="49.0" layoutY="501.0" prefHeight="32.0" prefWidth="693.0" text="Write a brief explanation why you think the chosen suspect is the thief" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font size="22.0" />
          </font>
       </Label>
-    <TextField fx:id="txtInput" layoutX="23.0" layoutY="560.0" onKeyPressed="#handleEnterPress" prefHeight="26.0" prefWidth="602.0" />
-      <ImageView fitHeight="40.0" fitWidth="60.0" layoutX="641.0" layoutY="558.0" pickOnBounds="true" preserveRatio="true">
+    <TextField fx:id="txtInput" layoutX="39.0" layoutY="558.0" onKeyPressed="#handleEnterPress" prefHeight="26.0" prefWidth="563.0" />
+      <ImageView fitHeight="40.0" fitWidth="60.0" layoutX="613.0" layoutY="558.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/styled-buttons/submit-guess.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="29.0" fitWidth="60.0" layoutX="714.0" layoutY="558.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="29.0" fitWidth="60.0" layoutX="684.0" layoutY="557.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/styled-buttons/exit-chat.png" />
          </image>
       </ImageView>
-    <Button fx:id="sendButton" layoutX="641.0" layoutY="558.0" mnemonicParsing="false" onAction="#onSendMessage" onKeyPressed="#handleEnterPress" opacity="0.0" prefHeight="26.0" prefWidth="61.0" text="Send" />
-    <Button layoutX="714.0" layoutY="558.0" mnemonicParsing="false" onAction="#onGoBack" opacity="0.0" prefHeight="28.0" prefWidth="60.0" text="Go Back" />
+    <Button fx:id="sendButton" layoutX="613.0" layoutY="558.0" mnemonicParsing="false" onAction="#onSendMessage" onKeyPressed="#handleEnterPress" opacity="0.0" prefHeight="26.0" prefWidth="61.0" text="Send" />
+    <Button layoutX="684.0" layoutY="558.0" mnemonicParsing="false" onAction="#onGoBack" opacity="0.0" prefHeight="28.0" prefWidth="60.0" text="Go Back" />
   </children>
 </AnchorPane>

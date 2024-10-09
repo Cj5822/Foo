@@ -5,8 +5,11 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import nz.ac.auckland.apiproxy.chat.openai.ChatCompletionRequest;
 import nz.ac.auckland.apiproxy.chat.openai.ChatCompletionResult;
@@ -21,6 +24,8 @@ public class GameOverController {
   @FXML private TextArea explanationText;
   @FXML private Pane gameOverPane;
   @FXML private ProgressIndicator progressIndicator;
+  @FXML private ImageView btnReplayGameImage;
+  @FXML private ImageView btnExitGameImage;
 
   @SuppressWarnings("unused")
   private GameStateContext context;
@@ -31,6 +36,48 @@ public class GameOverController {
   public void initialize() throws ApiProxyException {
     gameOverPane.setVisible(false);
     progressIndicator.setVisible(true);
+  }
+
+  @FXML
+  public void handleMouseEnter(MouseEvent event) {
+    // Check the source of the event to determine which button triggered it
+    if (event.getSource() instanceof Button) {
+      Button hoveredButton = (Button) event.getSource();
+
+      // Check the ID or other property of the button to perform specific actions
+      switch (hoveredButton.getId()) {
+        case "replayGameButton":
+          btnReplayGameImage.setVisible(true);
+          break;
+        case "exitGameButton":
+          btnExitGameImage.setVisible(true);
+          break;
+        default:
+          System.out.println("Unknown button hovered");
+          break;
+      }
+    }
+  }
+
+  @FXML
+  public void handleMouseExit(MouseEvent event) {
+    // Check the source of the event to determine which button triggered it
+    if (event.getSource() instanceof Button) {
+      Button hoveredButton = (Button) event.getSource();
+
+      // Check the ID or other property of the button to perform specific actions
+      switch (hoveredButton.getId()) {
+        case "replayGameButton":
+          btnReplayGameImage.setVisible(false);
+          break;
+        case "exitGameButton":
+          btnExitGameImage.setVisible(false);
+          break;
+        default:
+          System.out.println("Unknown button hovered");
+          break;
+      }
+    }
   }
 
   // Set the context and process the explanation with GPT

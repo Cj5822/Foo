@@ -59,7 +59,17 @@
             <Image url="@../images/styled-buttons/exit-game.png" />
          </image>
       </ImageView>
-      <Button fx:id="startGameButton" alignment="CENTER" layoutX="350.0" layoutY="515.0" mnemonicParsing="false" onAction="#handleStartGame" opacity="0.0" prefHeight="49.0" prefWidth="101.0" text="Start Game" />
-      <Button fx:id="exitButton" alignment="CENTER" layoutX="614.0" layoutY="515.0" mnemonicParsing="false" onAction="#handleExit" opacity="0.0" prefHeight="49.0" prefWidth="101.0" text="Exit" />
+      <ImageView fx:id="btnStartGameImage" fitHeight="49.0" fitWidth="200.0" layoutX="350.0" layoutY="515.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/styled-buttons/start-game-hovered.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnExitGameImage" fitHeight="49.0" fitWidth="117.0" layoutX="614.0" layoutY="515.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/styled-buttons/exit-game-hovered.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="startGameButton" alignment="CENTER" layoutX="350.0" layoutY="515.0" mnemonicParsing="false" onAction="#handleStartGame" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="49.0" prefWidth="101.0" text="Start Game" />
+      <Button fx:id="exitButton" alignment="CENTER" layoutX="614.0" layoutY="515.0" mnemonicParsing="false" onAction="#handleExit" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="49.0" prefWidth="101.0" text="Exit" />
    </children>
 </Pane>

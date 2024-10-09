@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
@@ -17,6 +19,8 @@ public class HomeController {
   @FXML private Button startGameButton;
   @FXML private Button exitButton;
   @FXML private Label lblTimer;
+  @FXML private ImageView btnStartGameImage;
+  @FXML private ImageView btnExitGameImage;
 
   private GameStateContext context;
 
@@ -40,5 +44,47 @@ public class HomeController {
     Stage stage = (Stage) exitButton.getScene().getWindow();
     stage.close();
     System.exit(0);
+  }
+
+  @FXML
+  public void handleMouseEnter(MouseEvent event) {
+    // Check the source of the event to determine which button triggered it
+    if (event.getSource() instanceof Button) {
+      Button hoveredButton = (Button) event.getSource();
+
+      // Check the ID or other property of the button to perform specific actions
+      switch (hoveredButton.getId()) {
+        case "startGameButton":
+          btnStartGameImage.setVisible(true);
+          break;
+        case "exitButton":
+          btnExitGameImage.setVisible(true);
+          break;
+        default:
+          System.out.println("Unknown button hovered");
+          break;
+      }
+    }
+  }
+
+  @FXML
+  public void handleMouseExit(MouseEvent event) {
+    // Check the source of the event to determine which button triggered it
+    if (event.getSource() instanceof Button) {
+      Button hoveredButton = (Button) event.getSource();
+
+      // Check the ID or other property of the button to perform specific actions
+      switch (hoveredButton.getId()) {
+        case "startGameButton":
+          btnStartGameImage.setVisible(false);
+          break;
+        case "exitButton":
+          btnExitGameImage.setVisible(false);
+          break;
+        default:
+          System.out.println("Unknown button hovered");
+          break;
+      }
+    }
   }
 }

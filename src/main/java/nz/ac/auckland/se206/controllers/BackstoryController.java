@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.TimerManager;
@@ -14,6 +15,7 @@ public class BackstoryController {
 
   @FXML private Button continueButton;
   @FXML private Label lblTimer;
+  @FXML private ImageView btnContinueImage;
 
   private TimerManager timerManager;
   private GameStateContext context;
@@ -47,5 +49,15 @@ public class BackstoryController {
   @FXML
   public void handleContinue(ActionEvent event) throws IOException {
     App.changeRoom(null, "room");
+  }
+
+  @FXML
+  public void handleMouseEnter() {
+    btnContinueImage.setVisible(true);
+  }
+
+  @FXML
+  public void handleMouseExit() {
+    btnContinueImage.setVisible(false);
   }
 }

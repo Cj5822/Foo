@@ -90,7 +90,7 @@ public class TimerManager {
       start(); // Start the 1-minute timer for guessing state
       context.setState(context.getGuessingState());
       App.changeRoom(null, "room-guessing"); // Switch to the guessing room
-    } else {
+    } else if (!isInGuessingState) {
       // Game over if the timer reaches 0 again in guessing state
       // Change room to gameover room
       isTimeUp = true;

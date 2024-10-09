@@ -230,12 +230,12 @@ public class ChatController {
     txtaChat.clear(); // Clear the chat area
   }
 
-  /** Hides the chat box and progress bar. */
+  /** Hides the chat box. */
   public void hideChatPane() {
     chatPane.setVisible(false); // Make chat box invisible
   }
 
-  /** Shows the chat box and progress bar. */
+  /** Shows the chat box. */
   public void showChatPane() {
     chatPane.setVisible(true); // Make chat box visible
   }

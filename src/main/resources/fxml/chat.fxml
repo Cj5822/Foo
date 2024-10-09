@@ -17,7 +17,7 @@
          </font></TextArea>
     <TextField fx:id="txtInput" layoutX="23.0" layoutY="560.0" onKeyPressed="#handleKeyPress" prefHeight="26.0" prefWidth="518.0" />
     <Button fx:id="btnSend" layoutX="541.0" layoutY="560.0" mnemonicParsing="false" onAction="#onSendMessage" onKeyPressed="#handleKeyPress" prefHeight="25.0" prefWidth="60.0" text="Send" />
-    <Button layoutX="601.0" layoutY="560.0" mnemonicParsing="false" onAction="#onGoBack" text="Go Back" />
+    <Button layoutX="601.0" layoutY="560.0" mnemonicParsing="false" text="Go Back" />
       <ProgressIndicator fx:id="progressIndicator" layoutX="631.0" layoutY="249.0" prefHeight="40.0" prefWidth="27.0" />
       <ImageView fx:id="sendButtonImage" fitHeight="40.0" fitWidth="60.0" layoutX="541.0" layoutY="558.0" onMouseClicked="#onSendMessage" pickOnBounds="true" preserveRatio="true">
          <image>

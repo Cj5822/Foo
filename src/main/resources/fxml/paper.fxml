@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,16 +22,16 @@
          </image>
       </ImageView>
       <Rectangle fx:id="rectExitPaper" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="14.0" layoutY="87.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="59.0" />
-      <Label layoutX="240.0" layoutY="172.0" prefHeight="201.0" prefWidth="317.0" text="0001 1001 1001 0100">
+      <Label fx:id="paperHint" layoutX="240.0" layoutY="172.0" opacity="0.0" prefHeight="201.0" prefWidth="317.0" text="0001 1001 1001 0100">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Label layoutX="169.0" layoutY="181.0" prefHeight="21.0" prefWidth="111.0" text="Safe Password">
+      <Label fx:id="paperTitle" layoutX="169.0" layoutY="181.0" opacity="0.0" prefHeight="21.0" prefWidth="111.0" text="Safe Password">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="208.0" layoutY="107.0" prefHeight="17.0" prefWidth="382.0" style="-fx-background-color: white;" text="&quot;Seems like the thief accidently dropped the hint to the safe password&quot;" />
+      <Slider fx:id="paperSlider" layoutX="726.0" layoutY="196.0" orientation="VERTICAL" prefHeight="181.0" prefWidth="14.0" />
    </children>
 </AnchorPane>

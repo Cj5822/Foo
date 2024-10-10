@@ -2,6 +2,8 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
@@ -12,10 +14,24 @@ public class PaperController {
   private GameStateContext context;
 
   @FXML private AnchorPane paperPane;
+  @FXML private Slider paperSlider;
+  @FXML private Label paperTitle;
+  @FXML private Label paperHint;
 
   @FXML
   public void initialize() throws ApiProxyException {
-    // Any required initialization code can be placed here
+    // Initialize the slider to adjust opacity
+    paperSlider.setMin(0);
+    paperSlider.setMax(1);
+
+    paperSlider
+        .valueProperty()
+        .addListener(
+            (obs, oldVal, newVal) -> {
+              // Set the opacity of the labels based on the slider value
+              paperTitle.setOpacity(newVal.doubleValue());
+              paperHint.setOpacity(newVal.doubleValue());
+            });
     hidePaperPane(); // Hide wrench pane initially
   }
 

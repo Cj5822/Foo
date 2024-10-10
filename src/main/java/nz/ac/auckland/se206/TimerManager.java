@@ -93,23 +93,15 @@ public class TimerManager {
         } else {
           // Game over if the timer reaches 0 again in guessing state
           // Change room to gameover room
-          isTimeUp = true;
-          stop();
           context.setState(context.getGameOverState());
           App.changeRoom(null, "gameover-requirements-not-met");
         }
       } else if (context.isGuessingState()) {
         if (context.getSelectedSuspect() == null) {
-          stop();
+          context.setState(context.getGameOverState());
           App.changeRoom(null, "gameover-requirements-not-met");
-        } else if (context.getExplanation() == null) {
-          stop();
-          context.setExplanation("");
-          App.openGameOver();
-        } else if (context.getSelectedSuspect() != null) {
-          stop();
-          context.setExplanation(context.getExplanation());
-          context.setSelectedSuspect(context.getSelectedSuspect());
+        } else {
+          context.setState(context.getGameOverState());
           App.openGameOver();
         }
       }

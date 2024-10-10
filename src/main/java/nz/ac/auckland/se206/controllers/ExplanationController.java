@@ -61,9 +61,9 @@ public class ExplanationController {
     String explanation = accumulatedInput.toString();
     if (context != null) {
       context.setExplanation(explanation);
+      context.setState(context.getGameOverState());
       App.openGameOver();
     }
-    App.openGameOver();
   }
 
   /**

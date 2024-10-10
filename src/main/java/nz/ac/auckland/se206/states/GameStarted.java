@@ -35,37 +35,42 @@ public class GameStarted implements GameState {
    */
   @Override
   public void handleRectangleClick(MouseEvent event, String rectangleId) throws IOException {
+    String targetRoom =
+        getRoomForRectangleId(rectangleId); // Create this method to map rectangle IDs to room names
+
+    // Check if the clicked room is the same as the current room
+    if (targetRoom.equals(context.getCurrentRoom())) {
+      System.out.println(
+          "You are already in the " + targetRoom + "."); // Optional: feedback for the player
+      return; // Prevent the action if the same room is clicked
+    }
+
     // Transition to chat view or provide an introduction based on the clicked rectangle
     switch (rectangleId) {
-      // case "rectPlumber":
-      //   App.openChat(event, "Plumber");
-      //   return;
-      // case "rectElectrician":
-      //   App.openChat(event, "Electrician");
-      //   return;
-      // case "rectNeighbour":
-      //   App.openChat(event, "Neighbour");
-      //   return;
       case "rectLivingroom":
         SoundManager.playSound(DOOR, false);
         context.setNeighbourInteracted(true);
+        context.setCurrentRoom("living-room"); // Update the current room
         App.changeRoom(event, "living-room");
         App.openChat(event, "Neighbour");
         return;
       case "rectGarage":
         SoundManager.playSound(DOOR, false);
         context.setElectricianInteracted(true);
+        context.setCurrentRoom("garage"); // Update the current room
         App.changeRoom(event, "garage");
         App.openChat(event, "Electrician");
         return;
       case "rectBathroom":
         SoundManager.playSound(DOOR, false);
         context.setPlumberInteracted(true);
+        context.setCurrentRoom("bathroom"); // Update the current room
         App.changeRoom(event, "bathroom");
         App.openChat(event, "Plumber");
         return;
       case "rectRoom":
         SoundManager.playSound(DOOR, false);
+        context.setCurrentRoom("room"); // Update the current room
         App.changeRoom(event, "room");
         return;
       case "rectWrench":
@@ -107,6 +112,23 @@ public class GameStarted implements GameState {
       case "rectExitPaper":
         App.closePaper(event);
         return;
+    }
+  }
+
+  // Example method to map rectangle IDs to room names
+  private String getRoomForRectangleId(String rectangleId) {
+    switch (rectangleId) {
+      case "rectLivingroom":
+        return "living-room";
+      case "rectGarage":
+        return "garage";
+      case "rectBathroom":
+        return "bathroom";
+      case "rectRoom":
+        return "room";
+      // Add more cases as needed...
+      default:
+        return ""; // Unknown room
     }
   }
 

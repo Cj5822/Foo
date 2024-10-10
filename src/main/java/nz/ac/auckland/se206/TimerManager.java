@@ -10,13 +10,11 @@ public class TimerManager {
   private int secondsRemaining = 300; // Track the number of seconds remaining
   private Timeline timeline;
   private boolean isTimeUp = false; // Flag to indicate if time has run out
-  private boolean isInGuessingState =
-      false; // Flag to indicate if the game is in the guessing state
-  private final GameStateContext context;
+  private GameStateContext context;
 
   /** Private constructor to prevent instantiation. */
   private TimerManager(GameStateContext context) {
-    this.context = context; // Shared context from the application
+    setContext(context); // Shared context from the application
     timeline =
         new Timeline(
             new KeyFrame(
@@ -44,7 +42,6 @@ public class TimerManager {
     stop();
     secondsRemaining = 60; // Set the timer to 1 minute (60 seconds)
     isTimeUp = false; // Reset the time-up flag
-    isInGuessingState = true;
   }
 
   // Start the timer
@@ -66,6 +63,10 @@ public class TimerManager {
     isTimeUp = false; // Reset the time-up flag
   }
 
+  public void setContext(GameStateContext context) {
+    this.context = context;
+  }
+
   // Update the seconds counter every second
   private void updateTimer() throws IOException {
     if (secondsRemaining > 0) {
@@ -80,37 +81,32 @@ public class TimerManager {
   // Handle what happens when the timer ends
   private void handleTimerEnd() throws IOException {
     // Check if the game is not in the guessing state
-    if (!isInGuessingState
-        && context.isPlumberInteracted()
-        && context.isElectricianInteracted()
-        && context.isNeighbourInteracted()) {
-      // Transition to guessing state and reset the timer
-      isInGuessingState = true;
-      resetToOneMinute();
-      start(); // Start the 1-minute timer for guessing state
-      context.setState(context.getGuessingState());
-      App.changeRoom(null, "room-guessing"); // Switch to the guessing room
-    } else if (!isInGuessingState) {
-      // Game over if the timer reaches 0 again in guessing state
-      // Change room to gameover room
-      isTimeUp = true;
-      context.setState(context.getGameOverState());
-      App.changeRoom(null, "gameover-requirements-not-met");
-    } else if (isInGuessingState) {
-      if (context != null) {
-        if (context.getSelectedSuspect() == null) {
-          App.changeRoom(null, "gameover-requirements-not-met");
-        } else if (context.getExplanation() == null) {
-          context.setExplanation("");
-          App.openGameOver();
+    if (context != null) {
+      if (context.isGameStarted()) {
+        if (context.isPlumberInteracted()
+            && context.isElectricianInteracted()
+            && context.isNeighbourInteracted()) {
+          // Transition to guessing state and reset the timer
+          context.setState(context.getGuessingState());
+          resetToOneMinute();
+          start(); // Start the 1-minute timer for guessing state
+          App.changeRoom(null, "room-guessing"); // Switch to the guessing room
         } else {
-          context.setExplanation(context.getExplanation());
-          context.setSelectedSuspect(context.getSelectedSuspect());
+          // Game over if the timer reaches 0 again in guessing state
+          // Change room to gameover room
+          context.setState(context.getGameOverState());
+          App.changeRoom(null, "gameover-requirements-not-met");
+        }
+      } else if (context.isGuessingState()) {
+        if (context.getSelectedSuspect() == null) {
+          context.setState(context.getGameOverState());
+          App.changeRoom(null, "gameover-requirements-not-met");
+        } else {
+          context.setState(context.getGameOverState());
           App.openGameOver();
         }
       }
     }
-    // Check if timer runs out in backstory???
   }
 
   // Get the current time in seconds formatted as MM:SS

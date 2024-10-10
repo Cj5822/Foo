@@ -377,10 +377,11 @@ public class RoomController {
     if (context.isPlumberInteracted()
         && context.isElectricianInteracted()
         && context.isNeighbourInteracted()) {
+      context.handleGuessClick();
       timerManager.stop();
       timerManager.resetToOneMinute();
       timerManager.start();
-      context.handleGuessClick();
+
     } else {
       System.out.println("Not all rectangles have been interacted with");
     }

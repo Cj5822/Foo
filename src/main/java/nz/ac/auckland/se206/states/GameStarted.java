@@ -13,7 +13,7 @@ import nz.ac.auckland.se206.SoundManager;
 public class GameStarted implements GameState {
 
   private final GameStateContext context;
-  private static final String FOOTSTEP = "src/main/resources/sounds/Footstep.mp3";
+  private static final String DOOR = "src/main/resources/sounds/Door.mp3";
   private static final String HEARTBEAT = "src/main/resources/sounds/Heartbeat.mp3";
 
   /**
@@ -47,25 +47,25 @@ public class GameStarted implements GameState {
       //   App.openChat(event, "Neighbour");
       //   return;
       case "rectLivingroom":
-        SoundManager.playSound(FOOTSTEP, false);
+        SoundManager.playSound(DOOR, false);
         context.setNeighbourInteracted(true);
         App.changeRoom(event, "living-room");
         App.openChat(event, "Neighbour");
         return;
       case "rectGarage":
-        SoundManager.playSound(FOOTSTEP, false);
+        SoundManager.playSound(DOOR, false);
         context.setElectricianInteracted(true);
         App.changeRoom(event, "garage");
         App.openChat(event, "Electrician");
         return;
       case "rectBathroom":
-        SoundManager.playSound(FOOTSTEP, false);
+        SoundManager.playSound(DOOR, false);
         context.setPlumberInteracted(true);
         App.changeRoom(event, "bathroom");
         App.openChat(event, "Plumber");
         return;
       case "rectRoom":
-        SoundManager.playSound(FOOTSTEP, false);
+        SoundManager.playSound(DOOR, false);
         App.changeRoom(event, "room");
         return;
       case "rectWrench":

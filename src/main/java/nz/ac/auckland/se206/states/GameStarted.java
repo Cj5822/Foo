@@ -4,6 +4,7 @@ import java.io.IOException;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.SoundManager;
 
 /**
  * The GameStarted state of the game. Handles the initial interactions when the game starts,
@@ -12,6 +13,8 @@ import nz.ac.auckland.se206.GameStateContext;
 public class GameStarted implements GameState {
 
   private final GameStateContext context;
+  private static final String FOOTSTEP = "src/main/resources/sounds/Footstep.mp3";
+  private static final String HEARTBEAT = "src/main/resources/sounds/Heartbeat.mp3";
 
   /**
    * Constructs a new GameStarted state with the given game state context.
@@ -44,21 +47,25 @@ public class GameStarted implements GameState {
       //   App.openChat(event, "Neighbour");
       //   return;
       case "rectLivingroom":
+        SoundManager.playSound(FOOTSTEP, false);
         context.setNeighbourInteracted(true);
         App.changeRoom(event, "living-room");
         App.openChat(event, "Neighbour");
         return;
       case "rectGarage":
+        SoundManager.playSound(FOOTSTEP, false);
         context.setElectricianInteracted(true);
         App.changeRoom(event, "garage");
         App.openChat(event, "Electrician");
         return;
       case "rectBathroom":
+        SoundManager.playSound(FOOTSTEP, false);
         context.setPlumberInteracted(true);
         App.changeRoom(event, "bathroom");
         App.openChat(event, "Plumber");
         return;
       case "rectRoom":
+        SoundManager.playSound(FOOTSTEP, false);
         App.changeRoom(event, "room");
         return;
       case "rectWrench":
@@ -114,6 +121,7 @@ public class GameStarted implements GameState {
     // TextToSpeech.speak("Make a guess, click on the " + context.getProfessionToGuess());
     context.setState(context.getGuessingState());
     App.changeRoom(null, "room-guessing");
+    SoundManager.playSound(HEARTBEAT, false);
   }
 
   /**

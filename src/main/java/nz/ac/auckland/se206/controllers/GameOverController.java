@@ -19,6 +19,7 @@ import nz.ac.auckland.apiproxy.config.ApiProxyConfig;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.SoundManager;
 
 public class GameOverController {
   @FXML private TextArea explanationText;
@@ -31,6 +32,7 @@ public class GameOverController {
   private GameStateContext context;
 
   private ChatCompletionRequest chatCompletionRequest;
+  private static final String OUTRO = "src/main/resources/sounds/Outro.mp3";
 
   @FXML
   public void initialize() throws ApiProxyException {
@@ -164,15 +166,18 @@ public class GameOverController {
 
   public void showGameOverPane() {
     gameOverPane.setVisible(true);
+    SoundManager.playSound(OUTRO, true);
   }
 
   @FXML
   public void handleReplay(ActionEvent event) throws IOException {
+    SoundManager.stopSound();
     App.resetGame();
   }
 
   @FXML
   public void handleExit(ActionEvent event) {
+    SoundManager.stopSound();
     System.exit(0);
   }
 }

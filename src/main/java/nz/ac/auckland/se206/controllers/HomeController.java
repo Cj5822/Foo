@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.SoundManager;
 
 public class HomeController {
 
@@ -24,6 +25,8 @@ public class HomeController {
 
   private GameStateContext context;
 
+  private static final String KNOCKING = "src/main/resources/sounds/Knocking.mp3";
+
   public void setContext(GameStateContext context) {
     this.context = context;
   }
@@ -33,6 +36,7 @@ public class HomeController {
     Button button = (Button) event.getSource();
     Scene gameScene = button.getScene();
     FXMLLoader backstoryLoader = new FXMLLoader(App.class.getResource("/fxml/backstory.fxml"));
+    SoundManager.playSound(KNOCKING, false);
     Parent root = backstoryLoader.load();
     BackstoryController backstoryController = backstoryLoader.getController();
     backstoryController.setContext(context);

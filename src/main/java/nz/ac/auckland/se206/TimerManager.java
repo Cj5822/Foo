@@ -42,7 +42,7 @@ public class TimerManager {
   // Reset the timer to 1 minute
   public void resetToOneMinute() {
     stop();
-    secondsRemaining = 10; // Set the timer to 1 minute (60 seconds)
+    secondsRemaining = 60; // Set the timer to 1 minute (60 seconds)
     isTimeUp = false; // Reset the time-up flag
     isInGuessingState = true;
   }

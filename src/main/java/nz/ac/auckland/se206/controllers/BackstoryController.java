@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.SoundManager;
 import nz.ac.auckland.se206.TimerManager;
 
 public class BackstoryController {
@@ -19,6 +20,8 @@ public class BackstoryController {
 
   private TimerManager timerManager;
   private GameStateContext context;
+
+  private static final String DOOR = "src/main/resources/sounds/Door.mp3";
 
   public void initialize() {
     // Get the instance of TimerManager
@@ -49,6 +52,7 @@ public class BackstoryController {
   @FXML
   public void handleContinue(ActionEvent event) throws IOException {
     App.changeRoom(null, "room");
+    SoundManager.playSound(DOOR, false);
   }
 
   @FXML

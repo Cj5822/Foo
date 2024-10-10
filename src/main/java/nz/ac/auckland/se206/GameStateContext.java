@@ -33,6 +33,7 @@ public class GameStateContext {
   private boolean isElectricianInteracted = false;
   private boolean isNeighbourInteracted = false;
   private String explanation;
+  private String currentRoom;
 
   /** Constructs a new GameStateContext and initializes the game states and professions. */
   public GameStateContext() {
@@ -73,6 +74,14 @@ public class GameStateContext {
     rectIdToGuess =
         randomNumber == 0 ? "rectPerson1" : ((randomNumber == 1) ? "rectPerson2" : "rectPerson3");
     professionToGuess = rectanglesToProfession.get(rectIdToGuess);
+  }
+
+  public String getCurrentRoom() {
+    return currentRoom;
+  }
+
+  public void setCurrentRoom(String room) {
+    this.currentRoom = room;
   }
 
   public void setSelectedSuspect(String rectangleId) {
@@ -116,6 +125,18 @@ public class GameStateContext {
    */
   public GameState getGuessingState() {
     return guessingState;
+  }
+
+  public boolean isGameStarted() {
+    return gameState instanceof GameStarted;
+  }
+
+  public boolean isGuessingState() {
+    return gameState instanceof Guessing;
+  }
+
+  public boolean isGameOver() {
+    return gameState instanceof GameOver;
   }
 
   /**

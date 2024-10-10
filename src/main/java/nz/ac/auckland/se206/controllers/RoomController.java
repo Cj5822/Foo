@@ -54,6 +54,8 @@ public class RoomController {
   private PaperController paperController;
   private ExplanationController explanationController;
   private GameOverController gameOverController;
+  private ComputerPasswordController computerPasswordController;
+  private ComputerOpenController openComputerController;
 
   // FXML Loaders
   private FXMLLoader chatPaneLoader;
@@ -66,6 +68,8 @@ public class RoomController {
   private FXMLLoader paperLoader;
   private FXMLLoader explanationLoader;
   private FXMLLoader gameOverLoader;
+  private FXMLLoader computerPasswordLoader;
+  private FXMLLoader openComputerLoader;
 
   // Other Fields
   private GameStateContext context;
@@ -84,7 +88,9 @@ public class RoomController {
     initialiseScrunchedPaperPane(room); // Initialise scrunched paper pane
     initialisePaperPane(room); // Initialise paper pane
     initialiseExplanationPane(room); // Initialise explanation pane
-    initialiseGameOverPane(room); // Initialise game over pane
+    initialiseGameOverPane(room); // Initialise game over pane]
+    initialiseComputerPasswordPane(room); // Initialise computer password pane
+    initialiseOpenComputerPane(room); // Initialise open computer pane
   }
 
   public void setContext(GameStateContext context) {
@@ -292,6 +298,40 @@ public class RoomController {
     }
   }
 
+  private void initialiseComputerPasswordPane(Pane room) {
+    try {
+      configureComputerPasswordPane(room); // Load and configure the computer password pane
+    } catch (IOException e) {
+      System.err.println("Error loading computer password pane: " + e.getMessage());
+      e.printStackTrace(); // Print the stack trace for debugging
+    }
+  }
+
+  private void configureComputerPasswordPane(Pane room) throws IOException {
+    computerPasswordLoader = new FXMLLoader(App.class.getResource("/fxml/computer-password.fxml"));
+    AnchorPane node = computerPasswordLoader.load();
+    computerPasswordController = computerPasswordLoader.getController();
+    computerPasswordController.setContext(context);
+    room.getChildren().add(node); // Add the computer password pane to the room view
+  }
+
+  private void initialiseOpenComputerPane(Pane room) {
+    try {
+      configureOpenComputerPane(room); // Load and configure the computer password pane
+    } catch (IOException e) {
+      System.err.println("Error loading computer password pane: " + e.getMessage());
+      e.printStackTrace(); // Print the stack trace for debugging
+    }
+  }
+
+  private void configureOpenComputerPane(Pane room) throws IOException {
+    openComputerLoader = new FXMLLoader(App.class.getResource("/fxml/computer-open.fxml"));
+    AnchorPane node = openComputerLoader.load();
+    openComputerController = openComputerLoader.getController();
+    openComputerController.setContext(context);
+    room.getChildren().add(node); // Add the computer password pane to the room view
+  }
+
   /**
    * Handles the key pressed event.
    *
@@ -377,10 +417,11 @@ public class RoomController {
     if (context.isPlumberInteracted()
         && context.isElectricianInteracted()
         && context.isNeighbourInteracted()) {
+      context.handleGuessClick();
       timerManager.stop();
       timerManager.resetToOneMinute();
       timerManager.start();
-      context.handleGuessClick();
+
     } else {
       System.out.println("Not all rectangles have been interacted with");
     }
@@ -594,5 +635,15 @@ public class RoomController {
   public GameOverController getGameOverController() throws ApiProxyException {
     gameOverController.setContext(context);
     return gameOverController;
+  }
+
+  public ComputerPasswordController getComputerPasswordController() {
+    computerPasswordController.setContext(context);
+    return computerPasswordController;
+  }
+
+  public ComputerOpenController getOpenComputerController() {
+    openComputerController.setContext(context);
+    return openComputerController;
   }
 }

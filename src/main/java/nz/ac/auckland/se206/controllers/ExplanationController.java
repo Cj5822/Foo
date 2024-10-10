@@ -61,9 +61,9 @@ public class ExplanationController {
     String explanation = accumulatedInput.toString();
     if (context != null) {
       context.setExplanation(explanation);
+      context.setState(context.getGameOverState());
       App.openGameOver();
     }
-    App.openGameOver();
   }
 
   /**
@@ -97,7 +97,6 @@ public class ExplanationController {
     // Update the context with the current accumulated input
     String explanation = accumulatedInput.toString();
     context.setExplanation(explanation);
-    System.out.println(explanation);
   }
 
   @FXML

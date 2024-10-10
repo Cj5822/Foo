@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.controllers.ChatController;
+import nz.ac.auckland.se206.controllers.ComputerOpenController;
+import nz.ac.auckland.se206.controllers.ComputerPasswordController;
 import nz.ac.auckland.se206.controllers.ExplanationController;
 import nz.ac.auckland.se206.controllers.FlippedWrenchController;
 import nz.ac.auckland.se206.controllers.GameOverController;
@@ -45,6 +47,10 @@ public class App extends Application {
   private static PaperController paperController; // Controller for the paper view
   private static ExplanationController explanationController; // Controller for the explanation view
   private static GameOverController gameOverController; // Controller for the game over view
+  private static ComputerPasswordController
+      computerPasswordController; // Controller for the computer password view
+  private static ComputerOpenController
+      openComputerController; // Controller for the open computer view
   private static Stage appStage;
 
   private static GameStateContext context;
@@ -134,6 +140,28 @@ public class App extends Application {
 
   public static void closeSafeRing(MouseEvent event) throws IOException {
     safeRingController.hideSafeRingPane();
+  }
+
+  public static void openComputer(MouseEvent event) throws IOException {
+    roomController = loader.getController();
+    roomController.setContext(context);
+    computerPasswordController = roomController.getComputerPasswordController();
+    computerPasswordController.showComputerPasswordPane();
+  }
+
+  public static void closeComputer(MouseEvent event) throws IOException {
+    computerPasswordController.hideComputerPasswordPane();
+  }
+
+  public static void openOpenedComputer(MouseEvent event) throws IOException {
+    roomController = loader.getController();
+    roomController.setContext(context);
+    openComputerController = roomController.getOpenComputerController();
+    openComputerController.showOpenComputerPane();
+  }
+
+  public static void closeOpenComputer(MouseEvent event) throws IOException {
+    openComputerController.hideOpenComputerPane();
   }
 
   public static void openWrench(MouseEvent event) throws IOException {
@@ -246,9 +274,10 @@ public class App extends Application {
   public static void resetGame() throws IOException {
     context = new GameStateContext();
     context.setState(context.getGameStartedState());
-    openHomepage();
     TimerManager timerManager = TimerManager.getInstance(context);
+    timerManager.setContext(context);
     timerManager.reset();
+    openHomepage();
   }
 
   /**

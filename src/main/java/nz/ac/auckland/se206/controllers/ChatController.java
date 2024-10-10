@@ -8,6 +8,7 @@ import javafx.concurrent.Task;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -35,7 +36,10 @@ public class ChatController {
   @FXML private AnchorPane chatPane;
   @FXML private ProgressIndicator progressIndicator;
   @FXML private ImageView btnSendImage;
-  @FXML private ImageView btnExitChatImage;
+  @FXML private ImageView chatLogImage;
+  @FXML private ImageView sendButtonImage;
+  @FXML private TextArea currentChat;
+  @FXML private Label roleLabel;
 
   private ChatCompletionRequest chatCompletionRequest;
   private String profession;
@@ -49,6 +53,7 @@ public class ChatController {
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
     hideChatPane(); // Hide chat box initially
+    hideChatLog();
     progressIndicator.setVisible(false); // Hide progress indicator initially
   }
 
@@ -104,12 +109,11 @@ public class ChatController {
 
     // Ensure the message is appended on the JavaFX Application Thread
     if (Platform.isFxApplicationThread()) {
+      currentChat.clear();
       appendToChat(formattedMessage);
     } else {
       Platform.runLater(() -> appendToChat(formattedMessage));
     }
-
-    System.out.println(txtaChat.getText()); // Print the current chat text to console
   }
 
   /**
@@ -133,7 +137,9 @@ public class ChatController {
    * @param formattedMessage the message to append
    */
   private void appendToChat(String formattedMessage) {
+    currentChat.clear();
     txtaChat.appendText(formattedMessage); // Append text to chat area
+    currentChat.appendText(formattedMessage); // Append text to chat area
   }
 
   /**
@@ -152,6 +158,7 @@ public class ChatController {
 
     // Show the progress indicator when starting task
     progressIndicator.setVisible(true);
+    roleLabel.setText(profession + " is thinking...");
 
     // Create a task to handle the chat completion asynchronously
     Task<ChatMessage> chatCompletionTask =
@@ -175,6 +182,7 @@ public class ChatController {
               Platform.runLater(
                   () -> {
                     progressIndicator.setVisible(false);
+                    roleLabel.setText("");
                     txtInput.setDisable(false); // Re-enable the input field
                     btnSend.setDisable(false); // Re-enable the send button
                     txtInput.requestFocus(); // Set focus back to the input field
@@ -232,17 +240,23 @@ public class ChatController {
     }
   }
 
-  /**
-   * Navigates back to the previous view.
-   *
-   * @param event the action event triggered by the go back button
-   * @throws ApiProxyException if there is an error communicating with the API proxy
-   * @throws IOException if there is an I/O error
-   */
   @FXML
-  private void onGoBack(Event event) throws ApiProxyException, IOException {
-    hideChatPane(); // Hide the chat box
-    txtaChat.clear(); // Clear the chat area
+  private void onChatLogClick(Event event) throws ApiProxyException, IOException {
+    if (txtaChat.isVisible()) {
+      hideChatLog();
+      showCurrentChat();
+      txtInput.setVisible(true); // Enables the input field
+      btnSend.setVisible(true); // Enables the send button
+      btnSendImage.setVisible(true); // Enables the send button image
+      sendButtonImage.setVisible(true); // Enables the send button image
+    } else {
+      showChatLog();
+      hideCurrentChat();
+      txtInput.setVisible(false); // Disable the input field
+      btnSend.setVisible(false); // Disable the send button
+      btnSendImage.setVisible(false); // Disable the send button image
+      sendButtonImage.setVisible(false); // Disable the send button image
+    }
   }
 
   @FXML
@@ -258,12 +272,6 @@ public class ChatController {
           break;
         case "btnSendImage":
           btnSendImage.setVisible(true);
-          break;
-        case "exitChatImage":
-          btnExitChatImage.setVisible(true);
-          break;
-        case "btnExitChatImage":
-          btnExitChatImage.setVisible(true);
           break;
         default:
           System.out.println("Unknown button hovered");
@@ -286,12 +294,6 @@ public class ChatController {
         case "btnSendImage":
           btnSendImage.setVisible(false);
           break;
-        case "exitChatImage":
-          btnExitChatImage.setVisible(false);
-          break;
-        case "btnExitChatImage":
-          btnExitChatImage.setVisible(false);
-          break;
         default:
           System.out.println("Unknown button hovered");
           break;
@@ -300,12 +302,29 @@ public class ChatController {
   }
 
   /** Hides the chat box. */
-  public void hideChatPane() {
-    chatPane.setVisible(false); // Make chat box invisible
+  public void hideChatLog() {
+    txtaChat.setVisible(false); // Make chat log invisible
+  }
+
+  public void showChatLog() {
+    txtaChat.setVisible(true); // Make chat log visible
   }
 
   /** Shows the chat box. */
   public void showChatPane() {
     chatPane.setVisible(true); // Make chat box visible
+  }
+
+  /** Shows the chat box. */
+  public void hideChatPane() {
+    chatPane.setVisible(false); // Make chat box visible
+  }
+
+  public void hideCurrentChat() {
+    currentChat.setVisible(false);
+  }
+
+  public void showCurrentChat() {
+    currentChat.setVisible(true);
   }
 }

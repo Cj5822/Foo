@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.TimerManager;
 
@@ -62,14 +63,14 @@ public class ComputerPasswordController {
   }
 
   @FXML
-  private void handleKeyPressed(KeyEvent event) {
+  private void handleKeyPressed(KeyEvent event) throws IOException {
     if (event.getCode() == KeyCode.ENTER) {
       handlePasswordSubmit(); // Call the submit method when Enter is pressed
     }
   }
 
   @FXML
-  private void handlePasswordTextFieldKeyPressed(KeyEvent event) {
+  private void handlePasswordTextFieldKeyPressed(KeyEvent event) throws IOException {
     if (event.getCode() == KeyCode.ENTER) {
       // Call the submit method when Enter is pressed
       handlePasswordSubmit();
@@ -97,13 +98,14 @@ public class ComputerPasswordController {
   }
 
   @FXML
-  private void handlePasswordSubmit() {
+  private void handlePasswordSubmit() throws IOException {
     String inputPassword = passwordInput.getText(); // Get the input password
     String inputPassword2 = passwordTextField.getText();
 
     if (inputPassword.equals(CORRECT_PASSWORD) || inputPassword2.equals(CORRECT_PASSWORD)) {
       // Password is correct, perform the action (e.g., unlock the safe)
       System.out.println("Correct password. The safe is now unlocked.");
+      App.openOpenedComputer(null);
     } else {
       // Password is incorrect, provide feedback
       System.out.println("Incorrect password. Please try again.");

@@ -55,6 +55,7 @@ public class RoomController {
   private ExplanationController explanationController;
   private GameOverController gameOverController;
   private ComputerPasswordController computerPasswordController;
+  private ComputerOpenController openComputerController;
 
   // FXML Loaders
   private FXMLLoader chatPaneLoader;
@@ -68,6 +69,7 @@ public class RoomController {
   private FXMLLoader explanationLoader;
   private FXMLLoader gameOverLoader;
   private FXMLLoader computerPasswordLoader;
+  private FXMLLoader openComputerLoader;
 
   // Other Fields
   private GameStateContext context;
@@ -88,6 +90,7 @@ public class RoomController {
     initialiseExplanationPane(room); // Initialise explanation pane
     initialiseGameOverPane(room); // Initialise game over pane]
     initialiseComputerPasswordPane(room); // Initialise computer password pane
+    initialiseOpenComputerPane(room); // Initialise open computer pane
   }
 
   public void setContext(GameStateContext context) {
@@ -309,6 +312,23 @@ public class RoomController {
     AnchorPane node = computerPasswordLoader.load();
     computerPasswordController = computerPasswordLoader.getController();
     computerPasswordController.setContext(context);
+    room.getChildren().add(node); // Add the computer password pane to the room view
+  }
+
+  private void initialiseOpenComputerPane(Pane room) {
+    try {
+      configureOpenComputerPane(room); // Load and configure the computer password pane
+    } catch (IOException e) {
+      System.err.println("Error loading computer password pane: " + e.getMessage());
+      e.printStackTrace(); // Print the stack trace for debugging
+    }
+  }
+
+  private void configureOpenComputerPane(Pane room) throws IOException {
+    openComputerLoader = new FXMLLoader(App.class.getResource("/fxml/computer-open.fxml"));
+    AnchorPane node = openComputerLoader.load();
+    openComputerController = openComputerLoader.getController();
+    openComputerController.setContext(context);
     room.getChildren().add(node); // Add the computer password pane to the room view
   }
 
@@ -620,5 +640,10 @@ public class RoomController {
   public ComputerPasswordController getComputerPasswordController() {
     computerPasswordController.setContext(context);
     return computerPasswordController;
+  }
+
+  public ComputerOpenController getOpenComputerController() {
+    openComputerController.setContext(context);
+    return openComputerController;
   }
 }

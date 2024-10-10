@@ -10,13 +10,11 @@ public class TimerManager {
   private int secondsRemaining = 300; // Track the number of seconds remaining
   private Timeline timeline;
   private boolean isTimeUp = false; // Flag to indicate if time has run out
-  private boolean isInGuessingState =
-      false; // Flag to indicate if the game is in the guessing state
-  private final GameStateContext context;
+  private GameStateContext context;
 
   /** Private constructor to prevent instantiation. */
   private TimerManager(GameStateContext context) {
-    this.context = context; // Shared context from the application
+    setContext(context); // Shared context from the application
     timeline =
         new Timeline(
             new KeyFrame(
@@ -44,7 +42,6 @@ public class TimerManager {
     stop();
     secondsRemaining = 60; // Set the timer to 1 minute (60 seconds)
     isTimeUp = false; // Reset the time-up flag
-    isInGuessingState = true;
   }
 
   // Start the timer
@@ -64,6 +61,10 @@ public class TimerManager {
     stop();
     secondsRemaining = 300; // Reset the timer to 5 minutes (300 seconds)
     isTimeUp = false; // Reset the time-up flag
+  }
+
+  public void setContext(GameStateContext context) {
+    this.context = context;
   }
 
   // Update the seconds counter every second

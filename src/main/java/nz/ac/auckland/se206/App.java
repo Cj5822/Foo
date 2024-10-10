@@ -246,9 +246,10 @@ public class App extends Application {
   public static void resetGame() throws IOException {
     context = new GameStateContext();
     context.setState(context.getGameStartedState());
-    openHomepage();
     TimerManager timerManager = TimerManager.getInstance(context);
+    timerManager.setContext(context);
     timerManager.reset();
+    openHomepage();
   }
 
   /**

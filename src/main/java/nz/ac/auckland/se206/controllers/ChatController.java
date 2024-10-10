@@ -11,7 +11,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import nz.ac.auckland.apiproxy.chat.openai.ChatCompletionRequest;
 import nz.ac.auckland.apiproxy.chat.openai.ChatCompletionResult;
@@ -32,6 +34,8 @@ public class ChatController {
   @FXML private Button btnSend;
   @FXML private AnchorPane chatPane;
   @FXML private ProgressIndicator progressIndicator;
+  @FXML private ImageView btnSendImage;
+  @FXML private ImageView btnExitChatImage;
 
   private ChatCompletionRequest chatCompletionRequest;
   private String profession;
@@ -239,6 +243,60 @@ public class ChatController {
   private void onGoBack(Event event) throws ApiProxyException, IOException {
     hideChatPane(); // Hide the chat box
     txtaChat.clear(); // Clear the chat area
+  }
+
+  @FXML
+  public void handleMouseEnter(MouseEvent event) {
+    // Check the source of the event to determine which button triggered it
+    if (event.getSource() instanceof ImageView) {
+      ImageView hoveredButton = (ImageView) event.getSource();
+
+      // Check the ID or other property of the button to perform specific actions
+      switch (hoveredButton.getId()) {
+        case "sendButtonImage":
+          btnSendImage.setVisible(true);
+          break;
+        case "btnSendImage":
+          btnSendImage.setVisible(true);
+          break;
+        case "exitChatImage":
+          btnExitChatImage.setVisible(true);
+          break;
+        case "btnExitChatImage":
+          btnExitChatImage.setVisible(true);
+          break;
+        default:
+          System.out.println("Unknown button hovered");
+          break;
+      }
+    }
+  }
+
+  @FXML
+  public void handleMouseExit(MouseEvent event) {
+    // Check the source of the event to determine which button triggered it
+    if (event.getSource() instanceof ImageView) {
+      ImageView hoveredButton = (ImageView) event.getSource();
+
+      // Check the ID or other property of the button to perform specific actions
+      switch (hoveredButton.getId()) {
+        case "sendButtonImage":
+          btnSendImage.setVisible(false);
+          break;
+        case "btnSendImage":
+          btnSendImage.setVisible(false);
+          break;
+        case "exitChatImage":
+          btnExitChatImage.setVisible(false);
+          break;
+        case "btnExitChatImage":
+          btnExitChatImage.setVisible(false);
+          break;
+        default:
+          System.out.println("Unknown button hovered");
+          break;
+      }
+    }
   }
 
   /** Hides the chat box. */

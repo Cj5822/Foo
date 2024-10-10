@@ -39,6 +39,9 @@ public class RoomController {
   @FXML private ImageView electricianNametag;
   @FXML private ImageView neighbourNametag;
   @FXML private ImageView btnGuessImage;
+  @FXML private ImageView btnMakeAGuess;
+  @FXML private ImageView btnReplayGameImage;
+  @FXML private ImageView btnExitGameImage;
 
   // Controllers
   private ChatController chatController;
@@ -472,6 +475,54 @@ public class RoomController {
       case "rectBedroom":
         lblRoomName.setText("Bedroom");
         return;
+    }
+  }
+
+  @FXML
+  public void handleMouseEnter(MouseEvent event) {
+    // Check the source of the event to determine which button triggered it
+    if (event.getSource() instanceof Button) {
+      Button hoveredButton = (Button) event.getSource();
+
+      // Check the ID or other property of the button to perform specific actions
+      switch (hoveredButton.getId()) {
+        case "btnGuess":
+          btnMakeAGuess.setVisible(true);
+          break;
+        case "replayGameButton":
+          btnReplayGameImage.setVisible(true);
+          break;
+        case "exitGameButton":
+          btnExitGameImage.setVisible(true);
+          break;
+        default:
+          System.out.println("Unknown button hovered");
+          break;
+      }
+    }
+  }
+
+  @FXML
+  public void handleMouseExit(MouseEvent event) {
+    // Check the source of the event to determine which button triggered it
+    if (event.getSource() instanceof Button) {
+      Button hoveredButton = (Button) event.getSource();
+
+      // Check the ID or other property of the button to perform specific actions
+      switch (hoveredButton.getId()) {
+        case "btnGuess":
+          btnMakeAGuess.setVisible(false);
+          break;
+        case "replayGameButton":
+          btnReplayGameImage.setVisible(false);
+          break;
+        case "exitGameButton":
+          btnExitGameImage.setVisible(false);
+          break;
+        default:
+          System.out.println("Unknown button hovered");
+          break;
+      }
     }
   }
 

@@ -20,12 +20,17 @@
             <Image url="@../images/styled-buttons/continue.png" />
          </image>
       </ImageView>
-      <Button fx:id="continueButton" layoutX="350.0" layoutY="515.0" mnemonicParsing="false" onAction="#handleContinue" opacity="0.0" prefHeight="49.0" prefWidth="101.0" text="Continue" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="44.0" layoutX="676.0" layoutY="29.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="103.0" />
       <Label fx:id="lblTimer" alignment="CENTER" layoutX="689.0" layoutY="29.0" text="00:00" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
+      <ImageView fx:id="btnContinueImage" fitHeight="49.0" fitWidth="101.0" layoutX="350.0" layoutY="515.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/styled-buttons/continue-hovered.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="continueButton" layoutX="350.0" layoutY="515.0" mnemonicParsing="false" onAction="#handleContinue" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="49.0" prefWidth="101.0" text="Continue" />
    </children>
 </Pane>

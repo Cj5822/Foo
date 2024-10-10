@@ -34,8 +34,18 @@
             <Image url="@../images/styled-buttons/exit-game.png" />
          </image>
       </ImageView>
-      <Button layoutX="330.0" layoutY="510.0" mnemonicParsing="false" onAction="#handleReplay" opacity="0.0" prefHeight="53.0" prefWidth="109.0" text="Replay" />
-      <Button layoutX="558.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleExit" opacity="0.0" prefHeight="51.0" prefWidth="103.0" text="Exit" />
+      <ImageView fx:id="btnReplayGameImage" fitHeight="53.0" fitWidth="115.0" layoutX="328.0" layoutY="509.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/styled-buttons/replay-game-hovered.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnExitGameImage" fitHeight="53.0" fitWidth="109.0" layoutX="555.0" layoutY="508.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/styled-buttons/exit-game-hovered.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="replayGameButton" layoutX="330.0" layoutY="510.0" mnemonicParsing="false" onAction="#handleReplay" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="53.0" prefWidth="109.0" text="Replay" />
+      <Button fx:id="exitGameButton" layoutX="558.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleExit" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="51.0" prefWidth="103.0" text="Exit" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="214.0" layoutY="20.0" prefHeight="88.0" prefWidth="396.0" text="GAME OVER!" textAlignment="CENTER" textFill="RED">
          <font>
             <Font name="System Bold" size="60.0" />

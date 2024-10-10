@@ -19,12 +19,22 @@
       <Rectangle fx:id="rectBathroom" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="16.0" layoutX="61.0" layoutY="57.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="WHITE" strokeType="INSIDE" width="16.0" />
       <Rectangle fx:id="rectPlumber" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="445.0" layoutX="310.0" layoutY="54.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="129.0" />
       <Rectangle fx:id="rectGarage" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="18.0" layoutX="37.0" layoutY="57.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="18.0" />
+      <ImageView fitHeight="44.0" fitWidth="89.0" layoutX="13.0" layoutY="128.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/styled-buttons/make-a-guess-disabled.png" />
+         </image>
+      </ImageView>
       <ImageView fx:id="btnGuessImage" fitHeight="44.0" fitWidth="89.0" layoutX="13.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/styled-buttons/make-a-guess-enabled.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnGuess" layoutX="13.0" layoutY="129.0" mnemonicParsing="false" onAction="#handleGuessClick" opacity="0.0" prefHeight="36.0" prefWidth="88.0" text="Make a Guess" visible="false" />
+      <ImageView fx:id="btnMakeAGuess" fitHeight="44.0" fitWidth="89.0" layoutX="13.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/styled-buttons/make-a-guess-hovered.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnGuess" layoutX="13.0" layoutY="129.0" mnemonicParsing="false" onAction="#handleGuessClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="36.0" prefWidth="88.0" text="Make a Guess" visible="false" />
       <Rectangle fx:id="rectRoom" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="18.0" layoutX="60.0" layoutY="33.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="18.0" />
       <ImageView fx:id="plumberGlow" fitHeight="636.0" fitWidth="267.0" layoutX="241.0" layoutY="-4.0" onMouseClicked="#handleImageClick" onMouseEntered="#handleImageEnter" onMouseExited="#handleImageExit" opacity="0.0">
          <image>

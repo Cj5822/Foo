@@ -80,37 +80,40 @@ public class TimerManager {
   // Handle what happens when the timer ends
   private void handleTimerEnd() throws IOException {
     // Check if the game is not in the guessing state
-    if (!isInGuessingState
-        && context.isPlumberInteracted()
-        && context.isElectricianInteracted()
-        && context.isNeighbourInteracted()) {
-      // Transition to guessing state and reset the timer
-      isInGuessingState = true;
-      resetToOneMinute();
-      start(); // Start the 1-minute timer for guessing state
-      context.setState(context.getGuessingState());
-      App.changeRoom(null, "room-guessing"); // Switch to the guessing room
-    } else if (!isInGuessingState) {
-      // Game over if the timer reaches 0 again in guessing state
-      // Change room to gameover room
-      isTimeUp = true;
-      context.setState(context.getGameOverState());
-      App.changeRoom(null, "gameover-requirements-not-met");
-    } else if (isInGuessingState) {
-      if (context != null) {
+    if (context != null) {
+      if (context.isGameStarted()) {
+        if (context.isPlumberInteracted()
+            && context.isElectricianInteracted()
+            && context.isNeighbourInteracted()) {
+          // Transition to guessing state and reset the timer
+          context.setState(context.getGuessingState());
+          resetToOneMinute();
+          start(); // Start the 1-minute timer for guessing state
+          App.changeRoom(null, "room-guessing"); // Switch to the guessing room
+        } else {
+          // Game over if the timer reaches 0 again in guessing state
+          // Change room to gameover room
+          isTimeUp = true;
+          stop();
+          context.setState(context.getGameOverState());
+          App.changeRoom(null, "gameover-requirements-not-met");
+        }
+      } else if (context.isGuessingState()) {
         if (context.getSelectedSuspect() == null) {
+          stop();
           App.changeRoom(null, "gameover-requirements-not-met");
         } else if (context.getExplanation() == null) {
+          stop();
           context.setExplanation("");
           App.openGameOver();
-        } else {
+        } else if (context.getSelectedSuspect() != null) {
+          stop();
           context.setExplanation(context.getExplanation());
           context.setSelectedSuspect(context.getSelectedSuspect());
           App.openGameOver();
         }
       }
     }
-    // Check if timer runs out in backstory???
   }
 
   // Get the current time in seconds formatted as MM:SS

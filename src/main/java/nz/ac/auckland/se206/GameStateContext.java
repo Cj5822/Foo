@@ -118,6 +118,18 @@ public class GameStateContext {
     return guessingState;
   }
 
+  public boolean isGameStarted() {
+    return gameState instanceof GameStarted;
+  }
+
+  public boolean isGuessingState() {
+    return gameState instanceof Guessing;
+  }
+
+  public boolean isGameOver() {
+    return gameState instanceof GameOver;
+  }
+
   /**
    * Gets the game over state.
    *

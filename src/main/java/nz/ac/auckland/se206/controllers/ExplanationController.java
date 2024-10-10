@@ -97,7 +97,6 @@ public class ExplanationController {
     // Update the context with the current accumulated input
     String explanation = accumulatedInput.toString();
     context.setExplanation(explanation);
-    System.out.println(explanation);
   }
 
   @FXML

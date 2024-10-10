@@ -69,6 +69,14 @@ public class ComputerPasswordController {
   }
 
   @FXML
+  private void handlePasswordTextFieldKeyPressed(KeyEvent event) {
+    if (event.getCode() == KeyCode.ENTER) {
+      // Call the submit method when Enter is pressed
+      handlePasswordSubmit();
+    }
+  }
+
+  @FXML
   private void handleRectangleClick(MouseEvent event) throws IOException {
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleRectangleClick(event, clickedRectangle.getId());
@@ -86,8 +94,9 @@ public class ComputerPasswordController {
   @FXML
   private void handlePasswordSubmit() {
     String inputPassword = passwordInput.getText(); // Get the input password
+    String inputPassword2 = passwordTextField.getText();
 
-    if (inputPassword.equals(CORRECT_PASSWORD)) {
+    if (inputPassword.equals(CORRECT_PASSWORD) || inputPassword2.equals(CORRECT_PASSWORD)) {
       // Password is correct, perform the action (e.g., unlock the safe)
       System.out.println("Correct password. The safe is now unlocked.");
     } else {
@@ -97,6 +106,7 @@ public class ComputerPasswordController {
 
     // Clear the password field for the next attempt
     passwordInput.clear();
+    passwordTextField.clear();
 
     // Use Platform.runLater to ensure focus and caret positioning after UI updates
     Platform.runLater(
@@ -110,25 +120,30 @@ public class ComputerPasswordController {
   @FXML
   private void handleShowPassword() {
     if (isPasswordVisible) {
+      // When showing the password field
       passwordTextField.setVisible(false); // Hide the text field
       passwordInput.setVisible(true); // Show the password field
+      // Transfer text from the text field to password field
+      passwordInput.setText(passwordTextField.getText());
+      // Request focus and position caret at the end of the text
       Platform.runLater(
           () -> {
-            passwordInput.requestFocus(); // Request focus on the password input
-            passwordInput.positionCaret(
-                passwordInput.getText().length()); // Position the caret at the end
+            passwordInput.requestFocus(); // Focus on password input
+            passwordInput.positionCaret(passwordInput.getText().length()); // Move caret to end
           });
       isPasswordVisible = false; // Update visibility flag
     } else {
+      // When showing the text field
       passwordInput.setVisible(false); // Hide the password field
-      passwordTextField.setText(
-          passwordInput.getText()); // Set the text field with the current password
+      // Set the text field with the current password and show it
+      passwordTextField.setText(passwordInput.getText()); // Copy current password to text field
       passwordTextField.setVisible(true); // Show the text field
+      // Request focus and position caret at the end of the text
       Platform.runLater(
           () -> {
-            passwordTextField.requestFocus(); // Request focus on the text field
+            passwordTextField.requestFocus(); // Focus on text field
             passwordTextField.positionCaret(
-                passwordTextField.getText().length()); // Position the caret at the end
+                passwordTextField.getText().length()); // Move caret to end
           });
       isPasswordVisible = true; // Update visibility flag
     }

@@ -54,6 +54,7 @@ public class RoomController {
   private PaperController paperController;
   private ExplanationController explanationController;
   private GameOverController gameOverController;
+  private ComputerPasswordController computerPasswordController;
 
   // FXML Loaders
   private FXMLLoader chatPaneLoader;
@@ -66,6 +67,7 @@ public class RoomController {
   private FXMLLoader paperLoader;
   private FXMLLoader explanationLoader;
   private FXMLLoader gameOverLoader;
+  private FXMLLoader computerPasswordLoader;
 
   // Other Fields
   private GameStateContext context;
@@ -84,7 +86,8 @@ public class RoomController {
     initialiseScrunchedPaperPane(room); // Initialise scrunched paper pane
     initialisePaperPane(room); // Initialise paper pane
     initialiseExplanationPane(room); // Initialise explanation pane
-    initialiseGameOverPane(room); // Initialise game over pane
+    initialiseGameOverPane(room); // Initialise game over pane]
+    initialiseComputerPasswordPane(room); // Initialise computer password pane
   }
 
   public void setContext(GameStateContext context) {
@@ -290,6 +293,23 @@ public class RoomController {
       System.err.println("Error loading game over pane: " + e.getMessage());
       e.printStackTrace(); // Print the stack trace for debugging
     }
+  }
+
+  private void initialiseComputerPasswordPane(Pane room) {
+    try {
+      configureComputerPasswordPane(room); // Load and configure the computer password pane
+    } catch (IOException e) {
+      System.err.println("Error loading computer password pane: " + e.getMessage());
+      e.printStackTrace(); // Print the stack trace for debugging
+    }
+  }
+
+  private void configureComputerPasswordPane(Pane room) throws IOException {
+    computerPasswordLoader = new FXMLLoader(App.class.getResource("/fxml/computer-password.fxml"));
+    AnchorPane node = computerPasswordLoader.load();
+    computerPasswordController = computerPasswordLoader.getController();
+    computerPasswordController.setContext(context);
+    room.getChildren().add(node); // Add the computer password pane to the room view
   }
 
   /**
@@ -595,5 +615,10 @@ public class RoomController {
   public GameOverController getGameOverController() throws ApiProxyException {
     gameOverController.setContext(context);
     return gameOverController;
+  }
+
+  public ComputerPasswordController getComputerPasswordController() {
+    computerPasswordController.setContext(context);
+    return computerPasswordController;
   }
 }

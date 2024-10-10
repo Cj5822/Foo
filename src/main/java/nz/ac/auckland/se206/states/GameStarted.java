@@ -112,6 +112,12 @@ public class GameStarted implements GameState {
       case "rectExitPaper":
         App.closePaper(event);
         return;
+      case "rectComputer":
+        App.openComputer(event);
+        return;
+      case "rectExitComputer":
+        App.closeComputer(event);
+        return;
     }
   }
 

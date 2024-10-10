@@ -32,6 +32,6 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Slider fx:id="paperSlider" layoutX="726.0" layoutY="196.0" orientation="VERTICAL" prefHeight="181.0" prefWidth="14.0" />
+      <Slider fx:id="paperSlider" layoutX="718.0" layoutY="141.0" orientation="VERTICAL" prefHeight="294.0" prefWidth="33.0" stylesheets="@../css/paperSlider.css" />
    </children>
 </AnchorPane>

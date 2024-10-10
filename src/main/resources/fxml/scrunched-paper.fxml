@@ -20,6 +20,16 @@
          </image>
       </ImageView>
       <Rectangle fx:id="rectExitScrunchedPaper" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="14.0" layoutY="87.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="59.0" />
-      <Button fx:id="analyseButton" layoutX="361.0" layoutY="392.0" mnemonicParsing="false" onAction="#handleAnalyseHint" text="Analyse" />
+      <ImageView fitHeight="36.0" fitWidth="76.0" layoutX="353.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/styled-buttons/analyse.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnAnalyseImage" fitHeight="36.0" fitWidth="74.0" layoutX="353.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/styled-buttons/analyse-hovered.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="analyseButton" layoutX="353.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleAnalyseHint" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="36.0" prefWidth="74.0" text="Analyse" />
    </children>
 </AnchorPane>

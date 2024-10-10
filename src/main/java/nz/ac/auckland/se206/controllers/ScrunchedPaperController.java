@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
@@ -14,6 +15,7 @@ public class ScrunchedPaperController {
   private GameStateContext context;
 
   @FXML private AnchorPane scrunchedPaperPane;
+  @FXML private ImageView btnAnalyseImage;
 
   @FXML
   public void initialize() throws ApiProxyException {
@@ -43,5 +45,15 @@ public class ScrunchedPaperController {
 
   public void hideScrunchedPaperPane() {
     scrunchedPaperPane.setVisible(false);
+  }
+
+  @FXML
+  public void handleMouseEnter() {
+    btnAnalyseImage.setVisible(true);
+  }
+
+  @FXML
+  public void handleMouseExit() {
+    btnAnalyseImage.setVisible(false);
   }
 }

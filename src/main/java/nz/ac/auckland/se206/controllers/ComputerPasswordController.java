@@ -85,6 +85,11 @@ public class ComputerPasswordController {
   public void showComputerPasswordPane() {
     computerPasswordPane.setVisible(true);
     passwordInput.requestFocus();
+    // Position the caret at the end of the password input
+    Platform.runLater(
+        () -> {
+          passwordInput.positionCaret(passwordInput.getText().length());
+        });
   }
 
   public void hideComputerPasswordPane() {

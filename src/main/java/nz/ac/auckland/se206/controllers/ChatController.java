@@ -22,6 +22,7 @@ import nz.ac.auckland.apiproxy.chat.openai.ChatMessage;
 import nz.ac.auckland.apiproxy.chat.openai.Choice;
 import nz.ac.auckland.apiproxy.config.ApiProxyConfig;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
+import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.prompts.PromptEngineering;
 
 /**
@@ -43,6 +44,7 @@ public class ChatController {
 
   private ChatCompletionRequest chatCompletionRequest;
   private String profession;
+  private GameStateContext context;
 
   /**
    * Initializes the chat view.
@@ -55,6 +57,10 @@ public class ChatController {
     hideChatPane(); // Hide chat box initially
     hideChatLog();
     progressIndicator.setVisible(false); // Hide progress indicator initially
+  }
+
+  public void setContext(GameStateContext context) {
+    this.context = context;
   }
 
   /**
@@ -93,7 +99,15 @@ public class ChatController {
               .setTemperature(0.2)
               .setTopP(0.5)
               .setMaxTokens(100);
-      runGpt(new ChatMessage("system", getSystemPrompt()));
+
+      ChatMessage startMessage = new ChatMessage("system", getSystemPrompt());
+      String latestMessage = context.getLatestChatMessage(profession);
+      if (latestMessage == null) {
+        runGpt(startMessage);
+      } else {
+        chatCompletionRequest.addMessage(startMessage);
+        currentChat.setText(latestMessage);
+      }
     } catch (ApiProxyException e) {
       e.printStackTrace();
     }
@@ -137,9 +151,8 @@ public class ChatController {
    * @param formattedMessage the message to append
    */
   private void appendToChat(String formattedMessage) {
-    currentChat.clear();
-    txtaChat.appendText(formattedMessage); // Append text to chat area
-    currentChat.appendText(formattedMessage); // Append text to chat area
+    context.appendToChatHistory(profession, formattedMessage); // Save to suspect's chat log
+    currentChat.setText(formattedMessage);
   }
 
   /**
@@ -246,7 +259,6 @@ public class ChatController {
         sendMessage(); // Call the helper method to send the message on Enter key press
         break;
       default:
-        System.out.println("Other key pressed: " + event.getCode());
         break;
     }
   }
@@ -324,6 +336,7 @@ public class ChatController {
   }
 
   public void showChatLog() {
+    txtaChat.setText(context.getChatHistory(profession));
     txtaChat.setVisible(true); // Make chat log visible
   }
 

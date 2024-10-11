@@ -541,6 +541,7 @@ public class RoomController {
    * @return the chat controller associated with this view.
    */
   public ChatController getChatController() {
+    chatController.setContext(context);
     return chatController;
   }
 

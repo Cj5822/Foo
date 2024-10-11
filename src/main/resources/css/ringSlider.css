@@ -1,0 +1,66 @@
+/* Style for the whole slider */
+.slider {
+  -fx-pref-width: 300px;
+  /* Adjust width */
+  -fx-pref-height: 30px;
+  /* Adjust height */
+  -fx-padding: 10px;
+  /* Padding around the slider */
+}
+
+/* Style for the slider's track */
+.slider .track {
+  -fx-background-color: linear-gradient(to bottom, #cccccc, #888888);
+  -fx-background-radius: 4;
+  -fx-padding: 5px;
+}
+
+/* Style for the slider's thumb */
+.slider .thumb {
+  -fx-background-color: #3498db;
+  /* Thumb color */
+  -fx-background-insets: 0;
+  -fx-background-radius: 8;
+  /* Make it circular */
+  -fx-padding: 10px;
+  /* Increase size of the thumb */
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 5, 0.3, 0, 1);
+  /* Drop shadow effect */
+}
+
+/* Style for the slider's value label (if any) */
+.slider .value-label {
+  -fx-text-fill: #2c3e50;
+  /* Text color */
+  -fx-font-size: 14px;
+  /* Text size */
+  -fx-font-weight: bold;
+}
+
+/* Style for the slider when the thumb is being hovered */
+.slider .thumb:hover {
+  -fx-background-color: #1abc9c;
+}
+
+/* Style for the slider when the thumb is being pressed */
+.slider .thumb:pressed {
+  -fx-background-color: #16a085;
+}
+
+/* Style for the slider's ticks */
+.slider .tick-mark {
+  -fx-stroke: #2c3e50;
+  /* Color of tick marks */
+}
+
+/* Style for major tick marks */
+.slider .major-tick-mark {
+  -fx-stroke-width: 2;
+  /* Thickness of major tick marks */
+}
+
+/* Style for minor tick marks */
+.slider .minor-tick-mark {
+  -fx-stroke-width: 1;
+  /* Thickness of minor tick marks */
+}

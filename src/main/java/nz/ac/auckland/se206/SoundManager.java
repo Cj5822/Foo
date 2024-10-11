@@ -34,12 +34,9 @@ public class SoundManager {
   public static void stopSound() {
     synchronized (lock) { // Synchronize access to stop sound
       if (mediaPlayer != null) {
-        System.out.println("Stopping sound..."); // Debug statement
         mediaPlayer.stop(); // Stop playback
         mediaPlayer.dispose(); // Release resources
         mediaPlayer = null; // Reset reference
-      } else {
-        System.out.println("No sound to stop."); // Debug statement
       }
     }
   }

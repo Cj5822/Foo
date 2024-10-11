@@ -26,7 +26,7 @@
          <font>
             <Font size="19.0" />
          </font></Label>
-      <Slider fx:id="ringSlider" layoutX="256.0" layoutY="386.0" prefHeight="14.0" prefWidth="277.0" />
+      <Slider fx:id="ringSlider" layoutX="245.0" layoutY="372.0" prefHeight="14.0" prefWidth="288.0" stylesheets="@../css/ringSlider.css" />
       <ImageView fx:id="exitButtonHover" fitHeight="56.0" fitWidth="59.0" layoutX="15.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/exit-icon-hovered.png" />

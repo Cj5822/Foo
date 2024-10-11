@@ -60,6 +60,11 @@
             <Image url="@../images/wrench-glow.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="rectComputer" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="45.0" layoutX="97.0" layoutY="253.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="57.0" />
+      <ImageView fx:id="glowComputer" fitHeight="64.0" fitWidth="78.0" layoutX="88.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/computer-screen-glow.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="rectComputer" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="45.0" layoutX="97.0" layoutY="253.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleRectangleEnter" onMouseExited="#handleRectangleExit" opacity="0.0" stroke="TRANSPARENT" strokeType="INSIDE" width="57.0" />
    </children>
 </Pane>

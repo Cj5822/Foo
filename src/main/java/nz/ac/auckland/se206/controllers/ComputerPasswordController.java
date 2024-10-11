@@ -32,7 +32,7 @@ public class ComputerPasswordController {
 
   private TimerManager timerManager;
 
-  private static final String CORRECT_PASSWORD = "123";
+  private static final String CORRECT_PASSWORD = "apple";
   private boolean isPasswordVisible = false;
 
   @FXML

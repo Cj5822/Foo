@@ -13,7 +13,6 @@ import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.ComputerOpenController;
 import nz.ac.auckland.se206.controllers.ComputerPasswordController;
 import nz.ac.auckland.se206.controllers.ExplanationController;
-import nz.ac.auckland.se206.controllers.FlippedWrenchController;
 import nz.ac.auckland.se206.controllers.GameOverController;
 import nz.ac.auckland.se206.controllers.HomeController;
 import nz.ac.auckland.se206.controllers.OpenSafeController;
@@ -22,7 +21,6 @@ import nz.ac.auckland.se206.controllers.RoomController;
 import nz.ac.auckland.se206.controllers.SafeController;
 import nz.ac.auckland.se206.controllers.SafeRingController;
 import nz.ac.auckland.se206.controllers.ScrunchedPaperController;
-import nz.ac.auckland.se206.controllers.WrenchController;
 
 /**
  * This is the entry point of the JavaFX application. This class initializes and runs the JavaFX
@@ -39,9 +37,6 @@ public class App extends Application {
   private static SafeController safeController; // Controller for the safe view
   private static OpenSafeController openSafeController; // Controller for the open safe view
   private static SafeRingController safeRingController; // Controller for the safe ring view
-  private static WrenchController wrenchController; // Controller for the wrench view
-  private static FlippedWrenchController
-      flippedWrenchController; // Controller for the flipped wrench view
   private static ScrunchedPaperController
       scrunchedPaperController; // Controller for the scrunched paper view
   private static PaperController paperController; // Controller for the paper view
@@ -162,37 +157,6 @@ public class App extends Application {
 
   public static void closeOpenComputer(MouseEvent event) throws IOException {
     openComputerController.hideOpenComputerPane();
-  }
-
-  public static void openWrench(MouseEvent event) throws IOException {
-    roomController = loader.getController();
-    roomController.setContext(context);
-    wrenchController = roomController.getWrenchController();
-    wrenchController.showWrenchPane();
-  }
-
-  public static void closeWrench(MouseEvent event) throws IOException {
-    wrenchController.hideWrenchPane();
-  }
-
-  public static void flipWrench(MouseEvent event) {
-    roomController = loader.getController();
-    roomController.setContext(context);
-    wrenchController.hideWrenchPane();
-    flippedWrenchController = roomController.getFlippedWrenchController();
-    flippedWrenchController.showFlippedWrenchPane();
-  }
-
-  public static void flipWrenchAgain(MouseEvent event) {
-    roomController = loader.getController();
-    roomController.setContext(context);
-    flippedWrenchController.hideFlippedWrenchPane();
-    wrenchController = roomController.getWrenchController();
-    wrenchController.showWrenchPane();
-  }
-
-  public static void closeFlippedWrench(MouseEvent event) throws IOException {
-    flippedWrenchController.hideFlippedWrenchPane();
   }
 
   public static void openScrunchedPaper(MouseEvent event) throws IOException {

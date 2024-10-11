@@ -5,6 +5,11 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 
+/**
+ * Manages the countdown timer for the game. This class is responsible for tracking the remaining
+ * time, updating the time at regular intervals, and triggering events when the time runs out. It
+ * follows the Singleton design pattern to ensure only one instance of the timer exists.
+ */
 public class TimerManager {
   // Static Fields
   private static TimerManager instance; // Singleton instance

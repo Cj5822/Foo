@@ -17,6 +17,9 @@ import nz.ac.auckland.se206.SoundManager;
 import nz.ac.auckland.se206.TimerManager;
 
 public class ComputerOpenController {
+  // Static Fields
+  private static final String WRENCH = "src/main/resources/sounds/Wrenchdrop.mp3";
+
   // Instance Fields
   private GameStateContext context;
   private TimerManager timerManager;
@@ -32,9 +35,6 @@ public class ComputerOpenController {
   @FXML private ImageView exitButtonUnhovered;
   @FXML private ImageView playButtonHovered;
   @FXML private ImageView pauseButtonHovered;
-
-  // Static Fields
-  private static final String WRENCH = "src/main/resources/sounds/Wrenchdrop.mp3";
 
   @FXML
   public void initialize() throws ApiProxyException {

@@ -17,18 +17,18 @@ import nz.ac.auckland.se206.SoundManager;
 
 public class HomeController {
 
+  // Static Fields
+  private static final String KNOCKING = "src/main/resources/sounds/Knocking.mp3";
+
+  // Instance Fields
+  private GameStateContext context;
+
   // FXML-Injected Fields
   @FXML private Button startGameButton;
   @FXML private Button exitButton;
   @FXML private Label lblTimer;
   @FXML private ImageView btnStartGameImage;
   @FXML private ImageView btnExitGameImage;
-
-  // Instance Fields
-  private GameStateContext context;
-
-  // Static Fields
-  private static final String KNOCKING = "src/main/resources/sounds/Knocking.mp3";
 
   public void setContext(GameStateContext context) {
     this.context = context;

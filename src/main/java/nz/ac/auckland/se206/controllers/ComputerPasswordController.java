@@ -116,23 +116,23 @@ public class ComputerPasswordController {
   }
 
   @FXML
-private void handlePasswordSubmit() throws IOException {
+  private void handlePasswordSubmit() throws IOException {
     String inputPassword;
-    
+
     // Check the visible field
     if (passwordInput.isVisible()) {
-        inputPassword = passwordInput.getText();
+      inputPassword = passwordInput.getText();
     } else {
-        inputPassword = passwordTextField.getText();
+      inputPassword = passwordTextField.getText();
     }
 
     if (inputPassword.equals(CORRECT_PASSWORD)) {
-        // Password is correct, perform the action (e.g., unlock the safe)
-        lblMessage.setVisible(false);
-        App.openOpenedComputer(null);
+      // Password is correct, perform the action (e.g., unlock the safe)
+      lblMessage.setVisible(false);
+      App.openOpenedComputer(null);
     } else {
-        // Password is incorrect, provide feedback
-        lblMessage.setVisible(true);
+      // Password is incorrect, provide feedback
+      lblMessage.setVisible(true);
     }
 
     // Clear the password field for the next attempt
@@ -142,11 +142,11 @@ private void handlePasswordSubmit() throws IOException {
     // Use Platform.runLater to ensure focus and caret positioning after UI updates
     Platform.runLater(
         () -> {
-            passwordInput.requestFocus(); // Ensure the focus is on the password field
-            passwordInput.positionCaret(
-                passwordInput.getText().length()); // Position the caret at the end
+          passwordInput.requestFocus(); // Ensure the focus is on the password field
+          passwordInput.positionCaret(
+              passwordInput.getText().length()); // Position the caret at the end
         });
-}
+  }
 
   @FXML // Handle the exit button hover effect based on hovering the rectangle above it
   private void handleExitHoverEnter(MouseEvent event) {

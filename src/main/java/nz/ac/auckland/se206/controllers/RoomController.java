@@ -356,12 +356,12 @@ public class RoomController {
   }
 
   @FXML
-  public void handleReplay(ActionEvent event) throws IOException {
+  private void handleReplay(ActionEvent event) throws IOException {
     App.resetGame();
   }
 
   @FXML
-  public void handleExit(ActionEvent event) {
+  private void handleExit(ActionEvent event) {
     System.exit(0);
   }
 

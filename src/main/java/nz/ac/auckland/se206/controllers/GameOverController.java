@@ -203,13 +203,13 @@ public class GameOverController {
   }
 
   @FXML
-  public void handleReplay(ActionEvent event) throws IOException {
+  private void handleReplay(ActionEvent event) throws IOException {
     SoundManager.stopSound();
     App.resetGame();
   }
 
   @FXML
-  public void handleExit(ActionEvent event) {
+  private void handleExit(ActionEvent event) {
     SoundManager.stopSound();
     System.exit(0);
   }

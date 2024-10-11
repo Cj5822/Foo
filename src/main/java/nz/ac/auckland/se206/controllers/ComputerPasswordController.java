@@ -266,26 +266,48 @@ public class ComputerPasswordController {
     }
   }
 
-  /** Toggles the visibility of the password input field. */
+  /**
+   * Toggles the visibility of the password input field. When the user clicks to show or hide the
+   * password, this method is triggered. It switches between displaying a password input field as
+   * text or as a masked password. The button images are updated to reflect the current visibility
+   * state. @FXML annotation indicates that this method is triggered by a UI interaction in the FXML
+   * file.
+   */
   @FXML
   private void onShowPasswordClick() {
     if (isPasswordVisible) {
+      // Hide the "show password" button and enable the "disable password" button
       showPasswordDisable.setVisible(false);
       showPasswordEnableHover.setVisible(false);
       showPasswordDisableHover.setVisible(true);
+
+      // Hide the visible password text field and show the masked password input field
       passwordTextField.setVisible(false);
       passwordInput.setVisible(true);
-      passwordInput.setText(passwordTextField.getText());
+      passwordInput.setText(
+          passwordTextField.getText()); // Transfer text to the password input field
+
+      // Focus on the password input field after the update
       Platform.runLater(() -> passwordInput.requestFocus());
+
+      // Set the visibility flag to false, indicating that the password is hidden
       isPasswordVisible = false;
     } else {
+      // Show the "show password" button and hide the "disable password" button
       showPasswordDisable.setVisible(true);
       showPasswordEnableHover.setVisible(true);
       showPasswordDisableHover.setVisible(false);
+
+      // Hide the password input field and show the visible password text field
       passwordInput.setVisible(false);
-      passwordTextField.setText(passwordInput.getText());
+      passwordTextField.setText(
+          passwordInput.getText()); // Transfer text to the visible password field
       passwordTextField.setVisible(true);
+
+      // Focus on the visible password text field after the update
       Platform.runLater(() -> passwordTextField.requestFocus());
+
+      // Set the visibility flag to true, indicating that the password is visible
       isPasswordVisible = true;
     }
   }

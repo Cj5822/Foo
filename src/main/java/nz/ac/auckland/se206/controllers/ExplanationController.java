@@ -112,23 +112,29 @@ public class ExplanationController {
   }
 
   /**
-   * Handles mouse enter events to show hover effects on buttons.
+   * Handles the mouse enter event when the user hovers over a button. This method is triggered when
+   * the mouse enters a button's area. It checks the ID of the button and displays the associated
+   * image for that button. The method is used for handling button hover effects in the UI.
    *
-   * @param event the mouse event triggered by hovering
+   * @param event the mouse event triggered when the mouse enters the button area.
    */
-  @FXML
   public void handleMouseEnter(MouseEvent event) {
+    // Check if the source of the event is a Button
     if (event.getSource() instanceof Button) {
-      Button hoveredButton = (Button) event.getSource();
+      Button hoveredButton = (Button) event.getSource(); // Cast the source to a Button
 
+      // Switch case to handle different button IDs
       switch (hoveredButton.getId()) {
         case "sendButton":
+          // Show the submit button image when the mouse enters the send button
           btnSubmitImage.setVisible(true);
           break;
         case "exitChatButton":
+          // Show the exit chat button image when the mouse enters the exit button
           btnExitChatImage.setVisible(true);
           break;
         default:
+          // Log a message if an unknown button is hovered (for debugging purposes)
           System.out.println("Unknown button hovered");
           break;
       }
@@ -136,23 +142,30 @@ public class ExplanationController {
   }
 
   /**
-   * Handles mouse exit events to hide hover effects on buttons.
+   * Handles the mouse exit event when the user hovers out of a button. This method is triggered
+   * when the mouse leaves a button's area. It checks the ID of the button and hides the associated
+   * image for that button. The method is used for handling button hover effects in the UI.
    *
-   * @param event the mouse event triggered by exiting hover
+   * @param event the mouse event triggered when the mouse exits the button area.
    */
   @FXML
   public void handleMouseExit(MouseEvent event) {
+    // Check if the source of the event is a Button
     if (event.getSource() instanceof Button) {
-      Button hoveredButton = (Button) event.getSource();
+      Button hoveredButton = (Button) event.getSource(); // Cast the source to a Button
 
+      // Switch case to handle different button IDs
       switch (hoveredButton.getId()) {
         case "sendButton":
+          // Hide the submit button image when the mouse leaves the send button
           btnSubmitImage.setVisible(false);
           break;
         case "exitChatButton":
+          // Hide the exit chat button image when the mouse leaves the exit button
           btnExitChatImage.setVisible(false);
           break;
         default:
+          // Log a message if an unknown button is hovered (for debugging purposes)
           System.out.println("Unknown button hovered");
           break;
       }

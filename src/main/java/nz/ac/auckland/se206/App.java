@@ -103,23 +103,15 @@ public class App extends Application {
 
   public static void closeSafe(MouseEvent event) throws IOException {
     safeController.hideSafePane();
+    safeController.resetSafeCode();
   }
 
   public static void openOpenedSafe(Event event) throws IOException {
-    // Check if the event is either ActionEvent or MouseEvent
-    if (event instanceof ActionEvent || event instanceof MouseEvent) {
-
-      // Get the controller (roomController) of the current scene
-      roomController = loader.getController();
-      roomController.setContext(context);
-
-      // Hide the safe pane using safeController
-      safeController.hideSafePane();
-
-      // Get the openSafeController from roomController and show the open safe pane
-      openSafeController = roomController.getOpenSafeController();
-      openSafeController.showOpenSafePane();
-    }
+    safeController.resetSafeCode();
+    roomController = loader.getController();
+    roomController.setContext(context);
+    openSafeController = roomController.getOpenSafeController();
+    openSafeController.showOpenSafePane();
   }
 
   public static void closeOpenedSafe(MouseEvent event) throws IOException {

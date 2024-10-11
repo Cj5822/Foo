@@ -14,6 +14,7 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.SoundManager;
 import nz.ac.auckland.se206.TimerManager;
 
 public class SafeController {
@@ -41,6 +42,8 @@ public class SafeController {
   private StringBuilder enteredCode = new StringBuilder();
 
   private TimerManager timerManager;
+
+  private static final String SAFE = "src/main/resources/sounds/Safe.mp3";
 
   @FXML
   public void initialize() throws ApiProxyException {
@@ -98,7 +101,8 @@ public class SafeController {
   public void handleOpenPress(Event event) throws IOException {
     if (enteredCode.toString().equals(correctCode)) {
       safeDisplay.setText("Safe Opened!");
-      App.openOpenedSafe(event);
+      SoundManager.playSound(SAFE, false);
+      App.openOpenedSafe(null);
       return;
     } else {
       safeDisplay.setText("Wrong Code!");
@@ -129,6 +133,12 @@ public class SafeController {
 
   public void showSafePane() {
     safePane.setVisible(true);
+  }
+
+  // Method to reset the entered code
+  public void resetSafeCode() {
+    enteredCode.setLength(0);
+    safeDisplay.setText("");
   }
 
   /**

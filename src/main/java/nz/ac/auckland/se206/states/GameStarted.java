@@ -13,7 +13,6 @@ import nz.ac.auckland.se206.SoundManager;
 public class GameStarted implements GameState {
 
   private final GameStateContext context;
-  private static final String DOOR = "src/main/resources/sounds/Door.mp3";
   private static final String HEARTBEAT = "src/main/resources/sounds/Heartbeat.mp3";
 
   /**
@@ -48,28 +47,24 @@ public class GameStarted implements GameState {
     // Transition to chat view or provide an introduction based on the clicked rectangle
     switch (rectangleId) {
       case "rectLivingroom":
-        SoundManager.playSound(DOOR, false);
         context.setNeighbourInteracted(true);
         context.setCurrentRoom("living-room"); // Update the current room
         App.changeRoom(event, "living-room");
         App.openChat(event, "Neighbour");
         return;
       case "rectGarage":
-        SoundManager.playSound(DOOR, false);
         context.setElectricianInteracted(true);
         context.setCurrentRoom("garage"); // Update the current room
         App.changeRoom(event, "garage");
         App.openChat(event, "Electrician");
         return;
       case "rectBathroom":
-        SoundManager.playSound(DOOR, false);
         context.setPlumberInteracted(true);
         context.setCurrentRoom("bathroom"); // Update the current room
         App.changeRoom(event, "bathroom");
         App.openChat(event, "Plumber");
         return;
       case "rectRoom":
-        SoundManager.playSound(DOOR, false);
         context.setCurrentRoom("room"); // Update the current room
         App.changeRoom(event, "room");
         return;

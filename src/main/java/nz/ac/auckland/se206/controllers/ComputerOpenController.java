@@ -46,6 +46,13 @@ public class ComputerOpenController {
   @FXML private ImageView playButtonHovered;
   @FXML private ImageView pauseButtonHovered;
 
+  /**
+   * Initializes the controller, hiding the open computer pane initially and starting the timer. The
+   * TimerManager instance is obtained and the timer is started to update the UI with the current
+   * time.
+   *
+   * @throws ApiProxyException if there is an issue initializing the API proxy
+   */
   @FXML
   public void initialize() throws ApiProxyException {
     hideOpenComputerPane(); // Hide wrench pane initially

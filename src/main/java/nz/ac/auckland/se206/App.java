@@ -341,18 +341,29 @@ public class App extends Application {
   }
 
   /**
-   * Resets the game state and opens the homepage.
+   * Resets the game state and prepares for a new game session. This method reinitializes the game
+   * context, resets the timer, clears previously loaded scenes, and opens the homepage.
    *
-   * @throws IOException if the FXML file is not found
+   * @throws IOException if an error occurs during the reset process, such as issues with loading
+   *     FXML files.
    */
   public static void resetGame() throws IOException {
+    // Initialize a new game state context to start a fresh game
     context = new GameStateContext();
+
+    // Set the initial state of the game to "Game Started" state
     context.setState(context.getGameStartedState());
+
+    // Initialize the TimerManager to manage the game timer
     TimerManager timerManager = TimerManager.getInstance(context);
-    timerManager.setContext(context);
-    timerManager.reset();
+    timerManager.setContext(context); // Set the context for the timer manager
+    timerManager.reset(); // Reset the timer to its initial state
+
+    // Clear the previously loaded FXML files and stored scenes
     fxmlLoaders = new HashMap<>();
     storedScenes = new HashMap<>();
+
+    // Open the homepage to start a new game session
     openHomepage();
   }
 

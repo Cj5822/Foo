@@ -21,6 +21,13 @@ public class SafeRingController {
   @FXML private ImageView exitButtonUnhovered;
   @FXML private Slider ringSlider;
 
+  /**
+   * Initializes the safe ring pane and its components, including setting up the slider to control
+   * the visibility of the hint text based on the slider's value. Initially hides the safe ring pane
+   * and sets the hint text opacity to zero.
+   *
+   * @throws ApiProxyException if an error occurs during initialization with the API proxy.
+   */
   @FXML
   public void initialize() throws ApiProxyException {
     // Hide hint text initially and set its opacity to 0 (completely hidden)
@@ -49,10 +56,22 @@ public class SafeRingController {
             });
   }
 
+  /**
+   * Sets the game state context for the safe ring controller.
+   *
+   * @param context the current game state context.
+   */
   public void setContext(GameStateContext context) {
     this.context = context;
   }
 
+  /**
+   * Handles the click event on a rectangle shape. Exits the safe ring pane and passes the
+   * rectangle's ID to the context handler for further processing.
+   *
+   * @param event the mouse event triggered by clicking a rectangle.
+   * @throws IOException if an I/O error occurs during handling.
+   */
   @FXML
   private void handleRectangleClick(MouseEvent event) throws IOException {
     exitSafeRingPane();
@@ -60,14 +79,20 @@ public class SafeRingController {
     context.handleRectangleClick(event, clickedRectangle.getId());
   }
 
+  /** Displays the safe ring pane by making it visible. */
   public void showSafeRingPane() {
     safeRingPane.setVisible(true);
   }
 
+  /** Hides the safe ring pane by making it invisible. */
   public void hideSafeRingPane() {
     safeRingPane.setVisible(false);
   }
 
+  /**
+   * Resets the slider and the hint text to their initial states. This includes resetting the
+   * slider's value, making the slider visible, and hiding the hint text.
+   */
   public void resetSliderAndHint() {
     // Reset the slider to its initial value (usually 0)
     ringSlider.setValue(0);
@@ -82,7 +107,7 @@ public class SafeRingController {
     ringSlider.setDisable(false);
   }
 
-  // Call this method when exiting the SafeRingPane
+  /** Exits the safe ring pane by resetting the slider and hint, then hiding the pane. */
   public void exitSafeRingPane() {
     // Reset the slider and hint before exiting
     resetSliderAndHint();
@@ -91,13 +116,25 @@ public class SafeRingController {
     hideSafeRingPane();
   }
 
-  @FXML // Handle the exit button hover effect based on hovering the rectangle above it
+  /**
+   * Handles the mouse hover event when entering the area of the exit button. Displays the hover
+   * image for the exit button.
+   *
+   * @param event the mouse event triggered by entering the hover area.
+   */
+  @FXML
   private void handleExitHoverEnter(MouseEvent event) {
     exitButtonUnhovered.setVisible(false);
     exitButtonHover.setVisible(true);
   }
 
-  @FXML // Handle the exit button hover effect based on exiting the rectangle above it
+  /**
+   * Handles the mouse hover event when exiting the area of the exit button. Hides the hover image
+   * and displays the unhovered image for the exit button.
+   *
+   * @param event the mouse event triggered by exiting the hover area.
+   */
+  @FXML
   private void handleExitHoverExit(MouseEvent event) {
     exitButtonUnhovered.setVisible(true);
     exitButtonHover.setVisible(false);

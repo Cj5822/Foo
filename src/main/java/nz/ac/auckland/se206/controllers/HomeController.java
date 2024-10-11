@@ -34,6 +34,13 @@ public class HomeController {
     this.context = context;
   }
 
+  /**
+   * Handles the action when the "Start Game" button is clicked. Loads the backstory scene and sets
+   * up the game context.
+   *
+   * @param event the action event triggered by the start game button.
+   * @throws IOException if an I/O error occurs while loading the FXML.
+   */
   @FXML
   private void handleStartGame(ActionEvent event) throws IOException {
     // Get the button that triggered the event
@@ -59,6 +66,12 @@ public class HomeController {
     gameScene.setRoot(root);
   }
 
+  /**
+   * Handles the action when the "Exit" button is clicked. Closes the game window and exits the
+   * application.
+   *
+   * @param event the action event triggered by the exit button.
+   */
   @FXML
   private void handleExit(ActionEvent event) {
     Stage stage = (Stage) exitButton.getScene().getWindow();
@@ -66,6 +79,12 @@ public class HomeController {
     System.exit(0);
   }
 
+  /**
+   * Handles mouse hover events over buttons. Displays corresponding images when hovering over
+   * buttons.
+   *
+   * @param event the mouse event triggered by hovering over a button.
+   */
   @FXML
   public void handleMouseEnter(MouseEvent event) {
     // Check the source of the event to determine which button triggered it
@@ -87,6 +106,12 @@ public class HomeController {
     }
   }
 
+  /**
+   * Handles mouse exit events over buttons. Hides corresponding images when the mouse exits a
+   * button.
+   *
+   * @param event the mouse event triggered by exiting a button.
+   */
   @FXML
   public void handleMouseExit(MouseEvent event) {
     // Check the source of the event to determine which button triggered it

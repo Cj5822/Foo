@@ -273,6 +273,9 @@ public class ChatController {
         case "btnSendImage":
           btnSendImage.setVisible(true);
           break;
+        case "chatLogImage":
+          chatLogImage.setOpacity(1.0);
+          break;
         default:
           System.out.println("Unknown button hovered");
           break;
@@ -293,6 +296,9 @@ public class ChatController {
           break;
         case "btnSendImage":
           btnSendImage.setVisible(false);
+          break;
+        case "chatLogImage":
+          chatLogImage.setOpacity(0);
           break;
         default:
           System.out.println("Unknown button hovered");

@@ -31,6 +31,8 @@ public class ComputerPasswordController {
   @FXML private ImageView showPasswordDisable;
   @FXML private Button btnSend;
   @FXML private Label lblMessage;
+  @FXML private ImageView exitButtonHover;
+  @FXML private ImageView exitButtonUnhovered;
 
   private TimerManager timerManager;
 
@@ -134,6 +136,18 @@ public class ComputerPasswordController {
           passwordInput.positionCaret(
               passwordInput.getText().length()); // Position the caret at the end
         });
+  }
+
+  @FXML // Handle the exit button hover effect based on hovering the rectangle above it
+  private void handleExitHoverEnter(MouseEvent event) {
+    exitButtonUnhovered.setVisible(false);
+    exitButtonHover.setVisible(true);
+  }
+
+  @FXML // Handle the exit button hover effect based on exiting the rectangle above it
+  private void handleExitHoverExit(MouseEvent event) {
+    exitButtonUnhovered.setVisible(true);
+    exitButtonHover.setVisible(false);
   }
 
   @FXML

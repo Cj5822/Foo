@@ -39,6 +39,11 @@
             <Image url="@../images/chatlog.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="chatLogImage" fitHeight="46.0" fitWidth="48.0" layoutX="560.0" layoutY="550.0" onMouseClicked="#onChatLogClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/chatlog-hovered.png" />
+         </image>
+      </ImageView>
       <Label fx:id="roleLabel" layoutX="14.0" layoutY="507.0" prefHeight="30.0" prefWidth="210.0" textFill="WHITE">
          <font>
             <Font size="20.0" />

@@ -22,17 +22,21 @@ import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.SoundManager;
 
 public class GameOverController {
+  // Static fields
+  private static final String OUTRO = "src/main/resources/sounds/Outro.mp3";
+
+  // Instance fields
+  @SuppressWarnings("unused")
+  private GameStateContext context;
+
+  private ChatCompletionRequest chatCompletionRequest;
+
+  // FXML-Injected fields
   @FXML private TextArea explanationText;
   @FXML private Pane gameOverPane;
   @FXML private ProgressIndicator progressIndicator;
   @FXML private ImageView btnReplayGameImage;
   @FXML private ImageView btnExitGameImage;
-
-  @SuppressWarnings("unused")
-  private GameStateContext context;
-
-  private ChatCompletionRequest chatCompletionRequest;
-  private static final String OUTRO = "src/main/resources/sounds/Outro.mp3";
 
   @FXML
   public void initialize() throws ApiProxyException {

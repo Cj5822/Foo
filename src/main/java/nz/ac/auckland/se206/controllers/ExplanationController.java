@@ -160,25 +160,35 @@ public class ExplanationController {
   }
 
   /**
-   * Handles the go back action and hides the explanation pane.
+   * Handles the "go back" action triggered by the go back button. This method hides the explanation
+   * pane and can throw errors related to the API or I/O operations.
    *
-   * @param event the action event triggered by the go back button
+   * @param event the action event triggered by clicking the go back button
    * @throws ApiProxyException if an error occurs when interacting with the API proxy
-   * @throws IOException if an I/O error occurs
+   * @throws IOException if an I/O error occurs, such as a failure in data handling or file access
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    hideExplanationPane(); // Hide the explanation pane
+    hideExplanationPane(); // Hide the explanation pane to return to the previous screen or state
   }
 
-  /** Hides the explanation pane. */
+  /**
+   * Hides the explanation pane by setting its visibility to false. This is used to conceal the
+   * explanation area, typically when transitioning between game states or going back to a previous
+   * screen.
+   */
   public void hideExplanationPane() {
-    explanationPane.setVisible(false); // Make the explanation pane invisible
+    explanationPane.setVisible(false); // Set the explanation pane to be invisible
   }
 
-  /** Shows the explanation pane. */
+  /**
+   * Displays the explanation pane by setting its visibility to true. This is typically used when
+   * the user needs to input an explanation or during specific game states where the explanation
+   * section should be visible. Additionally, it sets focus to the input field to allow the user to
+   * start typing immediately.
+   */
   public void showExplanationPane() {
     explanationPane.setVisible(true); // Make the explanation pane visible
-    txtInput.requestFocus(); // Set focus on the input field
+    txtInput.requestFocus(); // Set focus on the input field for user interaction
   }
 }

@@ -11,6 +11,17 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.GameStateContext;
 
+/**
+ * Controller for managing the paper interaction within the game. This class is responsible for
+ * handling the paper pane's appearance, movement, rotation, and the interaction with clickable
+ * rectangles. It also manages the state of the paper's slider and the hint elements.
+ *
+ * <p>This class contains methods to initialize the paper's movement and rotation based on the
+ * slider value, handle user interaction with the paper (such as mouse hover and click events), and
+ * control the visibility of the paper pane.
+ *
+ * <p>It interacts with the game's context to manage state and communicate user actions.
+ */
 public class PaperController {
   private GameStateContext context;
 

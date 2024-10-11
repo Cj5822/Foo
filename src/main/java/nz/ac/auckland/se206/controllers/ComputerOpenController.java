@@ -16,6 +16,16 @@ import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.SoundManager;
 import nz.ac.auckland.se206.TimerManager;
 
+/**
+ * Controller class for managing the interactions in the "Open Computer" view of the game. This
+ * class handles the user interface elements related to the computer screen, such as controlling a
+ * timer, playing sound effects, and managing button visibility. It communicates with the game state
+ * context and controls various aspects of the game flow.
+ *
+ * <p>Key responsibilities include: - Starting and updating the countdown timer. - Managing media
+ * player controls (e.g., play/pause/stop for sound effects). - Handling button hover effects and
+ * mouse events. - Displaying or hiding the computer pane based on game events.
+ */
 public class ComputerOpenController {
   // Static Fields
   private static final String WRENCH = "src/main/resources/sounds/Wrenchdrop.mp3";

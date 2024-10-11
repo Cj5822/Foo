@@ -53,7 +53,7 @@ public class BackstoryController {
   }
 
   @FXML
-  public void handleContinue(ActionEvent event) throws IOException {
+  private void handleContinue(ActionEvent event) throws IOException {
     App.changeRoom(null, "room");
     SoundManager.playSound(DOOR, false);
   }

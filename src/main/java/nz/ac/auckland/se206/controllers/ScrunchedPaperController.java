@@ -45,7 +45,7 @@ public class ScrunchedPaperController {
   }
 
   @FXML
-  public void handleAnalyseHint(ActionEvent event) throws IOException {
+  private void handleAnalyseHint(ActionEvent event) throws IOException {
     App.openPaperHint(event);
   }
 

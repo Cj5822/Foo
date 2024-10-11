@@ -78,7 +78,7 @@ public class SafeController {
 
   // Handle button presses
   @FXML
-  public void handleButtonPress(ActionEvent event) {
+  private void handleButtonPress(ActionEvent event) {
     // Get the button text (which will be the digit)
     Button pressedButton = (Button) event.getSource();
     String digit = pressedButton.getText();
@@ -112,7 +112,7 @@ public class SafeController {
 
   // Handle opening the safe
   @FXML
-  public void handleOpenPress(Event event) throws IOException {
+  private void handleOpenPress(Event event) throws IOException {
     if (enteredCode.toString().equals(correctCode)) {
       safeDisplay.setText("Safe Opened!");
       SoundManager.playSound(SAFE, false);
@@ -127,7 +127,7 @@ public class SafeController {
 
   // Handle backspace button press
   @FXML
-  public void handleBackspacePress(Event event) {
+  private void handleBackspacePress(Event event) {
     if (enteredCode.length() > 0) {
       // Remove the last character
       enteredCode.deleteCharAt(enteredCode.length() - 1);

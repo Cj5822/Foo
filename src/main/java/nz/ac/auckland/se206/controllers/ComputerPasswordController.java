@@ -29,10 +29,12 @@ public class ComputerPasswordController {
   @FXML private TextField passwordTextField;
   @FXML private Button showPassword;
   @FXML private ImageView showPasswordDisable;
+  @FXML private Button btnSend;
+  @FXML private Label lblMessage;
 
   private TimerManager timerManager;
 
-  private static final String CORRECT_PASSWORD = "123";
+  private static final String CORRECT_PASSWORD = "apple";
   private boolean isPasswordVisible = false;
 
   @FXML
@@ -85,6 +87,11 @@ public class ComputerPasswordController {
     context.handleRectangleClick(event, clickedRectangle.getId());
   }
 
+  @FXML
+  private void handleSendButtonPress() throws IOException {
+    handlePasswordSubmit(); // Call the same method that handles password submission
+  }
+
   public void showComputerPasswordPane() {
     computerPasswordPane.setVisible(true);
     passwordInput.requestFocus();
@@ -96,6 +103,7 @@ public class ComputerPasswordController {
   }
 
   public void hideComputerPasswordPane() {
+    lblMessage.setVisible(false);
     computerPasswordPane.setVisible(false);
   }
 
@@ -107,10 +115,12 @@ public class ComputerPasswordController {
     if (inputPassword.equals(CORRECT_PASSWORD) || inputPassword2.equals(CORRECT_PASSWORD)) {
       // Password is correct, perform the action (e.g., unlock the safe)
       System.out.println("Correct password. The safe is now unlocked.");
+      lblMessage.setVisible(false);
       App.openOpenedComputer(null);
     } else {
       // Password is incorrect, provide feedback
       System.out.println("Incorrect password. Please try again.");
+      lblMessage.setVisible(true);
     }
 
     // Clear the password field for the next attempt

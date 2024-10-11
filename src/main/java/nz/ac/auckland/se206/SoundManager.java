@@ -43,4 +43,8 @@ public class SoundManager {
       }
     }
   }
+
+  public static MediaPlayer getMediaPlayer() {
+    return mediaPlayer;
+  }
 }

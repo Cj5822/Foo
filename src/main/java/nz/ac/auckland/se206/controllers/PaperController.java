@@ -4,6 +4,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
@@ -17,22 +18,37 @@ public class PaperController {
   @FXML private Slider paperSlider;
   @FXML private Label paperTitle;
   @FXML private Label paperHint;
+  @FXML private ImageView imgPaperTop;
 
   @FXML
   public void initialize() throws ApiProxyException {
-    // Initialize the slider to adjust opacity
-    paperSlider.setMin(0);
-    paperSlider.setMax(1);
+    // Initialize the slider to adjust opacity, position, and rotation
+    paperSlider.setMin(0); // Minimum value of slider
+    paperSlider.setMax(1); // Maximum value of slider
 
+    // Capture the initial positions of the paper
+    double initialX = imgPaperTop.getLayoutX(); // Initial X position
+    double initialY = imgPaperTop.getLayoutY(); // Initial Y position
+
+    // Bind the slider value to change the opacity, position, and rotation of paperTitle and
+    // paperHint
     paperSlider
         .valueProperty()
         .addListener(
             (obs, oldVal, newVal) -> {
-              // Set the opacity of the labels based on the slider value
-              paperTitle.setOpacity(newVal.doubleValue());
-              paperHint.setOpacity(newVal.doubleValue());
+
+              // Adjust the layout X and Y positions of imgPaperTop relative to its initial position
+              imgPaperTop.setLayoutX(initialX + newVal.doubleValue() * -300); // Moves horizontally
+              imgPaperTop.setLayoutY(initialY + newVal.doubleValue() * 50); // Moves vertically
+
+              // Rotate the imgPaperTop based on slider value
+              // For clockwise rotation, increase angle from 0 to 360 degrees as slider value
+              // changes from 0 to 1
+              imgPaperTop.setRotate(
+                  newVal.doubleValue() * -5); // Full rotation from 0 to 360 degrees
             });
-    hidePaperPane(); // Hide wrench pane initially
+
+    hidePaperPane(); // Hide paper pane initially
   }
 
   public void setContext(GameStateContext context) {

@@ -11,7 +11,12 @@
 <AnchorPane fx:id="paperPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.PaperController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="411.0" layoutY="81.0" opacity="0.85" stroke="BLACK" strokeType="INSIDE" width="795.0" />
-      <ImageView fitHeight="544.0" fitWidth="417.0" layoutX="190.0" layoutY="19.0" rotate="270.0">
+      <ImageView fx:id="imgPaperBottom" fitHeight="301.0" fitWidth="411.0" layoutX="193.0" layoutY="122.0">
+         <image>
+            <Image url="@../images/paper-folded.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgPaperTop" fitHeight="301.0" fitWidth="411.0" layoutX="178.0" layoutY="122.0">
          <image>
             <Image url="@../images/paper-folded.png" />
          </image>
@@ -22,16 +27,16 @@
          </image>
       </ImageView>
       <Rectangle fx:id="rectExitPaper" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="14.0" layoutY="87.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="59.0" />
-      <Label fx:id="paperHint" layoutX="240.0" layoutY="172.0" opacity="0.0" prefHeight="201.0" prefWidth="317.0" text="0001 1001 1001 0100">
+      <Label fx:id="paperHint" layoutX="240.0" layoutY="172.0" prefHeight="201.0" prefWidth="317.0" text="0001 1001 1001 0100" visible="false">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="paperTitle" layoutX="169.0" layoutY="181.0" opacity="0.0" prefHeight="21.0" prefWidth="111.0" text="Safe Password">
+      <Label fx:id="paperTitle" layoutX="224.0" layoutY="151.0" prefHeight="21.0" prefWidth="111.0" text="Safe Password" visible="false">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Slider fx:id="paperSlider" layoutX="718.0" layoutY="141.0" orientation="VERTICAL" prefHeight="294.0" prefWidth="33.0" stylesheets="@../css/paperSlider.css" />
+      <Slider fx:id="paperSlider" layoutX="682.0" layoutY="137.0" orientation="VERTICAL" prefHeight="181.0" prefWidth="14.0" stylesheets="@../css/paperSlider.css" />
    </children>
 </AnchorPane>

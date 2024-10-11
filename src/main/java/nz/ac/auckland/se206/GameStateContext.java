@@ -34,6 +34,7 @@ public class GameStateContext {
   private boolean isNeighbourInteracted = false;
   private String explanation;
   private String currentRoom;
+  private Map<String, StringBuilder> chatHistories;
 
   /** Constructs a new GameStateContext and initializes the game states and professions. */
   public GameStateContext() {
@@ -53,6 +54,12 @@ public class GameStateContext {
     } catch (IOException e) {
       e.printStackTrace();
     }
+
+    chatHistories = new HashMap<>();
+    // Initialize histories for all suspects (e.g., Plumber, Electrician, Neighbour)
+    chatHistories.put("Plumber", new StringBuilder());
+    chatHistories.put("Electrician", new StringBuilder());
+    chatHistories.put("Neighbour", new StringBuilder());
 
     @SuppressWarnings("unchecked")
     List<String> professions = (List<String>) obj.get("professions");
@@ -98,6 +105,14 @@ public class GameStateContext {
 
   public String getExplanation() {
     return explanation;
+  }
+
+  public void appendToChatHistory(String suspect, String message) {
+    chatHistories.put(suspect, chatHistories.get(suspect).append(message));
+  }
+
+  public String getChatHistory(String suspect) {
+    return chatHistories.get(suspect).toString();
   }
 
   /**

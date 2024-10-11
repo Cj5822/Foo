@@ -21,12 +21,17 @@
             <Image url="@../images/computer-open-playing.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="56.0" fitWidth="59.0" layoutX="14.0" layoutY="14.0">
+      <ImageView fx:id="exitButtonUnhovered" fitHeight="56.0" fitWidth="59.0" layoutX="14.0" layoutY="14.0">
          <image>
             <Image url="@../images/exit-icon.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="rectExitOpenComputer" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="15.0" layoutY="14.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="58.0" />
+      <ImageView fx:id="exitButtonHover" fitHeight="56.0" fitWidth="59.0" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/exit-icon-hovered.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="rectExitOpenComputer" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="15.0" layoutY="14.0" onMouseClicked="#handleRectangleClick" onMouseEntered="#handleExitHoverEnter" onMouseExited="#handleExitHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="58.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="44.0" layoutX="666.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="103.0" />
       <Label fx:id="lblTimer" alignment="CENTER" layoutX="679.0" layoutY="19.0" text="00:00" textFill="WHITE">
          <font>

@@ -478,7 +478,7 @@ public class RoomController {
       case "rectBathroom":
         lblRoomName.setText("Bathroom");
         return;
-      case "rectBedroom":
+      case "rectRoom":
         lblRoomName.setText("Bedroom");
         return;
       case "rectComputer":

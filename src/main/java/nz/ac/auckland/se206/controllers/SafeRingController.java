@@ -4,6 +4,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
@@ -16,6 +17,8 @@ public class SafeRingController {
   @FXML private AnchorPane safeRingPane;
   @FXML private Rectangle rectExitRing;
   @FXML private Label hintText;
+  @FXML private ImageView exitButtonHover;
+  @FXML private ImageView exitButtonUnhovered;
   @FXML private Slider ringSlider;
 
   @FXML
@@ -82,5 +85,17 @@ public class SafeRingController {
 
     // Hide the SafeRingPane
     hideSafeRingPane();
+  }
+
+  @FXML // Handle the exit button hover effect based on hovering the rectangle above it
+  private void handleExitHoverEnter(MouseEvent event) {
+    exitButtonUnhovered.setVisible(false);
+    exitButtonHover.setVisible(true);
+  }
+
+  @FXML // Handle the exit button hover effect based on exiting the rectangle above it
+  private void handleExitHoverExit(MouseEvent event) {
+    exitButtonUnhovered.setVisible(true);
+    exitButtonHover.setVisible(false);
   }
 }

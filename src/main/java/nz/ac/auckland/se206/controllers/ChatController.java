@@ -99,7 +99,15 @@ public class ChatController {
               .setTemperature(0.2)
               .setTopP(0.5)
               .setMaxTokens(100);
-      runGpt(new ChatMessage("system", getSystemPrompt()));
+
+      ChatMessage startMessage = new ChatMessage("system", getSystemPrompt());
+      String latestMessage = context.getLatestChatMessage(profession);
+      if (latestMessage == null) {
+        runGpt(startMessage);
+      } else {
+        chatCompletionRequest.addMessage(startMessage);
+        currentChat.setText(latestMessage);
+      }
     } catch (ApiProxyException e) {
       e.printStackTrace();
     }
@@ -251,7 +259,6 @@ public class ChatController {
         sendMessage(); // Call the helper method to send the message on Enter key press
         break;
       default:
-        System.out.println("Other key pressed: " + event.getCode());
         break;
     }
   }

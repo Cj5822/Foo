@@ -211,13 +211,24 @@ public class ChatController {
 
   // Helper method to handle message sending logic
   private void sendMessage() throws ApiProxyException, IOException {
+    // Retrieve the message input from the text field and trim any whitespace
     String message = txtInput.getText().trim();
+
+    // If the message is empty, do not proceed
     if (message.isEmpty()) {
-      return;
+      return; // Exit the method early if there is no message to send
     }
+
+    // Clear the input text field after retrieving the message
     txtInput.clear();
+
+    // Create a new ChatMessage object with the user's message
     ChatMessage msg = new ChatMessage("user", message);
+
+    // Append the user's message to the chat display
     appendChatMessage(msg);
+
+    // Call the method to process the message with GPT
     runGpt(msg);
   }
 

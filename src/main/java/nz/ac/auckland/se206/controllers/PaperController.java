@@ -24,30 +24,22 @@ public class PaperController {
 
   @FXML
   public void initialize() throws ApiProxyException {
-    // Initialize the slider to adjust opacity, position, and rotation
-    paperSlider.setMin(0); // Minimum value of slider
-    paperSlider.setMax(1); // Maximum value of slider
+    // Initialize the slider for opacity, position, and rotation
+    paperSlider.setMin(0); // Minimum value
+    paperSlider.setMax(1); // Maximum value
 
-    // Capture the initial positions of the paper
-    double initialX = imgPaperTop.getLayoutX(); // Initial X position
-    double initialY = imgPaperTop.getLayoutY(); // Initial Y position
+    // Capture initial positions of the paper
+    double initialX = imgPaperTop.getLayoutX();
+    double initialY = imgPaperTop.getLayoutY();
 
-    // Bind the slider value to change the opacity, position, and rotation of paperTitle and
-    // paperHint
+    // Bind slider value to adjust imgPaperTop's position and rotation
     paperSlider
         .valueProperty()
         .addListener(
             (obs, oldVal, newVal) -> {
-
-              // Adjust the layout X and Y positions of imgPaperTop relative to its initial position
-              imgPaperTop.setLayoutX(initialX + newVal.doubleValue() * -300); // Moves horizontally
-              imgPaperTop.setLayoutY(initialY + newVal.doubleValue() * 50); // Moves vertically
-
-              // Rotate the imgPaperTop based on slider value
-              // For clockwise rotation, increase angle from 0 to 360 degrees as slider value
-              // changes from 0 to 1
-              imgPaperTop.setRotate(
-                  newVal.doubleValue() * -5); // Full rotation from 0 to 360 degrees
+              imgPaperTop.setLayoutX(initialX + newVal.doubleValue() * -300); // Horizontal move
+              imgPaperTop.setLayoutY(initialY + newVal.doubleValue() * 50); // Vertical move
+              imgPaperTop.setRotate(newVal.doubleValue() * -5); // Rotate image
             });
 
     hidePaperPane(); // Hide paper pane initially

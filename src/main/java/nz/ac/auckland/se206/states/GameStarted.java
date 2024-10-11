@@ -145,25 +145,33 @@ public class GameStarted implements GameState {
    */
   @Override
   public void handleImageClick(MouseEvent event, String imageId) throws IOException {
+    // Handle the click event based on the image ID
     switch (imageId) {
       case "electricianGlow":
+        // Open chat for the Electrician when the corresponding image is clicked
         App.openChat(event, "Electrician");
-        return;
+        return; // Exit the method after handling the click
       case "neighbourGlow":
+        // Open chat for the Neighbour when the corresponding image is clicked
         App.openChat(event, "Neighbour");
-        return;
+        return; // Exit the method after handling the click
       case "plumberGlow":
+        // Open chat for the Plumber when the corresponding image is clicked
         App.openChat(event, "Plumber");
-        return;
+        return; // Exit the method after handling the click
       case "paperGlow":
+        // Open the scrunched paper view when the corresponding image is clicked
         App.openScrunchedPaper(event);
-        return;
+        return; // Exit the method after handling the click
       case "safeGlow":
+        // Open the safe when the corresponding image is clicked
         App.openSafe(event);
-        return;
+        return; // Exit the method after handling the click
       case "imageRingGlow":
+        // Open the safe ring view when the corresponding image is clicked
         App.openSafeRing(event);
-        return;
+        return; // Exit the method after handling the click
+        // No default case needed as all cases are covered
     }
   }
 }

@@ -183,11 +183,16 @@ public class App extends Application {
 
   public static void openGameOver() throws IOException {
     try {
+      // Retrieve the controller for the current room from the loader
       roomController = loader.getController();
+      // Set the context for the room controller, enabling it to manage game state
       roomController.setContext(context);
+      // Get the GameOverController from the roomController to handle game over logic
       gameOverController = roomController.getGameOverController();
+      // Show the game over pane, which likely contains the game over message and options
       gameOverController.showGameOverPane();
     } catch (Exception e) {
+      // Catch any exceptions that occur during the process and print an error message
       System.out.println("Error: " + e);
     }
   }

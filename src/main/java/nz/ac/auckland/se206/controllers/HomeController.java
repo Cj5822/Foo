@@ -33,13 +33,26 @@ public class HomeController {
 
   @FXML
   public void handleStartGame(ActionEvent event) throws IOException {
+    // Get the button that triggered the event
     Button button = (Button) event.getSource();
+
+    // Get the current scene from the button
     Scene gameScene = button.getScene();
+
+    // Load the backstory FXML file to prepare the next scene
     FXMLLoader backstoryLoader = new FXMLLoader(App.class.getResource("/fxml/backstory.fxml"));
+
+    // Play the knocking sound effect to indicate the game is starting
     SoundManager.playSound(KNOCKING, false);
+
+    // Load the backstory root node from the FXML
     Parent root = backstoryLoader.load();
+
+    // Get the controller for the backstory scene to set its context
     BackstoryController backstoryController = backstoryLoader.getController();
     backstoryController.setContext(context);
+
+    // Set the newly loaded backstory as the root of the current scene
     gameScene.setRoot(root);
   }
 

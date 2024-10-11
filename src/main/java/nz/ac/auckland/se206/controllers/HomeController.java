@@ -35,7 +35,7 @@ public class HomeController {
   }
 
   @FXML
-  private void handleStartGame(ActionEvent event) throws IOException {
+  private void handleStartGameButtonClick(ActionEvent event) throws IOException {
     // Get the button that triggered the event
     Button button = (Button) event.getSource();
 
@@ -60,7 +60,7 @@ public class HomeController {
   }
 
   @FXML
-  private void handleExit(ActionEvent event) {
+  private void handleExitButtonClick(ActionEvent event) {
     Stage stage = (Stage) exitButton.getScene().getWindow();
     stage.close();
     System.exit(0);

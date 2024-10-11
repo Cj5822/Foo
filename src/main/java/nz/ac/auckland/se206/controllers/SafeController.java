@@ -95,7 +95,7 @@ public class SafeController {
   }
 
   @FXML // Handle the exit button hover effect based on exiting the rectangle above it
-  private void handleExitHoverExit(MouseEvent event) {
+  private void handleExitButtonHoverExit(MouseEvent event) {
     exitButtonUnhovered.setVisible(true);
     exitButtonHover.setVisible(false);
   }

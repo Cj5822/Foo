@@ -96,7 +96,7 @@ public class ComputerPasswordController {
   }
 
   @FXML
-  private void handleSendButtonPress() throws IOException {
+  private void handleSendButtonClick() throws IOException {
     handlePasswordSubmit(); // Call the same method that handles password submission
   }
 
@@ -189,7 +189,7 @@ public class ComputerPasswordController {
   }
 
   @FXML
-  private void handleShowPassword() {
+  private void handleShowPasswordClick() {
     if (isPasswordVisible) {
       // make image visible
       showPasswordDisable.setVisible(false);

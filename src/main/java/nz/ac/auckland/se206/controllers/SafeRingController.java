@@ -44,6 +44,7 @@ public class SafeRingController {
               // If the slider is fully slided to the maximum, hide the slider
               if (newValue.doubleValue() == ringSlider.getMax()) {
                 ringSlider.setVisible(false); // Hide the slider when fully pulled
+                ringSlider.setDisable(true);
               }
             });
   }
@@ -76,6 +77,9 @@ public class SafeRingController {
 
     // Reset the opacity of the hint text to fully hidden
     hintText.setOpacity(0);
+
+    // Enable the slider
+    ringSlider.setDisable(false);
   }
 
   // Call this method when exiting the SafeRingPane

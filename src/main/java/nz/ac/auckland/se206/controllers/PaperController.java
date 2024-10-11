@@ -59,6 +59,7 @@ public class PaperController {
 
   @FXML
   private void handleRectangleClick(MouseEvent event) throws IOException {
+    exitPaperPane();
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleRectangleClick(event, clickedRectangle.getId());
   }
@@ -81,5 +82,26 @@ public class PaperController {
 
   public void hidePaperPane() {
     paperPane.setVisible(false);
+  }
+
+  public void resetSliderAndHint() {
+    // Reset the slider to its initial value (usually 0)
+    paperSlider.setValue(0);
+
+    // Make the slider visible again
+    paperSlider.setVisible(true);
+
+    // Reset the opacity of the hint text to fully hidden
+    paperTitle.setOpacity(0);
+
+    paperHint.setOpacity(0);
+  }
+
+  public void exitPaperPane() {
+    // Reset the slider and hint before exiting
+    resetSliderAndHint();
+
+    // Hide the SafeRingPane
+    hidePaperPane();
   }
 }

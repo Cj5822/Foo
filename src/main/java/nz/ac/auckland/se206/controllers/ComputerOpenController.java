@@ -43,45 +43,57 @@ public class ComputerOpenController {
     startTimer();
   }
 
+  /**
+   * Sets the context for the controller.
+   *
+   * @param context the game state context
+   */
   public void setContext(GameStateContext context) {
     this.context = context;
   }
 
-  /** Starts the timer and continuously updates the timer label. */
+  /** Starts the timer and continuously updates the timer label on each frame. */
   private void startTimer() {
-    // Initiate the timerManager to start counting time
+    // Start the timer using the TimerManager instance
     timerManager.start();
 
-    // Create an AnimationTimer to update the UI at each frame
+    // Create an AnimationTimer to update the UI each frame
     AnimationTimer timerUpdater =
         new AnimationTimer() {
           @Override
           public void handle(long now) {
-            // Update the timer label with the formatted time from timerManager
+            // Update the timer label with the formatted time from TimerManager
             lblTimer.setText(timerManager.getTimeFormatted());
           }
         };
 
-    // Start the timer updater to begin the continuous updates
+    // Start the timer updater to begin continuous updates
     timerUpdater.start();
   }
 
+  /**
+   * Handles the click event on a rectangle (typically for navigation).
+   *
+   * @param event the mouse event triggered by clicking a rectangle
+   * @throws IOException if there is an I/O error
+   */
   @FXML
   private void handleRectangleClick(MouseEvent event) throws IOException {
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleRectangleClick(event, clickedRectangle.getId());
   }
 
-  /** Plays the wrench sound and manages its playback state. */
+  /** Plays the wrench sound and manages its playback state (play, pause, stop). */
   @FXML
   private void handlePlayWrenchSound() {
     computerPauseButton.setVisible(true);
     playButtonHovered.setVisible(false);
     pauseButtonHovered.setVisible(false);
+
     if (mediaPlayer != null) {
-      // Toggle play/pause or restart
+      // Toggle between play, pause, and restart based on media player state
       if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-        mediaPlayer.pause(); // Pause if playing
+        mediaPlayer.pause(); // Pause if currently playing
         computerPauseButton.setVisible(false);
         playButtonHovered.setVisible(true);
       } else if (mediaPlayer.getStatus() == MediaPlayer.Status.PAUSED) {
@@ -89,8 +101,8 @@ public class ComputerOpenController {
         computerPauseButton.setVisible(true);
         pauseButtonHovered.setVisible(true);
       } else if (mediaPlayer.getStatus() == MediaPlayer.Status.STOPPED) {
-        mediaPlayer.seek(Duration.ZERO); // Reset to start
-        mediaPlayer.play(); // Play from the start
+        mediaPlayer.seek(Duration.ZERO); // Restart from the beginning
+        mediaPlayer.play(); // Play the sound from the start
       }
     } else {
       // Initialize and play sound for the first time
@@ -100,12 +112,13 @@ public class ComputerOpenController {
     }
   }
 
+  /** Initializes the media player, binds the progress bar, and handles user interactions. */
   private void initializeMediaPlayer() {
     // Play sound using SoundManager
     SoundManager.playSound(WRENCH, false);
     mediaPlayer = SoundManager.getMediaPlayer();
 
-    // Bind progress bar to the media player's total duration
+    // Bind progress bar to media player's total duration
     mediaPlayer.setOnReady(
         () -> {
           Duration totalDuration = mediaPlayer.getTotalDuration();
@@ -132,7 +145,7 @@ public class ComputerOpenController {
               }
             });
 
-    // Handle clicks on the progress bar
+    // Handle mouse clicks on the progress bar
     soundProgressBar.setOnMousePressed(
         event -> {
           double mouseX = event.getX();
@@ -142,49 +155,64 @@ public class ComputerOpenController {
           soundProgressBar.setValue(newDuration.toSeconds());
         });
 
-    // Set the end of media listener
+    // Set the listener for when the media reaches the end
     mediaPlayer.setOnEndOfMedia(
         () -> {
-          // Stop playing when it reaches the end
-          mediaPlayer.stop();
-          // Reset progress bar
-          soundProgressBar.setValue(0);
-          // Change image to computerPauseButton when reset
-          computerPauseButton.setVisible(false);
-          playButtonHovered.setVisible(false); // Make sure play button is hidden after completion
-          pauseButtonHovered.setVisible(false); // Hide the pause button when media stops
+          mediaPlayer.stop(); // Stop playback
+          soundProgressBar.setValue(0); // Reset progress bar
+          computerPauseButton.setVisible(false); // Hide pause button
+          playButtonHovered.setVisible(false); // Hide play button
+          pauseButtonHovered.setVisible(false); // Hide pause button after completion
         });
   }
 
+  /** Displays the computer pane and initializes the media controls. */
   public void showOpenComputerPane() {
-    computerPauseButton.setVisible(false); // Change to computerPauseButton when showing the pane
+    computerPauseButton.setVisible(false); // Set initial visibility of buttons
     openComputerPane.setVisible(true);
   }
 
+  /** Hides the computer pane and stops the media playback. */
   public void hideOpenComputerPane() {
     if (mediaPlayer != null) {
       mediaPlayer.stop();
-      mediaPlayer.seek(Duration.ZERO); // Seek back to the start
+      mediaPlayer.seek(Duration.ZERO); // Reset to the start of the audio
     }
-    computerPauseButton.setVisible(false); // Change to computerPauseButton when hiding the pane
+    computerPauseButton.setVisible(false); // Reset pause button visibility
     openComputerPane.setVisible(false);
   }
 
-  @FXML // Handle the exit button hover effect based on hovering the rectangle above it
+  /**
+   * Handles mouse hover effect for the exit button (entering).
+   *
+   * @param event the mouse event triggered by hovering the exit button
+   */
+  @FXML
   private void handleExitHoverEnter(MouseEvent event) {
     exitButtonUnhovered.setVisible(false);
     exitButtonHover.setVisible(true);
   }
 
-  @FXML // Handle the exit button hover effect based on exiting the rectangle above it
+  /**
+   * Handles mouse hover effect for the exit button (exiting).
+   *
+   * @param event the mouse event triggered by exiting the exit button
+   */
+  @FXML
   private void handleExitHoverExit(MouseEvent event) {
     exitButtonUnhovered.setVisible(true);
     exitButtonHover.setVisible(false);
   }
 
-  @FXML // Handle the exit button hover effect based on hovering the rectangle above it
+  /**
+   * Handles mouse hover effect for the play button (entering).
+   *
+   * @param event the mouse event triggered by hovering the play button
+   */
+  @FXML
   private void handlePlayEnter(MouseEvent event) {
     if (mediaPlayer != null) {
+      // Adjust play/pause button visibility based on media player status
       if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
         pauseButtonHovered.setVisible(true);
       } else if (mediaPlayer.getStatus() == MediaPlayer.Status.PAUSED) {
@@ -199,9 +227,15 @@ public class ComputerOpenController {
     }
   }
 
-  @FXML // Handle the exit button hover effect based on exiting the rectangle above it
+  /**
+   * Handles mouse hover effect for the play button (exiting).
+   *
+   * @param event the mouse event triggered by exiting the play button
+   */
+  @FXML
   private void handlePlayExit(MouseEvent event) {
     if (mediaPlayer != null) {
+      // Hide the correct button based on the current media player status
       if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
         pauseButtonHovered.setVisible(false);
       } else if (mediaPlayer.getStatus() == MediaPlayer.Status.PAUSED) {
@@ -211,7 +245,7 @@ public class ComputerOpenController {
         pauseButtonHovered.setVisible(false);
       }
     } else {
-      // Initialize and play sound for the first time
+      // Hide the buttons when no media player is active
       playButtonHovered.setVisible(false);
     }
   }

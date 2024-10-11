@@ -48,8 +48,6 @@ public class RoomController {
   private SafeController safeController;
   private OpenSafeController openSafeController;
   private SafeRingController safeRingController;
-  private WrenchController wrenchController;
-  private FlippedWrenchController flippedWrenchController;
   private ScrunchedPaperController scrunchedPaperController;
   private PaperController paperController;
   private ExplanationController explanationController;
@@ -62,8 +60,6 @@ public class RoomController {
   private FXMLLoader safePaneLoader;
   private FXMLLoader openSafePaneLoader;
   private FXMLLoader safeRingPaneLoader;
-  private FXMLLoader wrenchPaneLoader;
-  private FXMLLoader flippedWrenchLoader;
   private FXMLLoader scrunchedPaperLoader;
   private FXMLLoader paperLoader;
   private FXMLLoader explanationLoader;
@@ -83,8 +79,6 @@ public class RoomController {
     initialiseSafePane(room); // Initialise safe pane
     initialiseOpenSafePane(room); // Initialise open safe pane
     initialiseSafeRingPane(room); // Initialise safe ring pane
-    initialiseWrenchPane(room); // Initialise wrench pane
-    initialiseFlippedWrenchPane(room); // Initialise flipped wrench pane
     initialiseScrunchedPaperPane(room); // Initialise scrunched paper pane
     initialisePaperPane(room); // Initialise paper pane
     initialiseExplanationPane(room); // Initialise explanation pane
@@ -188,40 +182,6 @@ public class RoomController {
     AnchorPane node = safeRingPaneLoader.load();
     safeRingController = safeRingPaneLoader.getController();
     safeRingController.setContext(context);
-    room.getChildren().add(node); // Add the wrench pane to the room view
-  }
-
-  private void initialiseWrenchPane(Pane room) {
-    try {
-      configureWrenchPane(room); // Load and configure the wrench pane
-    } catch (IOException e) {
-      System.err.println("Error loading wrench pane: " + e.getMessage());
-      e.printStackTrace(); // Print the stack trace for debugging
-    }
-  }
-
-  private void configureWrenchPane(Pane room) throws IOException {
-    wrenchPaneLoader = new FXMLLoader(App.class.getResource("/fxml/wrench.fxml"));
-    AnchorPane node = wrenchPaneLoader.load();
-    wrenchController = wrenchPaneLoader.getController();
-    wrenchController.setContext(context);
-    room.getChildren().add(node); // Add the wrench pane to the room view
-  }
-
-  private void initialiseFlippedWrenchPane(Pane room) {
-    try {
-      configureFlippedWrenchPane(room); // Load and configure the flipped wrench pane
-    } catch (IOException e) {
-      System.err.println("Error loading flipped wrench pane: " + e.getMessage());
-      e.printStackTrace(); // Print the stack trace for debugging
-    }
-  }
-
-  private void configureFlippedWrenchPane(Pane room) throws IOException {
-    flippedWrenchLoader = new FXMLLoader(App.class.getResource("/fxml/flipped-wrench.fxml"));
-    AnchorPane node = flippedWrenchLoader.load();
-    flippedWrenchController = flippedWrenchLoader.getController();
-    flippedWrenchController.setContext(context);
     room.getChildren().add(node); // Add the wrench pane to the room view
   }
 
@@ -589,16 +549,6 @@ public class RoomController {
   public SafeRingController getSafeRingController() {
     safeRingController.setContext(context);
     return safeRingController;
-  }
-
-  public WrenchController getWrenchController() {
-    wrenchController.setContext(context);
-    return wrenchController;
-  }
-
-  public FlippedWrenchController getFlippedWrenchController() {
-    flippedWrenchController.setContext(context);
-    return flippedWrenchController;
   }
 
   public ScrunchedPaperController getScrunchedPaperController() {

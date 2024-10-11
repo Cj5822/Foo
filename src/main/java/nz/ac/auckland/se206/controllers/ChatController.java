@@ -126,9 +126,9 @@ public class ChatController {
     String role = msg.getRole();
     String content = msg.getContent();
     if (role.equals("user")) {
-      return "Me: " + content + "\n\n"; // User's message
+      return "Me:\n" + content + "\n\n"; // User's message
     }
-    return profession + ": " + msg.getContent() + "\n\n"; // Format: "role: content"
+    return profession + ":\n" + msg.getContent() + "\n\n"; // Format: "role: content"
   }
 
   /**

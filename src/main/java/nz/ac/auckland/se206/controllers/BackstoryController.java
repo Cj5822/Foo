@@ -14,13 +14,16 @@ import nz.ac.auckland.se206.TimerManager;
 
 public class BackstoryController {
 
+  // FXML-Injected Fields
   @FXML private Button continueButton;
   @FXML private Label lblTimer;
   @FXML private ImageView btnContinueImage;
 
+  // Instance Fields
   private TimerManager timerManager;
   private GameStateContext context;
 
+  // Constants
   private static final String DOOR = "src/main/resources/sounds/Door.mp3";
 
   public void initialize() {

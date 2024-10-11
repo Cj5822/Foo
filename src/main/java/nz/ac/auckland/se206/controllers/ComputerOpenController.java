@@ -17,8 +17,12 @@ import nz.ac.auckland.se206.SoundManager;
 import nz.ac.auckland.se206.TimerManager;
 
 public class ComputerOpenController {
+  // Instance Fields
   private GameStateContext context;
+  private TimerManager timerManager;
+  private MediaPlayer mediaPlayer;
 
+  // FXML-Injected Fields
   @FXML private AnchorPane openComputerPane;
   @FXML private Rectangle rectExitOpenComputer;
   @FXML private Label lblTimer;
@@ -29,8 +33,7 @@ public class ComputerOpenController {
   @FXML private ImageView playButtonHovered;
   @FXML private ImageView pauseButtonHovered;
 
-  private TimerManager timerManager;
-  private MediaPlayer mediaPlayer;
+  // Static Fields
   private static final String WRENCH = "src/main/resources/sounds/Wrenchdrop.mp3";
 
   @FXML

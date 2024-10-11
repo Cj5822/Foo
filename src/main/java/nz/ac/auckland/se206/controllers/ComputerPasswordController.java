@@ -20,8 +20,15 @@ import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.TimerManager;
 
 public class ComputerPasswordController {
-  private GameStateContext context;
+  // Static fields
+  private static final String CORRECT_PASSWORD = "apple";
 
+  // Instance fields
+  private GameStateContext context;
+  private TimerManager timerManager;
+  private boolean isPasswordVisible = false;
+
+  // FXML-injected fields
   @FXML private AnchorPane computerPasswordPane;
   @FXML private Rectangle rectExitOpenSafe;
   @FXML private Label lblTimer;
@@ -37,11 +44,6 @@ public class ComputerPasswordController {
   @FXML private ImageView loginButtonHover;
   @FXML private ImageView showPasswordEnableHover;
   @FXML private ImageView showPasswordDisableHover;
-
-  private TimerManager timerManager;
-
-  private static final String CORRECT_PASSWORD = "apple";
-  private boolean isPasswordVisible = false;
 
   @FXML
   public void initialize() throws ApiProxyException {

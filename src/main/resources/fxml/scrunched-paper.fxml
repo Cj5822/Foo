@@ -35,6 +35,6 @@
             <Image url="@../images/styled-buttons/analyse-hovered.png" />
          </image>
       </ImageView>
-      <Button fx:id="analyseButton" layoutX="353.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleAnalyseHint" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="36.0" prefWidth="74.0" text="Analyse" />
+      <Button fx:id="analyseButton" layoutX="353.0" layoutY="389.0" mnemonicParsing="false" onAction="#onAnalyseHint" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="36.0" prefWidth="74.0" text="Analyse" />
    </children>
 </AnchorPane>

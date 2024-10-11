@@ -135,7 +135,7 @@ public class ComputerPasswordController {
    * submission.
    */
   @FXML
-  private void handleSendButtonClick() throws IOException {
+  private void onSendButtonClick() throws IOException {
     handlePasswordSubmit(); // Call the same method that handles password submission
   }
 
@@ -274,8 +274,7 @@ public class ComputerPasswordController {
    * file.
    */
   @FXML
-  private void handleShowPasswordClick() {
-    // Check if the password is currently visible
+  private void onShowPasswordClick() {
     if (isPasswordVisible) {
       // Hide the "show password" button and enable the "disable password" button
       showPasswordDisable.setVisible(false);

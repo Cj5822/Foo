@@ -53,7 +53,7 @@
             <Image url="@../images/styled-buttons/exit-game-hovered.png" />
          </image>
       </ImageView>
-      <Button fx:id="replayGameButton" layoutX="329.0" layoutY="484.0" mnemonicParsing="false" onAction="#handleReplay" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="64.0" prefWidth="131.0" text="Replay" />
-      <Button fx:id="exitGameButton" layoutX="544.0" layoutY="503.0" mnemonicParsing="false" onAction="#handleExit" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="43.0" prefWidth="92.0" text="Exit" />
+      <Button fx:id="replayGameButton" layoutX="329.0" layoutY="484.0" mnemonicParsing="false" onAction="#onReplayAction" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="64.0" prefWidth="131.0" text="Replay" />
+      <Button fx:id="exitGameButton" layoutX="544.0" layoutY="503.0" mnemonicParsing="false" onAction="#onExitButtonClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="43.0" prefWidth="92.0" text="Exit" />
    </children>
 </Pane>

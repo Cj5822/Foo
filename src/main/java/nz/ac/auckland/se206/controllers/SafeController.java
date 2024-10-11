@@ -94,7 +94,7 @@ public class SafeController {
    * @param event the action event triggered by pressing a digit button
    */
   @FXML
-  private void handleButtonPress(ActionEvent event) {
+  private void onButtonPress(ActionEvent event) {
     // Get the button text (which will be the digit)
     Button pressedButton = (Button) event.getSource();
     String digit = pressedButton.getText();
@@ -145,7 +145,7 @@ public class SafeController {
    * @throws IOException if there is an I/O error while opening the next screen
    */
   @FXML
-  private void handleOpenPress(Event event) throws IOException {
+  private void onOpenPress(Event event) throws IOException {
     if (enteredCode.toString().equals(correctCode)) {
       safeDisplay.setText("Safe Opened!");
       SoundManager.playSound(SAFE_SOUND_PATH, false);
@@ -162,7 +162,7 @@ public class SafeController {
    * @param event the event triggered by pressing the backspace button
    */
   @FXML
-  private void handleBackspacePress(Event event) {
+  private void onBackspacePress(Event event) {
     if (enteredCode.length() > 0) {
       enteredCode.deleteCharAt(enteredCode.length() - 1); // Remove the last digit
       safeDisplay.setText(enteredCode.toString()); // Update the display

@@ -99,23 +99,27 @@ public class GameOverController {
       throws ApiProxyException {
     ApiProxyConfig config = ApiProxyConfig.readConfig();
     chatCompletionRequest =
-        new ChatCompletionRequest(config).setN(1).setTemperature(0.3).setMaxTokens(400);
+        new ChatCompletionRequest(config).setN(1).setTemperature(0.1).setMaxTokens(400);
 
     System.out.println(selectedSuspect.replace("image", ""));
     String prompt =
-        "This is the player explanation: '"
+        "Player explanation: '"
             + explanation
-            + "'. This is the suspect the player guessed: '"
+            + "'. Player guessed the suspect: '"
             + selectedSuspect.replace("image", "")
-            + "' This is the context: 'There are 3 suspects for stealing. The suspects are:"
-            + " Electrician called Aiden Carter, Plumber called Brayden Mitchell, and a Neighbour"
-            + " called Ava Collins. The Electrician is the thief because he has used a wrench in"
-            + " the crime scene, has a date of birth 1994 and his initials is AC. The Neighbour"
-            + " initials is AC and has a date of birth of 1994 but did not interact with the wrench"
-            + " so she is the not thief. The Plumber has interacted with the wrench but is not born"
-            + " in 1994 and his initials is not AC so he is not the thief'. Give a feedback of the"
-            + " player explanation. Use the context to check if player explanation is accurate too."
-            + " If explanation is empty then give feedback on that.";
+            + "'. Context: 'There are 3 suspects involved in a theft. The suspects are: 1)"
+            + " Electrician: Aiden Carter, 2) Plumber: Brayden Mitchell, 3) Neighbor: Ava Collins."
+            + " Aiden Carter is the thief because he used a wrench which was in the crime scene,"
+            + " his favorite fruit is an apple, and his initials are A.C which match the fake"
+            + " wedding ring initials. Ava Collins shares the initials A.C. and has the same"
+            + " favorite fruit, but did not interact with the wrench, so she is not the thief."
+            + " Brayden Mitchell also used a wrench, shares the favorite fruit, but his initials"
+            + " are not A.C., so he is not the thief either'. Evaluate the player's explanation"
+            + " based on this context. If the player explanation matches give feedback on how to"
+            + " improve it. If player explanation contradicts these facts, provide detailed"
+            + " feedback. If the player explanation is empty, respond with feedback on that."
+            + " Explanation is only correct if it mentioned all 3 of the hints, otherwise, give"
+            + " feedback.";
 
     ChatMessage message = new ChatMessage("user", prompt);
     chatCompletionRequest.addMessage(message);

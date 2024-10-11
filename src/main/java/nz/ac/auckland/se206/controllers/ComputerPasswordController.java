@@ -21,17 +21,17 @@ import nz.ac.auckland.se206.TimerManager;
 
 /**
  * Controller for the computer password screen in the game. Handles user interaction, password
- * input, and timer updates.
+ * input, visibility toggling, and timer updates.
  */
 public class ComputerPasswordController {
 
   // Constants
-  private static final String CORRECT_PASSWORD = "apple";
+  private static final String CORRECT_PASSWORD = "apple"; // Correct password for unlocking
 
   // Instance fields
-  private GameStateContext context;
-  private TimerManager timerManager;
-  private boolean isPasswordVisible = false;
+  private GameStateContext context; // Game state context to handle game logic
+  private TimerManager timerManager; // Timer manager for managing the countdown
+  private boolean isPasswordVisible = false; // Flag to track password visibility
 
   // FXML-injected fields
   @FXML private AnchorPane computerPasswordPane;
@@ -63,34 +63,38 @@ public class ComputerPasswordController {
   }
 
   /**
-   * Sets the game context.
+   * Sets the game context to allow interaction with the game logic.
    *
-   * @param context the GameStateContext for the game
+   * @param context the GameStateContext for managing game state transitions
    */
   public void setContext(GameStateContext context) {
     this.context = context;
   }
 
-  /** Starts the timer and continuously updates the timer label. */
+  /**
+   * Starts the timer and continuously updates the timer label on the UI. The timer updates every
+   * frame using an AnimationTimer.
+   */
   private void startTimer() {
     timerManager.start(); // Start the shared TimerManager
 
-    // Update the label every frame with the formatted time
+    // Update the timer label every frame with the formatted time
     AnimationTimer timerUpdater =
         new AnimationTimer() {
           @Override
           public void handle(long now) {
-            lblTimer.setText(timerManager.getTimeFormatted());
+            lblTimer.setText(timerManager.getTimeFormatted()); // Update timer label
           }
         };
-    timerUpdater.start();
+    timerUpdater.start(); // Start the timer updater
   }
 
   /**
-   * Handles the event when a key is pressed while focusing on the password field.
+   * Handles the event when a key is pressed while focusing on the password field. Submits the
+   * password if the Enter key is pressed.
    *
-   * @param event the key event
-   * @throws IOException if an I/O error occurs
+   * @param event the key event that triggered the handler
+   * @throws IOException if an I/O error occurs during password submission
    */
   @FXML
   private void handleKeyPressed(KeyEvent event) throws IOException {
@@ -100,10 +104,11 @@ public class ComputerPasswordController {
   }
 
   /**
-   * Handles the event when a key is pressed while focusing on the password text field.
+   * Handles the event when a key is pressed while focusing on the password text field. Submits the
+   * password if the Enter key is pressed.
    *
-   * @param event the key event
-   * @throws IOException if an I/O error occurs
+   * @param event the key event that triggered the handler
+   * @throws IOException if an I/O error occurs during password submission
    */
   @FXML
   private void handlePasswordTextFieldKeyPressed(KeyEvent event) throws IOException {
@@ -113,106 +118,141 @@ public class ComputerPasswordController {
   }
 
   /**
-   * Handles the event when the user clicks on the rectangle.
+   * Handles the event when the user clicks on a rectangle element on the screen. Interacts with the
+   * game context and triggers the appropriate action.
    *
-   * @param event the mouse event
-   * @throws IOException if an I/O error occurs
+   * @param event the mouse event triggered by the click
+   * @throws IOException if an I/O error occurs during the interaction
    */
   @FXML
   private void handleRectangleClick(MouseEvent event) throws IOException {
     Rectangle clickedRectangle = (Rectangle) event.getSource();
-    context.handleRectangleClick(event, clickedRectangle.getId());
+    context.handleRectangleClick(event, clickedRectangle.getId()); // Handle the rectangle click
   }
 
-  /** Handles the event when the send button is pressed. */
+  /**
+   * Handles the event when the send button is pressed. This triggers the same logic as password
+   * submission.
+   */
   @FXML
   private void handleSendButtonClick() throws IOException {
     handlePasswordSubmit(); // Call the same method that handles password submission
   }
 
-  /** Shows the computer password pane and focuses on the password input field. */
+  /**
+   * Shows the computer password pane and sets focus on the password input field. This method makes
+   * the password input pane visible to the player.
+   */
   public void showComputerPasswordPane() {
-    computerPasswordPane.setVisible(true);
-    passwordInput.requestFocus();
-    Platform.runLater(() -> passwordInput.positionCaret(passwordInput.getText().length()));
-  }
-
-  /** Hides the computer password pane and clears any messages. */
-  public void hideComputerPasswordPane() {
-    lblMessage.setVisible(false);
-    computerPasswordPane.setVisible(false);
+    computerPasswordPane.setVisible(true); // Make the password pane visible
+    passwordInput.requestFocus(); // Focus on the password input field
+    Platform.runLater(
+        () -> passwordInput.positionCaret(passwordInput.getText().length())); // Move caret to end
   }
 
   /**
-   * Handles the submission of the password. Checks if the entered password is correct and provides
-   * feedback.
+   * Hides the computer password pane and clears any messages. This method is used to hide the pane
+   * when not needed.
+   */
+  public void hideComputerPasswordPane() {
+    lblMessage.setVisible(false); // Hide the message label
+    computerPasswordPane.setVisible(false); // Hide the password pane
+  }
+
+  /**
+   * Handles the submission of the entered password. Checks if the entered password is correct, and
+   * performs an action (e.g., unlocking the safe) if correct.
    *
-   * @throws IOException if an I/O error occurs
+   * @throws IOException if an I/O error occurs during password submission
    */
   @FXML
   private void handlePasswordSubmit() throws IOException {
     String inputPassword;
 
-    // Check the visible field
+    // Check the visible field and get the entered password
     if (passwordInput.isVisible()) {
       inputPassword = passwordInput.getText();
     } else {
       inputPassword = passwordTextField.getText();
     }
 
+    // Check if the password is correct
     if (inputPassword.equals(CORRECT_PASSWORD)) {
-      // Password is correct, perform the action (e.g., unlock the safe)
-      lblMessage.setVisible(false);
-      App.openOpenedComputer(null);
+      lblMessage.setVisible(false); // Hide any error message
+      App.openOpenedComputer(null); // Perform the action (e.g., unlocking the safe)
     } else {
-      // Password is incorrect, provide feedback
-      lblMessage.setVisible(true);
+      lblMessage.setVisible(true); // Show error message if the password is incorrect
     }
 
-    passwordInput.clear(); // Clear the password field
-    passwordTextField.clear();
+    passwordInput.clear(); // Clear the password input field
+    passwordTextField.clear(); // Clear the text field
 
     Platform.runLater(
         () -> {
-          passwordInput.requestFocus(); // Ensure the focus is on the password field
+          passwordInput.requestFocus(); // Ensure the focus is on the password input field
           passwordInput.positionCaret(
-              passwordInput.getText().length()); // Position the caret at the end
+              passwordInput.getText().length()); // Position caret at the end
         });
   }
 
-  /** Handles the hover effect when the mouse enters the exit button area. */
+  /**
+   * Handles the hover effect when the mouse enters the exit button area. Changes the button's
+   * appearance to the hovered version.
+   *
+   * @param event the mouse event triggered by entering the exit button area
+   */
   @FXML
   private void handleExitHoverEnter(MouseEvent event) {
-    exitButtonUnhovered.setVisible(false);
-    exitButtonHover.setVisible(true);
+    exitButtonUnhovered.setVisible(false); // Hide unhovered version
+    exitButtonHover.setVisible(true); // Show hovered version
   }
 
-  /** Handles the hover effect when the mouse exits the exit button area. */
+  /**
+   * Handles the hover effect when the mouse exits the exit button area. Restores the button's
+   * appearance to the unhovered version.
+   *
+   * @param event the mouse event triggered by exiting the exit button area
+   */
   @FXML
   private void handleExitHoverExit(MouseEvent event) {
-    exitButtonUnhovered.setVisible(true);
-    exitButtonHover.setVisible(false);
+    exitButtonUnhovered.setVisible(true); // Show unhovered version
+    exitButtonHover.setVisible(false); // Hide hovered version
   }
 
-  /** Handles the hover effect when the mouse enters the login button area. */
+  /**
+   * Handles the hover effect when the mouse enters the login button area. Shows the hovered version
+   * of the login button.
+   *
+   * @param event the mouse event triggered by entering the login button area
+   */
   @FXML
   private void handleLoginHoverEnter(MouseEvent event) {
-    loginButtonHover.setVisible(true);
+    loginButtonHover.setVisible(true); // Show hovered version
   }
 
-  /** Handles the hover effect when the mouse exits the login button area. */
+  /**
+   * Handles the hover effect when the mouse exits the login button area. Hides the hovered version
+   * of the login button.
+   *
+   * @param event the mouse event triggered by exiting the login button area
+   */
   @FXML
   private void handleLoginHoverExit(MouseEvent event) {
-    loginButtonHover.setVisible(false);
+    loginButtonHover.setVisible(false); // Hide hovered version
   }
 
-  /** Handles the hover effect for the view password button. */
+  /**
+   * Handles the hover effect for the view password button. Shows the appropriate icon depending on
+   * whether the password is visible.
+   *
+   * @param event the mouse event triggered by entering the view password button area
+   */
   @FXML
   private void handleviewPasswordHoverEnter(MouseEvent event) {
     if (isPasswordVisible) {
-      showPasswordEnableHover.setVisible(true);
+      showPasswordEnableHover.setVisible(true); // Show enabled hover icon
     } else {
-      showPasswordDisableHover.setVisible(true);
+      showPasswordDisableHover.setVisible(true); // Show disabled hover icon
     }
   }
 

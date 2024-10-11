@@ -11,6 +11,17 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.GameStateContext;
 
+/**
+ * Controller for managing the safe ring interaction within the game. This controller handles the
+ * functionality of the safe ring pane, including displaying hints, controlling slider interactions,
+ * and managing hover effects for the exit button. It is responsible for controlling the visibility
+ * of elements like the slider and hint text based on user actions.
+ *
+ * <p>The class includes methods for initializing the safe ring pane, handling rectangle clicks,
+ * displaying and hiding the safe ring pane, resetting the slider, and managing hover effects on the
+ * exit button. It also interacts with the {@link GameStateContext} to pass game-specific data and
+ * actions.
+ */
 public class SafeRingController {
   private GameStateContext context;
 

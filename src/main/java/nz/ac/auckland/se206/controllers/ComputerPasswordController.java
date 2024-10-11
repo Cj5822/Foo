@@ -188,7 +188,7 @@ public class ComputerPasswordController {
       // make image visible
       showPasswordDisable.setVisible(false);
       showPasswordEnableHover.setVisible(false);
-      showPasswordDisableHover.setVisible(false);
+      showPasswordDisableHover.setVisible(true);
       // When showing the password field
       passwordTextField.setVisible(false); // Hide the text field
       passwordInput.setVisible(true); // Show the password field
@@ -203,7 +203,7 @@ public class ComputerPasswordController {
       isPasswordVisible = false; // Update visibility flag
     } else {
       showPasswordDisable.setVisible(true);
-      showPasswordEnableHover.setVisible(false);
+      showPasswordEnableHover.setVisible(true);
       showPasswordDisableHover.setVisible(false);
       // When showing the text field
       passwordInput.setVisible(false); // Hide the password field

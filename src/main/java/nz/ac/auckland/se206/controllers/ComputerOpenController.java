@@ -73,14 +73,18 @@ public class ComputerOpenController {
   @FXML
   private void playWrenchSound() {
     computerPauseButton.setVisible(true);
+    playButtonHovered.setVisible(false);
+    pauseButtonHovered.setVisible(false);
     if (mediaPlayer != null) {
       // Toggle play/pause or restart
       if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
         mediaPlayer.pause(); // Pause if playing
         computerPauseButton.setVisible(false);
+        playButtonHovered.setVisible(true);
       } else if (mediaPlayer.getStatus() == MediaPlayer.Status.PAUSED) {
         mediaPlayer.play(); // Resume if paused
         computerPauseButton.setVisible(true);
+        pauseButtonHovered.setVisible(true);
       } else if (mediaPlayer.getStatus() == MediaPlayer.Status.STOPPED) {
         mediaPlayer.seek(Duration.ZERO); // Reset to start
         mediaPlayer.play(); // Play from the start
@@ -89,6 +93,7 @@ public class ComputerOpenController {
       // Initialize and play sound for the first time
       initializeMediaPlayer();
       computerPauseButton.setVisible(true);
+      pauseButtonHovered.setVisible(true);
     }
   }
 
@@ -143,6 +148,8 @@ public class ComputerOpenController {
           soundProgressBar.setValue(0);
           // Change image to computerPauseButton when reset
           computerPauseButton.setVisible(false);
+          playButtonHovered.setVisible(false); // Make sure play button is hidden after completion
+          pauseButtonHovered.setVisible(false); // Hide the pause button when media stops
         });
   }
 
@@ -172,21 +179,37 @@ public class ComputerOpenController {
     exitButtonHover.setVisible(false);
   }
 
-  // @FXML // Handle the exit button hover effect based on hovering the rectangle above it
-  // private void handlePlayEnter(MouseEvent event) {
-  //   if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-  //     playButtonHovered.setVisible(true);
-  //   } else {
-  //     pauseButtonHovered.setVisible(true);
-  //   }
-  // }
+  @FXML // Handle the exit button hover effect based on hovering the rectangle above it
+  private void handlePlayEnter(MouseEvent event) {
+    if (mediaPlayer != null) {
+      if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+        pauseButtonHovered.setVisible(true);
+      } else if (mediaPlayer.getStatus() == MediaPlayer.Status.PAUSED) {
+        playButtonHovered.setVisible(true);
+      } else if (mediaPlayer.getStatus() == MediaPlayer.Status.STOPPED) {
+        playButtonHovered.setVisible(true);
+        pauseButtonHovered.setVisible(false);
+      }
+    } else {
+      // Initialize and play sound for the first time
+      playButtonHovered.setVisible(true);
+    }
+  }
 
-  // @FXML // Handle the exit button hover effect based on exiting the rectangle above it
-  // private void handlePlayExit(MouseEvent event) {
-  //   if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-  //     playButtonHovered.setVisible(false);
-  //   } else {
-  //     pauseButtonHovered.setVisible(false);
-  //   }
-  // }
+  @FXML // Handle the exit button hover effect based on exiting the rectangle above it
+  private void handlePlayExit(MouseEvent event) {
+    if (mediaPlayer != null) {
+      if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+        pauseButtonHovered.setVisible(false);
+      } else if (mediaPlayer.getStatus() == MediaPlayer.Status.PAUSED) {
+        playButtonHovered.setVisible(false);
+      } else if (mediaPlayer.getStatus() == MediaPlayer.Status.STOPPED) {
+        playButtonHovered.setVisible(false);
+        pauseButtonHovered.setVisible(false);
+      }
+    } else {
+      // Initialize and play sound for the first time
+      playButtonHovered.setVisible(false);
+    }
+  }
 }

@@ -24,6 +24,8 @@ public class ComputerOpenController {
   @FXML private Label lblTimer;
   @FXML private Slider soundProgressBar;
   @FXML private ImageView computerPauseButton;
+  @FXML private ImageView exitButtonHover;
+  @FXML private ImageView exitButtonUnhovered;
 
   private TimerManager timerManager;
   private MediaPlayer mediaPlayer;
@@ -142,5 +144,17 @@ public class ComputerOpenController {
       mediaPlayer.seek(Duration.ZERO); // Seek back to the start
     }
     openComputerPane.setVisible(false);
+  }
+
+  @FXML // Handle the exit button hover effect based on hovering the rectangle above it
+  private void handleExitHoverEnter(MouseEvent event) {
+    exitButtonUnhovered.setVisible(false);
+    exitButtonHover.setVisible(true);
+  }
+
+  @FXML // Handle the exit button hover effect based on exiting the rectangle above it
+  private void handleExitHoverExit(MouseEvent event) {
+    exitButtonUnhovered.setVisible(true);
+    exitButtonHover.setVisible(false);
   }
 }

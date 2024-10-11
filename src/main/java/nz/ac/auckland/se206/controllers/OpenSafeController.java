@@ -18,6 +18,8 @@ public class OpenSafeController {
   @FXML private AnchorPane openSafePane;
   @FXML private Rectangle rectExitOpenSafe;
   @FXML private Label lblTimer;
+  @FXML private ImageView exitButtonHover;
+  @FXML private ImageView exitButtonUnhovered;
 
   private TimerManager timerManager;
 
@@ -62,6 +64,18 @@ public class OpenSafeController {
 
   public void hideOpenSafePane() {
     openSafePane.setVisible(false);
+  }
+
+  @FXML // Handle the exit button hover effect based on hovering the rectangle above it
+  private void handleExitHoverEnter(MouseEvent event) {
+    exitButtonUnhovered.setVisible(false);
+    exitButtonHover.setVisible(true);
+  }
+
+  @FXML // Handle the exit button hover effect based on exiting the rectangle above it
+  private void handleExitHoverExit(MouseEvent event) {
+    exitButtonUnhovered.setVisible(true);
+    exitButtonHover.setVisible(false);
   }
 
   /**

@@ -34,6 +34,8 @@ public class SafeController {
   @FXML private Button button9;
   @FXML private Button button0;
   @FXML private Label lblTimer;
+  @FXML private ImageView exitButtonHover;
+  @FXML private ImageView exitButtonUnhovered;
 
   // Correct combination to open the safe
   private final String correctCode = "2560";
@@ -84,6 +86,18 @@ public class SafeController {
     // Append digit to enteredCode and update the display
     enteredCode.append(digit);
     safeDisplay.setText(enteredCode.toString());
+  }
+
+  @FXML // Handle the exit button hover effect based on hovering the rectangle above it
+  private void handleExitHoverEnter(MouseEvent event) {
+    exitButtonUnhovered.setVisible(false);
+    exitButtonHover.setVisible(true);
+  }
+
+  @FXML // Handle the exit button hover effect based on exiting the rectangle above it
+  private void handleExitHoverExit(MouseEvent event) {
+    exitButtonUnhovered.setVisible(true);
+    exitButtonHover.setVisible(false);
   }
 
   @FXML

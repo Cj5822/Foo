@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
+import java.util.HashMap;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -49,6 +50,8 @@ public class App extends Application {
   private static Stage appStage;
 
   private static GameStateContext context;
+  private static HashMap<String, FXMLLoader> fxmlLoaders = new HashMap<>();
+  private static HashMap<String, Scene> storedScenes = new HashMap<>();
 
   /**
    * The main method that launches the JavaFX application.
@@ -78,7 +81,10 @@ public class App extends Application {
    * @throws IOException if the FXML file is not found
    */
   public static Parent loadFxml(final String fxml) throws IOException {
-    loader = new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
+    if (!fxmlLoaders.containsKey(fxml)) {
+      fxmlLoaders.put(fxml, new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")));
+    }
+    loader = fxmlLoaders.get(fxml);
     return loader.load(); // Load and return the root node of the specified FXML file
   }
 
@@ -206,16 +212,19 @@ public class App extends Application {
    */
   public static void changeRoom(MouseEvent event, String roomName) throws IOException {
     // Load the FXML for the new room
-    Parent root = loadFxml(roomName); // Load the "backstory" FXML
-
+    if (fxmlLoaders.containsKey(roomName)) {
+      loader = fxmlLoaders.get(roomName);
+    } else {
+      Parent root = loadFxml(roomName); // Load the "backstory" FXML
+      storedScenes.put(roomName, new Scene(root));
+    }
     roomController = loader.getController();
     roomController.setContext(context);
     chatController = roomController.getChatController();
 
-    scene = new Scene(root); // Create a new scene with the loaded root
+    scene = storedScenes.get(roomName); // Create a new scene with the loaded root
     appStage.setScene(scene); // Set the scene on the stage
     appStage.show(); // Display the stage
-    root.requestFocus();
 
     roomController.showGuessButton();
   }
@@ -238,6 +247,8 @@ public class App extends Application {
     TimerManager timerManager = TimerManager.getInstance(context);
     timerManager.setContext(context);
     timerManager.reset();
+    fxmlLoaders = new HashMap<>();
+    storedScenes = new HashMap<>();
     openHomepage();
   }
 

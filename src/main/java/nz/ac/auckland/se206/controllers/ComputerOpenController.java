@@ -26,6 +26,8 @@ public class ComputerOpenController {
   @FXML private ImageView computerPauseButton;
   @FXML private ImageView exitButtonHover;
   @FXML private ImageView exitButtonUnhovered;
+  @FXML private ImageView playButtonHovered;
+  @FXML private ImageView pauseButtonHovered;
 
   private TimerManager timerManager;
   private MediaPlayer mediaPlayer;
@@ -157,4 +159,22 @@ public class ComputerOpenController {
     exitButtonUnhovered.setVisible(true);
     exitButtonHover.setVisible(false);
   }
+
+  // @FXML // Handle the exit button hover effect based on hovering the rectangle above it
+  // private void handlePlayEnter(MouseEvent event) {
+  //   if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+  //     playButtonHovered.setVisible(true);
+  //   } else {
+  //     pauseButtonHovered.setVisible(true);
+  //   }
+  // }
+
+  // @FXML // Handle the exit button hover effect based on exiting the rectangle above it
+  // private void handlePlayExit(MouseEvent event) {
+  //   if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+  //     playButtonHovered.setVisible(false);
+  //   } else {
+  //     pauseButtonHovered.setVisible(false);
+  //   }
+  // }
 }

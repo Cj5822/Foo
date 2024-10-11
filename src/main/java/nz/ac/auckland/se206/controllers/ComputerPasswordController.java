@@ -28,11 +28,15 @@ public class ComputerPasswordController {
   @FXML private PasswordField passwordInput;
   @FXML private TextField passwordTextField;
   @FXML private Button showPassword;
+  @FXML private ImageView showPasswordEnable;
   @FXML private ImageView showPasswordDisable;
   @FXML private Button btnSend;
   @FXML private Label lblMessage;
   @FXML private ImageView exitButtonHover;
   @FXML private ImageView exitButtonUnhovered;
+  @FXML private ImageView loginButtonHover;
+  @FXML private ImageView showPasswordEnableHover;
+  @FXML private ImageView showPasswordDisableHover;
 
   private TimerManager timerManager;
 
@@ -150,11 +154,41 @@ public class ComputerPasswordController {
     exitButtonHover.setVisible(false);
   }
 
+  @FXML // Handle the exit button hover effect based on hovering the rectangle above it
+  private void handleLoginHoverEnter(MouseEvent event) {
+    loginButtonHover.setVisible(true);
+  }
+
+  @FXML // Handle the exit button hover effect based on exiting the rectangle above it
+  private void handleLoginHoverExit(MouseEvent event) {
+    loginButtonHover.setVisible(false);
+  }
+
+  @FXML // Handle the exit button hover effect based on hovering the rectangle above it
+  private void handleviewPasswordHoverEnter(MouseEvent event) {
+    if (isPasswordVisible) {
+      showPasswordEnableHover.setVisible(true);
+    } else {
+      showPasswordDisableHover.setVisible(true);
+    }
+  }
+
+  @FXML // Handle the exit button hover effect based on exiting the rectangle above it
+  private void handleviewPasswordHoverExit(MouseEvent event) {
+    if (isPasswordVisible) {
+      showPasswordEnableHover.setVisible(false);
+    } else {
+      showPasswordDisableHover.setVisible(false);
+    }
+  }
+
   @FXML
   private void handleShowPassword() {
     if (isPasswordVisible) {
       // make image visible
       showPasswordDisable.setVisible(false);
+      showPasswordEnableHover.setVisible(false);
+      showPasswordDisableHover.setVisible(false);
       // When showing the password field
       passwordTextField.setVisible(false); // Hide the text field
       passwordInput.setVisible(true); // Show the password field
@@ -169,6 +203,8 @@ public class ComputerPasswordController {
       isPasswordVisible = false; // Update visibility flag
     } else {
       showPasswordDisable.setVisible(true);
+      showPasswordEnableHover.setVisible(false);
+      showPasswordDisableHover.setVisible(false);
       // When showing the text field
       passwordInput.setVisible(false); // Hide the password field
       // Set the text field with the current password and show it

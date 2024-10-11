@@ -14,10 +14,15 @@ import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 
+/**
+ * Controller for handling user input and sending explanations in the game. Manages chat UI
+ * interactions, user inputs, and sending data to the game state.
+ */
 public class ExplanationController {
-  private GameStateContext context;
 
-  private StringBuilder accumulatedInput = new StringBuilder();
+  private GameStateContext context;
+  private StringBuilder accumulatedInput =
+      new StringBuilder(); // Holds the accumulated input from the user
 
   @FXML private TextArea txtaChat;
   @FXML private TextField txtInput;
@@ -27,51 +32,60 @@ public class ExplanationController {
   @FXML private ImageView btnExitChatImage;
 
   /**
-   * Initializes the chat view.
+   * Initializes the controller. Sets up the chat pane and clears accumulated input.
    *
-   * @throws ApiProxyException if there is an error communicating with the API proxy
+   * @throws ApiProxyException if an error occurs when interacting with the API proxy.
    */
   @FXML
   public void initialize() throws ApiProxyException {
-    // Any required initialization code can be placed here
     hideExplanationPane(); // Hide chat box initially
-    accumulatedInput.setLength(0); // Clear the current content
+    accumulatedInput.setLength(0); // Clear accumulated input
   }
 
+  /**
+   * Sets the game context for the controller.
+   *
+   * @param context the game context
+   */
   public void setContext(GameStateContext context) {
     this.context = context;
   }
 
   /**
-   * Sends a message to the GPT model.
+   * Handles the send button click event to send the user's explanation.
    *
    * @param event the action event triggered by the send button
-   * @throws ApiProxyException if there is an error communicating with the API proxy
-   * @throws IOException if there is an I/O error
+   * @throws ApiProxyException if an error occurs when interacting with the API proxy
+   * @throws IOException if an I/O error occurs
    */
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
     sendMessage();
   }
 
+  /**
+   * Sends the explanation message to the game state and opens the game over screen.
+   *
+   * @throws ApiProxyException if an error occurs when interacting with the API proxy
+   * @throws IOException if an I/O error occurs
+   */
   @FXML
   public void sendMessage() throws ApiProxyException, IOException {
-
-    // Get the explanation from the TextField
-    String explanation = accumulatedInput.toString();
+    String explanation = accumulatedInput.toString(); // Get the accumulated explanation
     if (context != null) {
-      context.setExplanation(explanation);
-      context.setState(context.getGameOverState());
-      App.openGameOver();
+      context.setExplanation(explanation); // Set explanation in context
+      context.setState(context.getGameOverState()); // Transition to game over state
+      App.openGameOver(); // Open the game over screen
     }
   }
 
   /**
-   * Method to handle key presses made by the user.
+   * Handles key presses in the input field. Sends the message if Enter is pressed or updates
+   * accumulated input otherwise.
    *
-   * @param event the action event triggered by the send button
-   * @throws ApiProxyException if there is an error communicating with the API proxy
-   * @throws IOException if there is an I/O error
+   * @param event the key event triggered by user input
+   * @throws ApiProxyException if an error occurs when interacting with the API proxy
+   * @throws IOException if an I/O error occurs
    */
   @FXML
   public void handleKeyPress(KeyEvent event) throws ApiProxyException, IOException {
@@ -83,14 +97,12 @@ public class ExplanationController {
         sendMessage(); // Send the message when the Enter key is pressed
         break;
       case BACK_SPACE:
-        // Handle Backspace: Remove the last character from accumulated input if it exists
         if (length > 0) {
           accumulatedInput.deleteCharAt(length - 1); // Remove the last character
         }
         break;
       default:
-        // For other keys, add the pressed key to accumulatedInput
-        accumulatedInput.append(event.getText());
+        accumulatedInput.append(event.getText()); // Append other key inputs
         break;
     }
 
@@ -99,13 +111,16 @@ public class ExplanationController {
     context.setExplanation(explanation);
   }
 
+  /**
+   * Handles mouse enter events to show hover effects on buttons.
+   *
+   * @param event the mouse event triggered by hovering
+   */
   @FXML
   public void handleMouseEnter(MouseEvent event) {
-    // Check the source of the event to determine which button triggered it
     if (event.getSource() instanceof Button) {
       Button hoveredButton = (Button) event.getSource();
 
-      // Check the ID or other property of the button to perform specific actions
       switch (hoveredButton.getId()) {
         case "sendButton":
           btnSubmitImage.setVisible(true);
@@ -120,13 +135,16 @@ public class ExplanationController {
     }
   }
 
+  /**
+   * Handles mouse exit events to hide hover effects on buttons.
+   *
+   * @param event the mouse event triggered by exiting hover
+   */
   @FXML
   public void handleMouseExit(MouseEvent event) {
-    // Check the source of the event to determine which button triggered it
     if (event.getSource() instanceof Button) {
       Button hoveredButton = (Button) event.getSource();
 
-      // Check the ID or other property of the button to perform specific actions
       switch (hoveredButton.getId()) {
         case "sendButton":
           btnSubmitImage.setVisible(false);
@@ -142,25 +160,25 @@ public class ExplanationController {
   }
 
   /**
-   * Navigates back to the previous view.
+   * Handles the go back action and hides the explanation pane.
    *
    * @param event the action event triggered by the go back button
-   * @throws ApiProxyException if there is an error communicating with the API proxy
-   * @throws IOException if there is an I/O error
+   * @throws ApiProxyException if an error occurs when interacting with the API proxy
+   * @throws IOException if an I/O error occurs
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    hideExplanationPane(); // Hide the chat box
+    hideExplanationPane(); // Hide the explanation pane
   }
 
-  /** Hides the chat box and progress bar. */
+  /** Hides the explanation pane. */
   public void hideExplanationPane() {
-    explanationPane.setVisible(false); // Make chat box invisible
+    explanationPane.setVisible(false); // Make the explanation pane invisible
   }
 
-  /** Shows the chat box and progress bar. */
+  /** Shows the explanation pane. */
   public void showExplanationPane() {
-    explanationPane.setVisible(true); // Make chat box visible
-    txtInput.requestFocus();
+    explanationPane.setVisible(true); // Make the explanation pane visible
+    txtInput.requestFocus(); // Set focus on the input field
   }
 }

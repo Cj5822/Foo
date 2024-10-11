@@ -94,6 +94,12 @@ public class App extends Application {
     chatController.showChatPane(); // Display the chat box
   }
 
+  /**
+   * Opens the safe view and displays the safe pane.
+   *
+   * @param event the mouse event that triggered the method
+   * @throws IOException if the FXML file is not found
+   */
   public static void openSafe(MouseEvent event) throws IOException {
     roomController = loader.getController();
     roomController.setContext(context);
@@ -101,11 +107,23 @@ public class App extends Application {
     safeController.showSafePane();
   }
 
+  /**
+   * Closes the safe view and hides the safe pane.
+   *
+   * @param event the mouse event that triggered the method
+   * @throws IOException if the FXML file is not found
+   */
   public static void closeSafe(MouseEvent event) throws IOException {
     safeController.hideSafePane();
     safeController.resetSafeCode();
   }
 
+  /**
+   * Opens the view of the opened safe and displays the open safe pane.
+   *
+   * @param event the event that triggered the method
+   * @throws IOException if the FXML file is not found
+   */
   public static void openOpenedSafe(Event event) throws IOException {
     safeController.resetSafeCode();
     roomController = loader.getController();
@@ -114,10 +132,22 @@ public class App extends Application {
     openSafeController.showOpenSafePane();
   }
 
+  /**
+   * Closes the view of the opened safe and hides the open safe pane.
+   *
+   * @param event the mouse event that triggered the method
+   * @throws IOException if the FXML file is not found
+   */
   public static void closeOpenedSafe(MouseEvent event) throws IOException {
     openSafeController.hideOpenSafePane();
   }
 
+  /**
+   * Opens the view of the safe ring and displays the safe ring pane.
+   *
+   * @param event the mouse event that triggered the method
+   * @throws IOException if the FXML file is not found
+   */
   public static void openSafeRing(MouseEvent event) throws IOException {
     roomController = loader.getController();
     roomController.setContext(context);
@@ -125,10 +155,22 @@ public class App extends Application {
     safeRingController.showSafeRingPane();
   }
 
+  /**
+   * Closes the view of the safe ring and hides the safe ring pane.
+   *
+   * @param event the mouse event that triggered the method
+   * @throws IOException if the FXML file is not found
+   */
   public static void closeSafeRing(MouseEvent event) throws IOException {
     safeRingController.hideSafeRingPane();
   }
 
+  /**
+   * Opens the computer view and displays the computer password pane.
+   *
+   * @param event the mouse event that triggered the method
+   * @throws IOException if the FXML file is not found
+   */
   public static void openComputer(MouseEvent event) throws IOException {
     roomController = loader.getController();
     roomController.setContext(context);
@@ -136,10 +178,22 @@ public class App extends Application {
     computerPasswordController.showComputerPasswordPane();
   }
 
+  /**
+   * Closes the computer view and hides the computer password pane.
+   *
+   * @param event the mouse event that triggered the method
+   * @throws IOException if the FXML file is not found
+   */
   public static void closeComputer(MouseEvent event) throws IOException {
     computerPasswordController.hideComputerPasswordPane();
   }
 
+  /**
+   * Opens the view of the opened computer and displays the open computer pane.
+   *
+   * @param event the mouse event that triggered the method
+   * @throws IOException if the FXML file is not found
+   */
   public static void openOpenedComputer(MouseEvent event) throws IOException {
     roomController = loader.getController();
     roomController.setContext(context);
@@ -147,10 +201,22 @@ public class App extends Application {
     openComputerController.showOpenComputerPane();
   }
 
+  /**
+   * Closes the view of the opened computer and hides the open computer pane.
+   *
+   * @param event the mouse event that triggered the method
+   * @throws IOException if the FXML file is not found
+   */
   public static void closeOpenComputer(MouseEvent event) throws IOException {
     openComputerController.hideOpenComputerPane();
   }
 
+  /**
+   * Opens the scrunched paper view and displays the scrunched paper pane.
+   *
+   * @param event the mouse event that triggered the method
+   * @throws IOException if the FXML file is not found
+   */
   public static void openScrunchedPaper(MouseEvent event) throws IOException {
     roomController = loader.getController();
     roomController.setContext(context);
@@ -158,10 +224,22 @@ public class App extends Application {
     scrunchedPaperController.showScrunchedPaperPane();
   }
 
+  /**
+   * Closes the scrunched paper view and hides the scrunched paper pane.
+   *
+   * @param event the mouse event that triggered the method
+   * @throws IOException if the FXML file is not found
+   */
   public static void closeScrunchedPaper(MouseEvent event) throws IOException {
     scrunchedPaperController.hideScrunchedPaperPane();
   }
 
+  /**
+   * Opens the paper hint view, hides the scrunched paper pane, and displays the paper pane.
+   *
+   * @param event the action event that triggered the method
+   * @throws IOException if the FXML file is not found
+   */
   public static void openPaperHint(ActionEvent event) throws IOException {
     scrunchedPaperController.hideScrunchedPaperPane();
     roomController = loader.getController();
@@ -170,10 +248,21 @@ public class App extends Application {
     paperController.showPaperPane();
   }
 
+  /**
+   * Closes the paper hint view and hides the paper pane.
+   *
+   * @param event the mouse event that triggered the method
+   * @throws IOException if the FXML file is not found
+   */
   public static void closePaper(MouseEvent event) throws IOException {
     paperController.hidePaperPane();
   }
 
+  /**
+   * Opens the explanation view and displays the explanation pane.
+   *
+   * @throws IOException if the FXML file is not found
+   */
   public static void openExplanation() throws IOException {
     roomController = loader.getController();
     roomController.setContext(context);
@@ -181,6 +270,11 @@ public class App extends Application {
     explanationController.showExplanationPane();
   }
 
+  /**
+   * Opens the game over view, handles game over logic, and displays the game over pane.
+   *
+   * @throws IOException if the FXML file is not found
+   */
   public static void openGameOver() throws IOException {
     try {
       // Retrieve the controller for the current room from the loader
@@ -220,6 +314,11 @@ public class App extends Application {
     roomController.showGuessButton();
   }
 
+  /**
+   * Opens the homepage view and displays the homepage.
+   *
+   * @throws IOException if the FXML file is not found
+   */
   public static void openHomepage() throws IOException {
     FXMLLoader homepageLoader = new FXMLLoader(App.class.getResource("/fxml/homepage.fxml"));
     Parent root = homepageLoader.load();
@@ -232,6 +331,11 @@ public class App extends Application {
     root.requestFocus(); // Request focus for the root node
   }
 
+  /**
+   * Resets the game state and opens the homepage.
+   *
+   * @throws IOException if the FXML file is not found
+   */
   public static void resetGame() throws IOException {
     context = new GameStateContext();
     context.setState(context.getGameStartedState());

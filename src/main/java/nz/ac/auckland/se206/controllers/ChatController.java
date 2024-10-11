@@ -47,26 +47,30 @@ public class ChatController {
   private GameStateContext context;
 
   /**
-   * Initializes the chat view.
+   * Initializes the chat view by hiding the chat pane, chat log, and progress indicator.
    *
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   @FXML
   public void initialize() throws ApiProxyException {
-    // Any required initialization code can be placed here
     hideChatPane(); // Hide chat box initially
     hideChatLog();
     progressIndicator.setVisible(false); // Hide progress indicator initially
   }
 
+  /**
+   * Sets the game context.
+   *
+   * @param context the game context
+   */
   public void setContext(GameStateContext context) {
     this.context = context;
   }
 
   /**
-   * Generates the system prompt based on the profession.
+   * Generates the system prompt based on the current profession.
    *
-   * @return the system prompt string
+   * @return the system prompt string, or null if the profession is not recognized
    */
   private String getSystemPrompt() {
     Map<String, String> map = new HashMap<>();
@@ -85,9 +89,10 @@ public class ChatController {
   }
 
   /**
-   * Sets the profession for the chat context and initializes the ChatCompletionRequest.
+   * Sets the profession for the chat context and initializes the ChatCompletionRequest object. Also
+   * retrieves the latest message if available, otherwise generates a new system message.
    *
-   * @param profession the profession to set
+   * @param profession the profession to set (e.g., Electrician, Plumber, or Neighbour)
    */
   public void setProfession(String profession) {
     this.profession = profession;
@@ -114,7 +119,7 @@ public class ChatController {
   }
 
   /**
-   * Appends a chat message to the chat text area.
+   * Appends a chat message to the chat display area.
    *
    * @param msg the chat message to append
    */
@@ -131,7 +136,7 @@ public class ChatController {
   }
 
   /**
-   * Formats the chat message for display.
+   * Formats the chat message for display, prefixing it with the sender's role.
    *
    * @param msg the chat message to format
    * @return the formatted message string
@@ -146,7 +151,7 @@ public class ChatController {
   }
 
   /**
-   * Appends formatted text to the chat text area.
+   * Appends formatted text to the chat display and saves it to the chat history.
    *
    * @param formattedMessage the message to append
    */
@@ -156,7 +161,7 @@ public class ChatController {
   }
 
   /**
-   * Runs the GPT model with a given chat message.
+   * Runs the GPT model with a given chat message and handles the chat completion task.
    *
    * @param msg the chat message to process
    * @throws ApiProxyException if there is an error communicating with the API proxy
@@ -211,7 +216,7 @@ public class ChatController {
   }
 
   /**
-   * Sends a message to the GPT model.
+   * Sends a message to the GPT model and processes the response.
    *
    * @param event the action event triggered by the send button
    * @throws ApiProxyException if there is an error communicating with the API proxy
@@ -222,7 +227,12 @@ public class ChatController {
     sendMessage();
   }
 
-  // Helper method to handle message sending logic
+  /**
+   * Sends the user's message and runs the GPT model.
+   *
+   * @throws ApiProxyException if there is an error communicating with the API proxy
+   * @throws IOException if there is an I/O error
+   */
   private void sendMessage() throws ApiProxyException, IOException {
     // Retrieve the message input from the text field and trim any whitespace
     String message = txtInput.getText().trim();
@@ -246,9 +256,9 @@ public class ChatController {
   }
 
   /**
-   * Method to handle key presses made by the user.
+   * Handles the key press event for sending a message when the Enter key is pressed.
    *
-   * @param event the action event triggered by the send button
+   * @param event the key event triggered by pressing a key
    * @throws ApiProxyException if there is an error communicating with the API proxy
    * @throws IOException if there is an I/O error
    */
@@ -263,6 +273,14 @@ public class ChatController {
     }
   }
 
+  /**
+   * Handles the click event on the chat log toggle button. Toggles between showing the current chat
+   * and the chat log.
+   *
+   * @param event the event triggered when the chat log is clicked
+   * @throws ApiProxyException if there is an error communicating with the API proxy
+   * @throws IOException if there is an I/O error
+   */
   @FXML
   private void onChatLogClick(Event event) throws ApiProxyException, IOException {
     if (txtaChat.isVisible()) {
@@ -282,6 +300,12 @@ public class ChatController {
     }
   }
 
+  /**
+   * Handles the mouse enter event for buttons. Makes certain buttons visible or adjusts the opacity
+   * when the mouse enters the button area.
+   *
+   * @param event the mouse event triggered when the mouse enters a button
+   */
   @FXML
   public void handleMouseEnter(MouseEvent event) {
     // Check the source of the event to determine which button triggered it
@@ -306,6 +330,12 @@ public class ChatController {
     }
   }
 
+  /**
+   * Handles the mouse exit event for buttons. Hides or adjusts the opacity of buttons when the
+   * mouse exits the button area.
+   *
+   * @param event the mouse event triggered when the mouse exits a button
+   */
   @FXML
   public void handleMouseExit(MouseEvent event) {
     // Check the source of the event to determine which button triggered it
@@ -330,30 +360,33 @@ public class ChatController {
     }
   }
 
-  /** Hides the chat box. */
+  /** Hides the chat log by making it invisible. */
   public void hideChatLog() {
     txtaChat.setVisible(false); // Make chat log invisible
   }
 
+  /** Displays the chat log and populates it with the chat history of the current profession. */
   public void showChatLog() {
     txtaChat.setText(context.getChatHistory(profession));
     txtaChat.setVisible(true); // Make chat log visible
   }
 
-  /** Shows the chat box. */
+  /** Displays the chat pane, making it visible. */
   public void showChatPane() {
     chatPane.setVisible(true); // Make chat box visible
   }
 
-  /** Shows the chat box. */
+  /** Hides the chat pane, making it invisible. */
   public void hideChatPane() {
-    chatPane.setVisible(false); // Make chat box visible
+    chatPane.setVisible(false); // Make chat box invisible
   }
 
+  /** Hides the current chat display by making it invisible. */
   public void hideCurrentChat() {
     currentChat.setVisible(false);
   }
 
+  /** Displays the current chat by making it visible. */
   public void showCurrentChat() {
     currentChat.setVisible(true);
   }

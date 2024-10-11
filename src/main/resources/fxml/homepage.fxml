@@ -69,7 +69,7 @@
             <Image url="@../images/styled-buttons/exit-game-hovered.png" />
          </image>
       </ImageView>
-      <Button fx:id="startGameButton" alignment="CENTER" layoutX="350.0" layoutY="515.0" mnemonicParsing="false" onAction="#handleStartGameButtonClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="49.0" prefWidth="101.0" text="Start Game" />
-      <Button fx:id="exitButton" alignment="CENTER" layoutX="614.0" layoutY="515.0" mnemonicParsing="false" onAction="#handleExitButtonClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="49.0" prefWidth="101.0" text="Exit" />
+      <Button fx:id="startGameButton" alignment="CENTER" layoutX="350.0" layoutY="515.0" mnemonicParsing="false" onAction="#onStartGameButtonClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="49.0" prefWidth="101.0" text="Start Game" />
+      <Button fx:id="exitButton" alignment="CENTER" layoutX="614.0" layoutY="515.0" mnemonicParsing="false" onAction="#onExitButtonClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="49.0" prefWidth="101.0" text="Exit" />
    </children>
 </Pane>

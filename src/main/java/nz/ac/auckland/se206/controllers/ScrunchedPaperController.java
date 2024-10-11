@@ -87,7 +87,7 @@ public class ScrunchedPaperController {
    * @throws IOException if there is an issue opening the paper hint screen.
    */
   @FXML
-  private void handleAnalyseHint(ActionEvent event) throws IOException {
+  private void onAnalyseHint(ActionEvent event) throws IOException {
     App.openPaperHint(event);
   }
 

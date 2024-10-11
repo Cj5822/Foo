@@ -48,7 +48,7 @@ public class HomeController {
    * @throws IOException if an I/O error occurs while loading the FXML.
    */
   @FXML
-  private void handleStartGameButtonClick(ActionEvent event) throws IOException {
+  private void onStartGameButtonClick(ActionEvent event) throws IOException {
     // Get the button that triggered the event
     Button button = (Button) event.getSource();
 
@@ -79,7 +79,7 @@ public class HomeController {
    * @param event the action event triggered by the exit button.
    */
   @FXML
-  private void handleExitButtonClick(ActionEvent event) {
+  private void onExitButtonClick(ActionEvent event) {
     Stage stage = (Stage) exitButton.getScene().getWindow();
     stage.close();
     System.exit(0);

@@ -119,7 +119,7 @@ public class SafeController {
    * @param event the mouse event triggered by exiting the hover area
    */
   @FXML
-  private void handleExitHoverExit(MouseEvent event) {
+  private void handleExitButtonHoverExit(MouseEvent event) {
     exitButtonUnhovered.setVisible(true);
     exitButtonHover.setVisible(false);
   }

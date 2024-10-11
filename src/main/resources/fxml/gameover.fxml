@@ -44,8 +44,8 @@
             <Image url="@../images/styled-buttons/exit-game-hovered.png" />
          </image>
       </ImageView>
-      <Button fx:id="replayGameButton" layoutX="330.0" layoutY="510.0" mnemonicParsing="false" onAction="#handleReplay" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="53.0" prefWidth="109.0" text="Replay" />
-      <Button fx:id="exitGameButton" layoutX="558.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleExit" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="51.0" prefWidth="103.0" text="Exit" />
+      <Button fx:id="replayGameButton" layoutX="330.0" layoutY="510.0" mnemonicParsing="false" onAction="#handleReplayButtonClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="53.0" prefWidth="109.0" text="Replay" />
+      <Button fx:id="exitGameButton" layoutX="558.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleExitButtonClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="51.0" prefWidth="103.0" text="Exit" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="214.0" layoutY="20.0" prefHeight="88.0" prefWidth="396.0" text="GAME OVER!" textAlignment="CENTER" textFill="RED">
          <font>
             <Font name="System Bold" size="60.0" />

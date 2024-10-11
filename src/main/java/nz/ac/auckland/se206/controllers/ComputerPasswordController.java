@@ -126,8 +126,8 @@ public class ComputerPasswordController {
 
   /** Handles the event when the send button is pressed. */
   @FXML
-  private void handleSendButtonPress() throws IOException {
-    handlePasswordSubmit(); // Submit password when send button is pressed
+  private void handleSendButtonClick() throws IOException {
+    handlePasswordSubmit(); // Call the same method that handles password submission
   }
 
   /** Shows the computer password pane and focuses on the password input field. */
@@ -228,7 +228,7 @@ public class ComputerPasswordController {
 
   /** Toggles the visibility of the password input field. */
   @FXML
-  private void handleShowPassword() {
+  private void handleShowPasswordClick() {
     if (isPasswordVisible) {
       showPasswordDisable.setVisible(false);
       showPasswordEnableHover.setVisible(false);

@@ -85,7 +85,7 @@ public class ComputerOpenController {
 
   /** Plays the wrench sound and manages its playback state (play, pause, stop). */
   @FXML
-  private void playWrenchSound() {
+  private void handlePlayWrenchSound() {
     computerPauseButton.setVisible(true);
     playButtonHovered.setVisible(false);
     pauseButtonHovered.setVisible(false);

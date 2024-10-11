@@ -265,7 +265,7 @@ public class GameOverController {
    * @throws IOException If there is an error during game reset.
    */
   @FXML
-  private void handleReplay(ActionEvent event) throws IOException {
+  private void handleReplayButtonClick(ActionEvent event) throws IOException {
     SoundManager.stopSound();
     App.resetGame();
   }
@@ -277,7 +277,7 @@ public class GameOverController {
    * @param event The action event triggered by clicking the exit button.
    */
   @FXML
-  private void handleExit(ActionEvent event) {
+  private void handleExitButtonClick(ActionEvent event) {
     SoundManager.stopSound();
     System.exit(0);
   }

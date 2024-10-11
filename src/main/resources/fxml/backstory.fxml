@@ -31,6 +31,6 @@
             <Image url="@../images/styled-buttons/continue-hovered.png" />
          </image>
       </ImageView>
-      <Button fx:id="continueButton" layoutX="350.0" layoutY="515.0" mnemonicParsing="false" onAction="#handleContinue" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="49.0" prefWidth="101.0" text="Continue" />
+      <Button fx:id="continueButton" layoutX="350.0" layoutY="515.0" mnemonicParsing="false" onAction="#handleContinueButtonClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" opacity="0.0" prefHeight="49.0" prefWidth="101.0" text="Continue" />
    </children>
 </Pane>

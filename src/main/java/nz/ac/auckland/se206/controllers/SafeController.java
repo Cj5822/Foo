@@ -18,6 +18,17 @@ import nz.ac.auckland.se206.SoundManager;
 import nz.ac.auckland.se206.TimerManager;
 
 public class SafeController {
+  // Constants (Static Fields)
+  private static final String SAFE = "src/main/resources/sounds/Safe.mp3";
+
+  // Instance Fields
+  private GameStateContext context;
+  private TimerManager timerManager;
+
+  // Other Fields
+  private final String correctCode = "2560"; // Correct combination to open the safe
+  private StringBuilder enteredCode = new StringBuilder(); // StringBuilder to hold entered digits
+
   // FXML-Injected Fields
   @FXML private AnchorPane safePane;
   @FXML private Label safeDisplay;
@@ -35,17 +46,6 @@ public class SafeController {
   @FXML private Label lblTimer;
   @FXML private ImageView exitButtonHover;
   @FXML private ImageView exitButtonUnhovered;
-
-  // Instance Fields
-  private GameStateContext context;
-  private TimerManager timerManager;
-
-  // Constants
-  private static final String SAFE = "src/main/resources/sounds/Safe.mp3";
-
-  // Other Fields
-  private final String correctCode = "2560"; // Correct combination to open the safe
-  private StringBuilder enteredCode = new StringBuilder(); // StringBuilder to hold entered digits
 
   @FXML
   public void initialize() throws ApiProxyException {

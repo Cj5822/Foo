@@ -16,6 +16,7 @@ public class ScrunchedPaperController {
 
   @FXML private AnchorPane scrunchedPaperPane;
   @FXML private ImageView btnAnalyseImage;
+  @FXML private ImageView exitButtonHover;
 
   @FXML
   public void initialize() throws ApiProxyException {
@@ -31,6 +32,16 @@ public class ScrunchedPaperController {
   private void handleRectangleClick(MouseEvent event) throws IOException {
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleRectangleClick(event, clickedRectangle.getId());
+  }
+
+  @FXML // Handle the exit button hover effect based on hovering the rectangle above it
+  private void handleExitHoverEnter(MouseEvent event) {
+    exitButtonHover.setVisible(true);
+  }
+
+  @FXML // Handle the exit button hover effect based on exiting the rectangle above it
+  private void handleExitHoverExit(MouseEvent event) {
+    exitButtonHover.setVisible(false);
   }
 
   @FXML

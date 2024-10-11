@@ -42,6 +42,7 @@ public class RoomController {
   @FXML private ImageView btnMakeAGuess;
   @FXML private ImageView btnReplayGameImage;
   @FXML private ImageView btnExitGameImage;
+  @FXML private ImageView glowComputer;
 
   // Controllers
   private ChatController chatController;
@@ -400,6 +401,10 @@ public class RoomController {
 
     // Reset room label to the original room name
     lblRoomName.setText(originalRoomName);
+    if (hoveredRectangle.getId().equals("rectComputer")) {
+      // set specific image that isn't the hovered image to be opaque
+      glowComputer.setVisible(false);
+    }
   }
 
   /**
@@ -475,6 +480,9 @@ public class RoomController {
         return;
       case "rectBedroom":
         lblRoomName.setText("Bedroom");
+        return;
+      case "rectComputer":
+        glowComputer.setVisible(true);
         return;
     }
   }

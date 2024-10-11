@@ -137,10 +137,15 @@ public class ComputerOpenController {
         () -> {
           // Stop playing when it reaches the end
           mediaPlayer.stop();
+          // Reset progress bar
+          soundProgressBar.setValue(0);
+          // Change image to computerPauseButton when reset
+          computerPauseButton.setVisible(false);
         });
   }
 
   public void showOpenComputerPane() {
+    computerPauseButton.setVisible(false); // Change to computerPauseButton when showing the pane
     openComputerPane.setVisible(true);
   }
 
@@ -149,6 +154,7 @@ public class ComputerOpenController {
       mediaPlayer.stop();
       mediaPlayer.seek(Duration.ZERO); // Seek back to the start
     }
+    computerPauseButton.setVisible(false); // Change to computerPauseButton when hiding the pane
     openComputerPane.setVisible(false);
   }
 

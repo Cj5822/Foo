@@ -36,8 +36,8 @@ public class SoundManager {
       if (mediaPlayer != null) {
         System.out.println("Stopping sound..."); // Debug statement
         mediaPlayer.stop(); // Stop playback
-        mediaPlayer.dispose(); // Dispose of the MediaPlayer to release resources
-        mediaPlayer = null; // Reset mediaPlayer reference
+        mediaPlayer.dispose(); // Release resources
+        mediaPlayer = null; // Reset reference
       } else {
         System.out.println("No sound to stop."); // Debug statement
       }

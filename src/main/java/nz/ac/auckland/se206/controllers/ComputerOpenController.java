@@ -42,14 +42,20 @@ public class ComputerOpenController {
 
   /** Starts the timer and continuously updates the timer label. */
   private void startTimer() {
+    // Initiate the timerManager to start counting time
     timerManager.start();
+
+    // Create an AnimationTimer to update the UI at each frame
     AnimationTimer timerUpdater =
         new AnimationTimer() {
           @Override
           public void handle(long now) {
+            // Update the timer label with the formatted time from timerManager
             lblTimer.setText(timerManager.getTimeFormatted());
           }
         };
+
+    // Start the timer updater to begin the continuous updates
     timerUpdater.start();
   }
 

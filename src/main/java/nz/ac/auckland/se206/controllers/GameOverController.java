@@ -97,11 +97,20 @@ public class GameOverController {
   // Async call to GPT to check the explanation
   private void runGptCheck(String explanation, boolean isCorrectGuess, String selectedSuspect)
       throws ApiProxyException {
+    // Read API configuration from the config file
     ApiProxyConfig config = ApiProxyConfig.readConfig();
-    chatCompletionRequest =
-        new ChatCompletionRequest(config).setN(1).setTemperature(0.1).setMaxTokens(400);
 
+    // Initialize the chat completion request with parameters
+    chatCompletionRequest =
+        new ChatCompletionRequest(config)
+            .setN(1) // Set the number of responses to generate
+            .setTemperature(0.1) // Control randomness in responses (lower is less random)
+            .setMaxTokens(400); // Set the maximum number of tokens (words) for the response
+
+    // Log the selected suspect for debugging purposes
     System.out.println(selectedSuspect.replace("image", ""));
+
+    // Create the prompt to send to the GPT model
     String prompt =
         "Player explanation: '"
             + explanation
@@ -121,37 +130,51 @@ public class GameOverController {
             + " Explanation is only correct if it mentioned all 3 of the hints, otherwise, give"
             + " feedback.";
 
+    // Create a new chat message containing the prompt
     ChatMessage message = new ChatMessage("user", prompt);
-    chatCompletionRequest.addMessage(message);
+    chatCompletionRequest.addMessage(message); // Add the message to the request
 
+    // Create a task for executing the chat completion request asynchronously
     Task<ChatMessage> chatCompletionTask =
         new Task<>() {
           @Override
           protected ChatMessage call() throws ApiProxyException {
+            // Execute the chat completion request and retrieve the result
             ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
-            Choice result = chatCompletionResult.getChoices().iterator().next();
-            chatCompletionRequest.addMessage(result.getChatMessage());
-            progressIndicator.setVisible(false);
-            return result.getChatMessage();
+            Choice result =
+                chatCompletionResult.getChoices().iterator().next(); // Get the first choice
+            chatCompletionRequest.addMessage(
+                result.getChatMessage()); // Add the response to the request
+            progressIndicator.setVisible(false); // Hide the progress indicator when done
+            return result.getChatMessage(); // Return the chat message content
           }
         };
 
-    // When GPT completes, update the UI with feedback
+    // When the GPT task completes successfully, update the UI with the feedback
     chatCompletionTask.setOnSucceeded(
         event -> {
-          String gptResponse = chatCompletionTask.getValue().getContent();
-          Platform.runLater(() -> processGptResponse(gptResponse, explanation, isCorrectGuess));
+          String gptResponse = chatCompletionTask.getValue().getContent(); // Get the GPT response
+          Platform.runLater(
+              () ->
+                  processGptResponse(
+                      gptResponse,
+                      explanation,
+                      isCorrectGuess)); // Process the response on the JavaFX Application Thread
         });
 
+    // Create a new thread for executing the chat completion task
     Thread chatCompletionThread = new Thread(chatCompletionTask);
-    chatCompletionThread.setDaemon(true);
-    chatCompletionThread.start();
+    chatCompletionThread.setDaemon(true); // Set the thread as a daemon thread
+    chatCompletionThread.start(); // Start the thread
   }
 
   // Handle GPT response and update the UI accordingly
   private void processGptResponse(
       String gptResponse, String yourExplanation, boolean isCorrectGuess) {
+    // Check if the guess was correct
     if (isCorrectGuess) {
+      // Update the explanation text with the correct guess message
+      // Include the user's explanation and feedback from GPT
       explanationText.setText(
           "Guess: Correct "
               + "\nYour explanation: "
@@ -159,6 +182,8 @@ public class GameOverController {
               + "\nFeedback: "
               + gptResponse);
     } else {
+      // Update the explanation text with the incorrect guess message
+      // Include the user's explanation and feedback from GPT
       explanationText.setText(
           "Guess: Incorrect "
               + "\nYour explanation: "

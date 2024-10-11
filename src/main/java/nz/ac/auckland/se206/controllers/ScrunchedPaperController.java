@@ -11,6 +11,12 @@ import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 
+/**
+ * The ScrunchedPaperController is responsible for managing the behavior and interactions of the
+ * scrunched paper scene in the game. This includes handling mouse events for analyzing the hint,
+ * interacting with rectangles, and hovering over the exit button. The controller also controls the
+ * visibility of the scrunched paper pane.
+ */
 public class ScrunchedPaperController {
   private GameStateContext context;
 

@@ -15,6 +15,12 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.SoundManager;
 
+/**
+ * The HomeController class is responsible for managing the home screen of the game. It handles user
+ * interactions such as starting the game and exiting the application. The controller manages the
+ * transition to the backstory scene and handles button interactions, including hover effects. The
+ * HomeController is also responsible for playing sound effects when the game starts.
+ */
 public class HomeController {
 
   // Static Fields

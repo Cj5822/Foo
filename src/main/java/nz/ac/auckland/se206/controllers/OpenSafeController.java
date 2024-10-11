@@ -12,6 +12,17 @@ import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.TimerManager;
 
+/**
+ * The OpenSafeController class manages interactions in the "open safe" section of the game. This
+ * includes controlling the visibility of the open safe pane, handling mouse events for various UI
+ * elements, and managing a timer. The controller coordinates with the GameStateContext to process
+ * actions triggered by user interactions with the open safe. It also handles hover effects for UI
+ * elements like the exit button and map navigation buttons.
+ *
+ * <p>Responsibilities: - Manage the timer and update the UI with the current time. - Handle mouse
+ * events for interactive elements in the open safe pane (rectangles, images). - Control visibility
+ * of the open safe pane and provide feedback through UI changes.
+ */
 public class OpenSafeController {
   private GameStateContext context;
 

@@ -15,10 +15,10 @@ public class TimerManager {
   private static TimerManager instance; // Singleton instance
 
   // Instance Fields
-  private GameStateContext context; // Shared game context
   private Timeline timeline; // Timeline for managing timer events
   private int secondsRemaining = 300; // Track the number of seconds remaining
   private boolean isTimeUp = false; // Flag to indicate if time has run out
+  private GameStateContext context; // Shared game context
 
   /**
    * Private constructor to prevent instantiation. Initializes the timeline and sets up the timer to

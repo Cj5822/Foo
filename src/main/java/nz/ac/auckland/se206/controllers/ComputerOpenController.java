@@ -5,6 +5,7 @@ import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.MediaPlayer;
@@ -22,6 +23,7 @@ public class ComputerOpenController {
   @FXML private Rectangle rectExitOpenComputer;
   @FXML private Label lblTimer;
   @FXML private Slider soundProgressBar;
+  @FXML private ImageView computerPauseButton;
 
   private TimerManager timerManager;
   private MediaPlayer mediaPlayer;
@@ -60,12 +62,15 @@ public class ComputerOpenController {
   /** Plays the wrench sound and manages its playback state. */
   @FXML
   private void playWrenchSound() {
+    computerPauseButton.setVisible(true);
     if (mediaPlayer != null) {
       // Toggle play/pause or restart
       if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
         mediaPlayer.pause(); // Pause if playing
+        computerPauseButton.setVisible(false);
       } else if (mediaPlayer.getStatus() == MediaPlayer.Status.PAUSED) {
         mediaPlayer.play(); // Resume if paused
+        computerPauseButton.setVisible(true);
       } else if (mediaPlayer.getStatus() == MediaPlayer.Status.STOPPED) {
         mediaPlayer.seek(Duration.ZERO); // Reset to start
         mediaPlayer.play(); // Play from the start
@@ -73,6 +78,7 @@ public class ComputerOpenController {
     } else {
       // Initialize and play sound for the first time
       initializeMediaPlayer();
+      computerPauseButton.setVisible(true);
     }
   }
 

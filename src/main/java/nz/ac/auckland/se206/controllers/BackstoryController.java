@@ -18,18 +18,17 @@ import nz.ac.auckland.se206.TimerManager;
  */
 public class BackstoryController {
 
-  // FXML-Injected Fields
-  @FXML private Button continueButton; // Button to continue to the next room
-  @FXML private Label lblTimer; // Label to display the formatted countdown timer
-  @FXML private ImageView btnContinueImage; // Image view for the continue button's hover effect
+  // Constants
+  private static final String DOOR = "src/main/resources/sounds/Door.mp3";
 
   // Instance Fields
-  private TimerManager timerManager; // TimerManager to manage the countdown
-  private GameStateContext context; // Game state context to manage the state of the game
+  private TimerManager timerManager;
+  private GameStateContext context;
 
-  // Constants
-  private static final String DOOR =
-      "src/main/resources/sounds/Door.mp3"; // Path to the sound file played on transition
+  // FXML-Injected Fields
+  @FXML private Button continueButton;
+  @FXML private Label lblTimer;
+  @FXML private ImageView btnContinueImage;
 
   /** Initializes the BackstoryController, setting up the timer and starting it. */
   public void initialize() {
@@ -72,9 +71,9 @@ public class BackstoryController {
    * @throws IOException if there is an error loading the next room
    */
   @FXML
-  public void handleContinue(ActionEvent event) throws IOException {
-    App.changeRoom(null, "room"); // Change the room scene to the next one
-    SoundManager.playSound(DOOR, false); // Play the door sound effect
+  private void handleContinue(ActionEvent event) throws IOException {
+    App.changeRoom(null, "room");
+    SoundManager.playSound(DOOR, false);
   }
 
   /**

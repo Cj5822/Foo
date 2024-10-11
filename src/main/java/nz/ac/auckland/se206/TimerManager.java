@@ -11,8 +11,8 @@ public class TimerManager {
 
   // Instance Fields
   private int secondsRemaining = 300; // Track the number of seconds remaining
-  private Timeline timeline;
   private boolean isTimeUp = false; // Flag to indicate if time has run out
+  private Timeline timeline;
   private GameStateContext context;
 
   /**

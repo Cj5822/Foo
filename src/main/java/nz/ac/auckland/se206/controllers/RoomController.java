@@ -473,7 +473,7 @@ public class RoomController {
    * @throws IOException if there is an I/O error
    */
   @FXML
-  public void handleReplay(ActionEvent event) throws IOException {
+  private void handleReplay(ActionEvent event) throws IOException {
     App.resetGame();
   }
 
@@ -483,7 +483,7 @@ public class RoomController {
    * @param event the action event triggered by the exit button
    */
   @FXML
-  public void handleExit(ActionEvent event) {
+  private void handleExit(ActionEvent event) {
     System.exit(0);
   }
 

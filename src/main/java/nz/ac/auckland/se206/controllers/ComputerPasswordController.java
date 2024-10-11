@@ -151,14 +151,22 @@ public class ComputerPasswordController {
    */
   @FXML
   private void handlePasswordSubmit() throws IOException {
-    String inputPassword =
-        passwordInput.isVisible() ? passwordInput.getText() : passwordTextField.getText();
+    String inputPassword;
+
+    // Check the visible field
+    if (passwordInput.isVisible()) {
+      inputPassword = passwordInput.getText();
+    } else {
+      inputPassword = passwordTextField.getText();
+    }
 
     if (inputPassword.equals(CORRECT_PASSWORD)) {
-      lblMessage.setVisible(false); // Password is correct, proceed
+      // Password is correct, perform the action (e.g., unlock the safe)
+      lblMessage.setVisible(false);
       App.openOpenedComputer(null);
     } else {
-      lblMessage.setVisible(true); // Password is incorrect, show feedback
+      // Password is incorrect, provide feedback
+      lblMessage.setVisible(true);
     }
 
     passwordInput.clear(); // Clear the password field
@@ -166,8 +174,9 @@ public class ComputerPasswordController {
 
     Platform.runLater(
         () -> {
-          passwordInput.requestFocus();
-          passwordInput.positionCaret(passwordInput.getText().length());
+          passwordInput.requestFocus(); // Ensure the focus is on the password field
+          passwordInput.positionCaret(
+              passwordInput.getText().length()); // Position the caret at the end
         });
   }
 

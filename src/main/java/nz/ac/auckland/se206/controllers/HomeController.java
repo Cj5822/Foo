@@ -17,6 +17,12 @@ import nz.ac.auckland.se206.SoundManager;
 
 public class HomeController {
 
+  // Static Fields
+  private static final String KNOCKING = "src/main/resources/sounds/Knocking.mp3";
+
+  // Instance Fields
+  private GameStateContext context;
+
   // FXML-Injected Fields
   @FXML private Button startGameButton;
   @FXML private Button exitButton;
@@ -24,17 +30,6 @@ public class HomeController {
   @FXML private ImageView btnStartGameImage;
   @FXML private ImageView btnExitGameImage;
 
-  // Instance Fields
-  private GameStateContext context;
-
-  // Static Fields
-  private static final String KNOCKING = "src/main/resources/sounds/Knocking.mp3";
-
-  /**
-   * Sets the game state context for the home controller.
-   *
-   * @param context the current game state context.
-   */
   public void setContext(GameStateContext context) {
     this.context = context;
   }
@@ -47,7 +42,7 @@ public class HomeController {
    * @throws IOException if an I/O error occurs while loading the FXML.
    */
   @FXML
-  public void handleStartGame(ActionEvent event) throws IOException {
+  private void handleStartGame(ActionEvent event) throws IOException {
     // Get the button that triggered the event
     Button button = (Button) event.getSource();
 
@@ -78,7 +73,7 @@ public class HomeController {
    * @param event the action event triggered by the exit button.
    */
   @FXML
-  public void handleExit(ActionEvent event) {
+  private void handleExit(ActionEvent event) {
     Stage stage = (Stage) exitButton.getScene().getWindow();
     stage.close();
     System.exit(0);

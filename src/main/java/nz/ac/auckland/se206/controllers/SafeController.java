@@ -23,6 +23,16 @@ import nz.ac.auckland.se206.TimerManager;
  * managing the timer.
  */
 public class SafeController {
+  // Constants (Static Fields)
+  private static final String SAFE_SOUND_PATH = "src/main/resources/sounds/Safe.mp3";
+
+  // Instance Fields
+  private GameStateContext context;
+  private TimerManager timerManager;
+
+  // Other Fields
+  private final String correctCode = "2560"; // Correct combination to open the safe
+  private StringBuilder enteredCode = new StringBuilder(); // StringBuilder to hold entered digits
 
   // FXML-Injected Fields
   @FXML private AnchorPane safePane;
@@ -41,17 +51,6 @@ public class SafeController {
   @FXML private Label lblTimer;
   @FXML private ImageView exitButtonHover;
   @FXML private ImageView exitButtonUnhovered;
-
-  // Instance Fields
-  private GameStateContext context;
-  private TimerManager timerManager;
-
-  // Constants
-  private static final String SAFE_SOUND_PATH = "src/main/resources/sounds/Safe.mp3";
-  private static final String CORRECT_CODE = "2560"; // Correct combination to open the safe
-
-  // Stores the user's input for the safe code
-  private StringBuilder enteredCode = new StringBuilder();
 
   /**
    * Initializes the safe interface and hides it initially. Also starts the timer.
@@ -95,7 +94,8 @@ public class SafeController {
    * @param event the action event triggered by pressing a digit button
    */
   @FXML
-  public void handleButtonPress(ActionEvent event) {
+  private void handleButtonPress(ActionEvent event) {
+    // Get the button text (which will be the digit)
     Button pressedButton = (Button) event.getSource();
     String digit = pressedButton.getText();
     enteredCode.append(digit); // Append the digit to the entered code
@@ -145,8 +145,8 @@ public class SafeController {
    * @throws IOException if there is an I/O error while opening the next screen
    */
   @FXML
-  public void handleOpenPress(Event event) throws IOException {
-    if (enteredCode.toString().equals(CORRECT_CODE)) {
+  private void handleOpenPress(Event event) throws IOException {
+    if (enteredCode.toString().equals(correctCode)) {
       safeDisplay.setText("Safe Opened!");
       SoundManager.playSound(SAFE_SOUND_PATH, false);
       App.openOpenedSafe(null);
@@ -162,7 +162,7 @@ public class SafeController {
    * @param event the event triggered by pressing the backspace button
    */
   @FXML
-  public void handleBackspacePress(Event event) {
+  private void handleBackspacePress(Event event) {
     if (enteredCode.length() > 0) {
       enteredCode.deleteCharAt(enteredCode.length() - 1); // Remove the last digit
       safeDisplay.setText(enteredCode.toString()); // Update the display

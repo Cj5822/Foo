@@ -73,21 +73,6 @@ public class GameStarted implements GameState {
         context.setCurrentRoom("room"); // Update the current room
         App.changeRoom(event, "room");
         return;
-      case "rectWrench":
-        App.openWrench(event);
-        return;
-      case "rectExitWrench":
-        App.closeWrench(event);
-        return;
-      case "rectExitFlippedWrench":
-        App.closeFlippedWrench(event);
-        return;
-      case "rectFlipWrench":
-        App.flipWrench(event);
-        return;
-      case "rectFlipWrench2":
-        App.flipWrenchAgain(event);
-        return;
       case "rectSafe":
         App.openSafe(event);
         return;
@@ -174,9 +159,6 @@ public class GameStarted implements GameState {
         return;
       case "plumberGlow":
         App.openChat(event, "Plumber");
-        return;
-      case "wrenchGlow":
-        App.openWrench(event);
         return;
       case "paperGlow":
         App.openScrunchedPaper(event);

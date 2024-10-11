@@ -4,11 +4,15 @@ import java.io.IOException;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.SoundManager;
 import nz.ac.auckland.se206.TimerManager;
 
 public class ComputerOpenController {
@@ -17,14 +21,15 @@ public class ComputerOpenController {
   @FXML private AnchorPane openComputerPane;
   @FXML private Rectangle rectExitOpenComputer;
   @FXML private Label lblTimer;
+  @FXML private Slider soundProgressBar;
 
   private TimerManager timerManager;
+  private MediaPlayer mediaPlayer;
+  private static final String WRENCH = "src/main/resources/sounds/Wrenchdrop.mp3";
 
   @FXML
   public void initialize() throws ApiProxyException {
-    // Any required initialization code can be placed here
     hideOpenComputerPane(); // Hide wrench pane initially
-    // Get the instance of TimerManager
     timerManager = TimerManager.getInstance(context);
     startTimer();
   }
@@ -35,10 +40,7 @@ public class ComputerOpenController {
 
   /** Starts the timer and continuously updates the timer label. */
   private void startTimer() {
-    // Start the shared TimerManager
     timerManager.start();
-
-    // Update the label every frame with the formatted time
     AnimationTimer timerUpdater =
         new AnimationTimer() {
           @Override
@@ -55,11 +57,84 @@ public class ComputerOpenController {
     context.handleRectangleClick(event, clickedRectangle.getId());
   }
 
+  /** Plays the wrench sound and manages its playback state. */
+  @FXML
+  private void playWrenchSound() {
+    if (mediaPlayer != null) {
+      // Toggle play/pause or restart
+      if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+        mediaPlayer.pause(); // Pause if playing
+      } else if (mediaPlayer.getStatus() == MediaPlayer.Status.PAUSED) {
+        mediaPlayer.play(); // Resume if paused
+      } else if (mediaPlayer.getStatus() == MediaPlayer.Status.STOPPED) {
+        mediaPlayer.seek(Duration.ZERO); // Reset to start
+        mediaPlayer.play(); // Play from the start
+      }
+    } else {
+      // Initialize and play sound for the first time
+      initializeMediaPlayer();
+    }
+  }
+
+  private void initializeMediaPlayer() {
+    // Play sound using SoundManager
+    SoundManager.playSound(WRENCH, false);
+    mediaPlayer = SoundManager.getMediaPlayer();
+
+    // Bind progress bar to the media player's total duration
+    mediaPlayer.setOnReady(
+        () -> {
+          Duration totalDuration = mediaPlayer.getTotalDuration();
+          soundProgressBar.setMax(totalDuration.toSeconds());
+        });
+
+    // Update progress bar as sound plays
+    mediaPlayer
+        .currentTimeProperty()
+        .addListener(
+            (observable, oldTime, newTime) -> {
+              if (!soundProgressBar.isValueChanging()) {
+                soundProgressBar.setValue(newTime.toSeconds());
+              }
+            });
+
+    // Handle user dragging the progress bar
+    soundProgressBar
+        .valueChangingProperty()
+        .addListener(
+            (observable, wasChanging, isChanging) -> {
+              if (!isChanging) {
+                mediaPlayer.seek(Duration.seconds(soundProgressBar.getValue()));
+              }
+            });
+
+    // Handle clicks on the progress bar
+    soundProgressBar.setOnMousePressed(
+        event -> {
+          double mouseX = event.getX();
+          double progressPercentage = mouseX / soundProgressBar.getWidth();
+          Duration newDuration = mediaPlayer.getTotalDuration().multiply(progressPercentage);
+          mediaPlayer.seek(newDuration);
+          soundProgressBar.setValue(newDuration.toSeconds());
+        });
+
+    // Set the end of media listener
+    mediaPlayer.setOnEndOfMedia(
+        () -> {
+          // Stop playing when it reaches the end
+          mediaPlayer.stop();
+        });
+  }
+
   public void showOpenComputerPane() {
     openComputerPane.setVisible(true);
   }
 
   public void hideOpenComputerPane() {
+    if (mediaPlayer != null) {
+      mediaPlayer.stop();
+      mediaPlayer.seek(Duration.ZERO); // Seek back to the start
+    }
     openComputerPane.setVisible(false);
   }
 }

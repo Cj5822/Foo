@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -27,6 +28,7 @@ public class ComputerPasswordController {
   @FXML private PasswordField passwordInput;
   @FXML private TextField passwordTextField;
   @FXML private Button showPassword;
+  @FXML private ImageView showPasswordDisable;
 
   private TimerManager timerManager;
 
@@ -127,6 +129,8 @@ public class ComputerPasswordController {
   @FXML
   private void handleShowPassword() {
     if (isPasswordVisible) {
+      // make image visible
+      showPasswordDisable.setVisible(false);
       // When showing the password field
       passwordTextField.setVisible(false); // Hide the text field
       passwordInput.setVisible(true); // Show the password field
@@ -140,6 +144,7 @@ public class ComputerPasswordController {
           });
       isPasswordVisible = false; // Update visibility flag
     } else {
+      showPasswordDisable.setVisible(true);
       // When showing the text field
       passwordInput.setVisible(false); // Hide the password field
       // Set the text field with the current password and show it
